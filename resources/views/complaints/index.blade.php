@@ -9,19 +9,17 @@
         {{-- <x-headers.hr /> --}}
         <div class="card-body">
             <div class="my-3">
-                <button id="addBtn" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
                     <i class="icon-plus"></i> Add New
-                </button>
-                {{-- @livewire('complaint-form') --}}
+                </a>
             </div>
             <div class="table-responsive">
                 <x-success-message></x-success-message>
                 <table id="copy-print-csv" class="table v-middle">
                     <thead>
                         <tr>
-                            <th>Name</th>
                             <th>Code</th>
+                            <th>Name</th>
                             <th>Phone Number</th>
                             <th>Complaint</th>
                             <th>states</th>
@@ -31,9 +29,9 @@
                     <tbody>
                         @foreach ($complaints as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->code }}</td>
                                 <td>
-                                    {{ $item->code }}
+                                    {{ $item->name }}
                                 </td>
                                 <td>
                                     {{ $item->phone }}
@@ -47,12 +45,10 @@
 
                                 <td>
                                     <div class="actions">
-                                        <a href="#" onclick="editItem({{ $item->id }})" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="Edit">
-                                            <i class="icon-edit1 text-primary editItem"></i>
+                                        <a href="{{ route('complaints.edit', $item) }}">
+                                            <i class="icon-edit1 text-primary"></i>
                                         </a>
-                                        <a href="#" onclick="showItem({{ $item->id }})" data-toggle="tooltip"
-                                            data-placement="top" title="" data-original-title="View">
+                                        <a href="{{ route('complaints.show', $item) }}">
                                             <i class="icon-eye text-warning"></i>
                                         </a>
                                         <a onclick="deleteItem('deleteForm-{{ $item->id }}')" href="#"
@@ -78,16 +74,6 @@
     </div>
 @section('scripts')
     <script>
-        function editItem(val) {
-            Livewire.emit('editItem', val)
-            document.getElementById('addBtn').click()
-        }
-
-        function showItem(val) {
-            Livewire.emit('showItem', val)
-            document.getElementById('addBtn').click()
-        }
-
         function deleteItem(form) {
             if (confirm('Are you sure you want to delete this item?')) {
                 document.getElementById(form).submit();

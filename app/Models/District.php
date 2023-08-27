@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Region;
 
 class District extends Model
 {
@@ -12,8 +13,8 @@ class District extends Model
     protected $table = 'district';
     protected $fillable = ['region_fk', 'District'];
 
-    public function region()
-    {
-        return $this->belongsTo(Region::class, 'region_fk');
-    }
+    // public function region()
+    // {
+    //     return $this->belongsTo(Region::class, 'region_fk', 'id');
+    // }
 }

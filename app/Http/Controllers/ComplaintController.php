@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\ComplaintModel;
+use App\Models\Complaint;
 use App\Models\District;
 use App\Models\Region;
 
@@ -12,7 +12,7 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        $complaints = ComplaintModel::query()->get();
+        $complaints = Complaint::query()->get();
         return view('complaints.index', ['complaints' => $complaints]);
     }
 
@@ -25,24 +25,103 @@ class ComplaintController extends Controller
         ]);
     }
 
-
-    public function getDistricts($regionId)
+    public function store(Request $request)
     {
-        $districts = District::query()->where('region_fk', '=', $regionId)->get();
+        $data = $request->validate([
+            'code' => 'required',
+            'region_id' => 'required',
+            'mmda_id' => 'required',
+            'category_id' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'sex' => 'required',
+            'mode' => 'required',
+            'raw' => 'required',
+            // 'longitude' => 'nullable',
+            // 'latitude' => 'nullable',
+        ]);
+        // return $data;
 
-        if (!$districts) {
-            return response()->json([]);
-        }
-
-        $districts = $districts->District;
-
-        return response()->json($districts);
+        Complaint::query()->create($data);
+        return to_route('complaints.index')->with('Message', 'Record Added Successfylly');
     }
 
+    public function show(Complaint $complaint, $viewType)
+    {
+        $region = Region::query()->where('id', '=', $complaint->region_id)->first();
+        $category = DB::table('issue_category')->where('id', '=', $complaint->category_id)->first();
+        $district = District::query()->where('id', '=', $complaint->mmda_id)->first();
+
+        if ($viewType === 'view1') {
+            return view('complaints.show', [
+                'complaint' => $complaint,
+                'region' => $region,
+                'category' => $category,
+                'district' => $district,
+            ]);
+        } elseif ($viewType === 'view2') {
+            return view('includes.report_processing_tabs', [
+                'complaint' => $complaint,
+                'region' => $region,
+                'category' => $category,
+                'district' => $district,
+            ]);
+        } else {
+            return null;
+        }
+    }
+
+    public function edit(Complaint $complaint)
+    {
+        $regions = Region::query()->get();
+        $categories = DB::table('issue_category')->get();
+        return view('complaints.edit', ['complaint' => $complaint, 'regions' => $regions, 'categories' => $categories]);
+    }
+
+    public function update(Request $request, Complaint $complaint)
+    {
+        // return $request->all();
+        $data = $request->validate([
+            'code' => 'required',
+            'region_id' => 'required',
+            'mmda_id' => 'required',
+            'category_id' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'sex' => 'required',
+            'mode' => 'required',
+            'raw' => 'required',
+            // 'longitude' => 'nullable',
+            // 'latitude' => 'nullable',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('images', 'public'); // Store the uploaded image
+        //     // You can save $imagePath to your database or perform any other actions you need
+        // }
+
+        $complaint->update($data);
+        return to_route('complaints.index')->with('Message', 'Record Updated Successfylly');
+    }
+
+    public function loadDistricts(Request $request)
+    {
+        $districts = DB::table('district')
+            ->where('region_fk', '=', $request->id)
+            ->orderBy('District')
+            ->get();
+        return response()->json(['options' => $districts]);
+
+        // $districts = $region->districts; // Use the 'districts()' method
+        // return response()->json($districts);
+    }
 
     public function destroy($id)
     {
-        $com = ComplaintModel::query()->find($id);
+        $com = Complaint::query()->find($id);
         $com->delete();
 
         return to_route('complaints.index')->with('message', 'Record Deleted Successfully');

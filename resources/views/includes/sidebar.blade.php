@@ -69,11 +69,7 @@
                     <div class="sidebar-menu">
                         <ul>
                             <li class="list-heading">Complaints</li>
-                            <li>
-                                <a href="{{ route('complaints.create') }}"
-                                    class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Create
-                                    Complaint</a>
-                            </li>
+
                             <li>
                                 <a href="{{ route('complaints.index') }}"
                                     class="{{ Request::is('complaints*') ? 'current-page' : '' }}">Complaints</a>

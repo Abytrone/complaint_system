@@ -23,12 +23,6 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 //routes for complaints
-Route::resource('complaints', ComplaintController::class)->only(['index', 'create', 'store', 'destroy']);
-Route::get('/getDistricts/{regionId}', [ComplaintController::class, 'getDistricts']);
-
-// Route::prefix('complaints')->group(function () {
-//     Route::resource('complaints', ComplaintController::class)->only(['index', 'destroy']);
-//     // Route::resource('actors', ActorController::class)->only(['index', 'destroy']);
-//     // Route::resource('event-types', EventTypeController::class);
-//     // Route::resource('violence-types', ViolenceTypeController::class);
-// });
+Route::resource('complaints', ComplaintController::class)->only(['index', 'create', 'edit', 'update', 'store', 'show', 'destroy']);
+Route::resource('complaint-process', ComplaintController::class)->only('create');
+Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);

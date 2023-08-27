@@ -25,165 +25,158 @@
                         @csrf
                         <div class="row gutters">
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                <!-- Field wrapper start -->
+                            <div class="col-lg-4 col-md-12 col-sm-12">
                                 <div class="field-wrapper">
-                                    {{-- <input class="form-control" type="text"> --}}
-                                    <select id="regionDropdown" class="form-select @error('region') is-invalid @enderror"
-                                        name="region">
-                                        <option value="">Select Region</option>
+                                    <select id="regionSelect" onchange="loadDistricts(this.value)" name="region_id"
+                                        class="form-select @error('region_id') is-invalid @enderror" id="formSelect">
+                                        <option value="">Select</option>
                                         @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}"
-                                                {{ old('id') == $region->id ? 'selected' : '' }}>
-                                                {{ $region->region }}</option>
+                                            <option value="{{ $region->id }}">{{ $region->region }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="field-placeholder">Select Region <span class="text-danger">*</span></div>
-                                    @error('ActivityLevelID')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    <div class="field-placeholder">Region<span class="text-danger">*</span></div>
+                                    @error('region_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <!-- Field wrapper end -->
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                <!-- Field wrapper start -->
+                            <div class="col-lg-4 col-md-12 col-sm-12">
                                 <div class="field-wrapper">
-                                    {{-- <input class="form-control" type="text"> --}}
-                                    <select id="districtDropdown"
-                                        class="form-select @error('district') is-invalid @enderror" name="district">
-                                        <option value="">Select District</option>
+                                    <select name="mmda_id" id="districtSelect"
+                                        class="form-select @error('mmda_id') is-invalid @enderror" id="formSelect">
+                                        <option value="">Select</option>
 
                                     </select>
-                                    <div class="field-placeholder">Select District <span class="text-danger">*</span></div>
-                                    @error('ActivityLevelID')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    <div class="field-placeholder">District<span class="text-danger">*</span></div>
+                                    @error('mmda_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <!-- Field wrapper end -->
                             </div>
 
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                 <!-- Field wrapper start -->
                                 <div class="field-wrapper">
-                                    <select class="form-select @error('Category') is-invalid @enderror" name="id">
+                                    <select class="form-select @error('category_id') is-invalid @enderror"
+                                        name="category_id">
                                         <option value="">Select Category</option>
                                         @foreach ($categories as $ct)
-                                            <option value="{{ $ct->id }}"
-                                                {{ old('id') == $ct->category ? 'selected' : '' }}>
+                                            <option value="{{ $ct->id }}" @selected(old('category_id') == $ct->id)>
                                                 {{ $ct->category }}</option>
                                         @endforeach
                                     </select>
                                     <div class="field-placeholder">Category<span class="text-danger">*</span></div>
-                                    @error('Category')
+                                    @error('category_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <!-- Field wrapper end -->
                             </div>
 
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" style="display: none">
+                                <div class="field-wrapper">
+                                    <input class="form-control @error('code') is-invalid @enderror" type="text"
+                                        name="code" value="{{ Str::random(5) }} ">
+                                    <div class="field-placeholder">Code <span class="text-danger">*</span></div>
+                                    @error('code')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                 <div class="field-wrapper">
-                                    <input class="form-control @error('ReporterName') is-invalid @enderror" type="text"
-                                        name="ReporterName" value="{{ old('ReportName') }} ">
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text"
+                                        name="name" value="{{ old('name') }} ">
                                     <div class="field-placeholder">Reporter Name <span class="text-danger">*</span></div>
-                                    @error('ReporterName')
+                                    @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-
-
-
-
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                 <!-- Field wrapper start -->
                                 <div class="field-wrapper">
-                                    <input class="form-control @error('PhoneNumber') is-invalid @enderror" type="text"
-                                        name="PhoneNumber" value="{{ old('PhoneNumber') }} ">
+                                    <input class="form-control @error('phone') is-invalid @enderror" type="text"
+                                        name="phone" value="{{ old('phone') }} ">
                                     <div class="field-placeholder">Phone Number <span class="text-danger">*</span></div>
-                                    @error('PhoneNumber')
+                                    @error('phone')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <!-- Field wrapper end -->
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                 <!-- Field wrapper start -->
                                 <div class="field-wrapper">
-                                    <input class="form-control @error('Email') is-invalid @enderror" type="Email"
-                                        name="Email" value="{{ old('Email') }} ">
+                                    <input class="form-control @error('email') is-invalid @enderror" type="email"
+                                        name="email" value="{{ old('email') }} ">
                                     <div class="field-placeholder">Email</div>
-                                    @error('Email')
+                                    @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <!-- Field wrapper end -->
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                <!-- Field wrapper start -->
-                                <div class="field-wrapper">
-                                    <input class="form-control @error('ReportDate') is-invalid @enderror" type="date"
-                                        name="ReportDate" value="{{ old('ReportDate') }} ">
-                                    <div class="field-placeholder">Report Date<span class="text-danger">*</span></div>
-                                    @error('ReportDate')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                            <div class="row gutters">
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <div class="field-wrapper">
+                                        <select name="sex" class="form-select @error('sex') is-invalid @enderror"
+                                            id="formSelect">
+                                            <option value="">Select Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <div class="field-placeholder">Gender<span class="text-danger">*</span></div>
+                                        @error('sex')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <!-- Field wrapper end -->
+
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <div class="field-wrapper">
+                                        <select name="mode" class="form-select @error('mode') is-invalid @enderror"
+                                            id="formSelect">
+                                            <option value="">Select Mode</option>
+                                            <option value="Email">Email</option>
+                                            <option value="SMS">SMS</option>
+                                        </select>
+                                        <div class="field-placeholder">Mode<span class="text-danger">*</span></div>
+                                        @error('mode')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+{{--                               <div class=" col-lg-4 col-md-12 col-sm-12">--}}
+{{--                                    <div class="field-wrapper">--}}
+{{--                                        <input type="file" name="image" id="image"--}}
+{{--                                            class="form-control @error('image') is-invalid @enderror">--}}
+{{--                                        <div class="field-placeholder">File</div>--}}
+{{--                                        @error('image')--}}
+{{--                                            <div class="invalid-feedback">{{ $message }}</div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
-                                style="display:{{ old('constituency') ? 'block' : 'none' }};" id="showElectoralArea">
-                                <!-- Field wrapper start -->
-                                <div class="field-wrapper">
-                                    {{-- <input class="form-control" type="text"> --}}
-                                    <select onchange="loadPollingStation(this.value)" id="electoral_area"
-                                        class="form-select @error('electoral_area') is-invalid @enderror"
-                                        name="ElectoralAreaID">
-                                        <option value="">Select Electoral Area</option>
-                                    </select>
-                                    <div class="field-placeholder">Electoral Area <span class="text-danger">*</span></div>
-                                    @error('constituency')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <!-- Field wrapper end -->
-                            </div>
-
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
-                                style="display:{{ old('pollingstation') ? 'block' : 'none' }};" id="showPollingStation">
-                                <!-- Field wrapper start -->
-                                <div class="field-wrapper">
-                                    {{-- <input class="form-control" type="text"> --}}
-                                    <select id="polling_station"
-                                        class="form-select @error('polling_station') is-invalid @enderror"
-                                        name="PollingStationID">
-                                        <option value="">Select Polling Station</option>
-                                    </select>
-                                    <div class="field-placeholder">Polling Station<span class="text-danger">*</span></div>
-                                    @error('polling_station')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <!-- Field wrapper end -->
-                            </div>
                             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
                                 <!-- Field wrapper start -->
                                 <div class="field-wrapper">
-                                    <textarea class="form-control @error('ReportDetails') is-invalid @enderror" name="ReportDetails"></textarea>
+                                    <textarea class="form-control @error('raw') is-invalid @enderror" name="raw"></textarea>
                                     <div class="field-placeholder">Report Details<span class="text-danger">*</span></div>
-                                    @error('ReportDetails')
+                                    @error('raw')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <!-- Field wrapper end -->
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                            {{-- <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
                                 <!-- Field wrapper start -->
                                 <div class="field-wrapper">
                                     <textarea class="form-control @error('ProceedMessage') is-invalid @enderror" name="ProceedMessage"></textarea>
@@ -194,10 +187,33 @@
                                     @enderror
                                 </div>
                                 <!-- Field wrapper end -->
+                            </div> --}}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="field-wrapper">
+                                        <input id="txt-lng" readonly value="" name="longitude"
+                                            class="form-control @error('longitude') is-invalid @enderror" type="text">
+                                        <div class="field-placeholder">Longitude <span class="text-danger">*</span></div>
+                                        @error('longitude')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="field-wrapper">
+                                        <input id="txt-lat" readonly value="" name="latitude"
+                                            class="form-control @error('latitude') is-invalid @enderror" type="text">
+                                        <div class="field-placeholder">Latitude <span class="text-danger">*</span></div>
+                                        @error('latitude')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <button class="btn btn-primary btn-sm">Submit</button>
+                                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
                             </div>
 
                         </div>
@@ -211,26 +227,22 @@
     <!-- Row end -->
 
     <script>
-        $(document).ready(function() {
-            $('#regionDropdown').on('change', function() {
-                var regionId = $(this).val();
-                $('#districtDropdown').empty();
-
-                if (regionId) {
-                    $.ajax({
-                        url: '/getDistricts/' + regionId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            var districtDropdown = $('#districtDropdown');
-                            $.each(data, function(key, value) {
-                                districtDropdown.append($('<option>').text(value
-                                    .District).attr('value', value.id));
-                            });
-                        }
-                    });
+        function loadDistricts(region) {
+            let districtSelect = document.getElementById('districtSelect');
+            $.get("/get-districts", {
+                id: region
+            }, function(data) {
+                console.log(data)
+                if (data) {
+                    districtSelect.innerHTML = `<option value="">Select Districts</option>`;
+                    data.options.forEach((d) => {
+                        let option = document.createElement('option');
+                        option.text = d.District;
+                        option.value = d.id;
+                        districtSelect.appendChild(option);
+                    })
                 }
-            });
-        });
+            })
+        }
     </script>
 @endsection
