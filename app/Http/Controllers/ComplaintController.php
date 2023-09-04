@@ -47,29 +47,12 @@ class ComplaintController extends Controller
         return to_route('complaints.index')->with('Message', 'Record Added Successfylly');
     }
 
-    public function show(Complaint $complaint, $viewType)
+    public function show(Complaint $complaint)
     {
         $region = Region::query()->where('id', '=', $complaint->region_id)->first();
         $category = DB::table('issue_category')->where('id', '=', $complaint->category_id)->first();
         $district = District::query()->where('id', '=', $complaint->mmda_id)->first();
-
-        if ($viewType === 'view1') {
-            return view('complaints.show', [
-                'complaint' => $complaint,
-                'region' => $region,
-                'category' => $category,
-                'district' => $district,
-            ]);
-        } elseif ($viewType === 'view2') {
-            return view('includes.report_processing_tabs', [
-                'complaint' => $complaint,
-                'region' => $region,
-                'category' => $category,
-                'district' => $district,
-            ]);
-        } else {
-            return null;
-        }
+        return view('complaints.show', ['complaint' => $complaint, 'region' => $region, 'category' => $category, 'district' => $district]);
     }
 
     public function edit(Complaint $complaint)

@@ -171,7 +171,7 @@
             </div>
 
 
-            @include('includes.report_processing_tabs')
+            @include('includes.report_processing_tabs',['complaint'=>$complaint])
 
         </div>
     </div>

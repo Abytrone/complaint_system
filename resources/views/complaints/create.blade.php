@@ -23,58 +23,7 @@
                     <!-- Row start -->
                     <form method="POST" action="{{ route('complaints.store') }}">
                         @csrf
-                        <div class="row gutters">
-
-                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                <div class="field-wrapper">
-                                    <select id="regionSelect" onchange="loadDistricts(this.value)" name="region_id"
-                                        class="form-select @error('region_id') is-invalid @enderror" id="formSelect">
-                                        <option value="">Select</option>
-                                        @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}">{{ $region->region }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="field-placeholder">Region<span class="text-danger">*</span></div>
-                                    @error('region_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                <div class="field-wrapper">
-                                    <select name="mmda_id" id="districtSelect"
-                                        class="form-select @error('mmda_id') is-invalid @enderror" id="formSelect">
-                                        <option value="">Select</option>
-
-                                    </select>
-                                    <div class="field-placeholder">District<span class="text-danger">*</span></div>
-                                    @error('mmda_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                                <!-- Field wrapper start -->
-                                <div class="field-wrapper">
-                                    <select class="form-select @error('category_id') is-invalid @enderror"
-                                        name="category_id">
-                                        <option value="">Select Category</option>
-                                        @foreach ($categories as $ct)
-                                            <option value="{{ $ct->id }}" @selected(old('category_id') == $ct->id)>
-                                                {{ $ct->category }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="field-placeholder">Category<span class="text-danger">*</span></div>
-                                    @error('category_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <!-- Field wrapper end -->
-                            </div>
-
+                        <div class="row">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" style="display: none">
                                 <div class="field-wrapper">
                                     <input class="form-control @error('code') is-invalid @enderror" type="text"
@@ -124,7 +73,7 @@
                             </div>
 
                             <div class="row gutters">
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     <div class="field-wrapper">
                                         <select name="sex" class="form-select @error('sex') is-invalid @enderror"
                                             id="formSelect">
@@ -132,14 +81,14 @@
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
-                                        <div class="field-placeholder">Gender<span class="text-danger">*</span></div>
+                                        <div class="field-placeholder">Gender</div>
                                         @error('sex')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     <div class="field-wrapper">
                                         <select name="mode" class="form-select @error('mode') is-invalid @enderror"
                                             id="formSelect">
@@ -147,69 +96,111 @@
                                             <option value="Email">Email</option>
                                             <option value="SMS">SMS</option>
                                         </select>
-                                        <div class="field-placeholder">Mode<span class="text-danger">*</span></div>
+                                        <div class="field-placeholder">Mode of Contact <span class="text-danger">*</span>
+                                        </div>
                                         @error('mode')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-{{--                               <div class=" col-lg-4 col-md-12 col-sm-12">--}}
-{{--                                    <div class="field-wrapper">--}}
-{{--                                        <input type="file" name="image" id="image"--}}
-{{--                                            class="form-control @error('image') is-invalid @enderror">--}}
-{{--                                        <div class="field-placeholder">File</div>--}}
-{{--                                        @error('image')--}}
-{{--                                            <div class="invalid-feedback">{{ $message }}</div>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{-- <div class=" col-lg-4 col-md-12 col-sm-12"> --}}
+                                {{--      <div class="field-wrapper"> --}}
+                                {{--          <input type="file" name="image" id="image" --}}
+                                {{--              class="form-control @error('image') is-invalid @enderror"> --}}
+                                {{--          <div class="field-placeholder">File</div> --}}
+                                {{--          @error('image') --}}
+                                {{--              <div class="invalid-feedback">{{ $message }}</div> --}}
+                                {{--          @enderror --}}
+                                {{--      </div> --}}
+                                {{--  </div> --}}
+                            </div>
+
+                            <div class='row gutters'>
+                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <!-- Field wrapper start -->
+                                    <div class="field-wrapper">
+                                        <select class="form-select @error('category_id') is-invalid @enderror"
+                                            name="category_id">
+                                            <option value="">Select Category</option>
+                                            @foreach ($categories as $ct)
+                                                <option value="{{ $ct->id }}" @selected(old('category_id') == $ct->id)>
+                                                    {{ $ct->category }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="field-placeholder">Category<span class="text-danger">*</span></div>
+                                        @error('category_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <!-- Field wrapper end -->
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="field-wrapper">
+                                        <select id="regionSelect" onchange="loadDistricts(this.value)" name="region_id"
+                                            class="form-select @error('region_id') is-invalid @enderror" id="formSelect">
+                                            <option value="">Select</option>
+                                            @foreach ($regions as $region)
+                                                <option value="{{ $region->id }}">{{ $region->region }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="field-placeholder">Region<span class="text-danger">*</span></div>
+                                        @error('region_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="field-wrapper">
+                                        <select name="mmda_id" id="districtSelect"
+                                            class="form-select @error('mmda_id') is-invalid @enderror" id="formSelect">
+                                            <option value="">Select</option>
+
+                                        </select>
+                                        <div class="field-placeholder">District <span class="text-danger">*</span></div>
+                                        @error('mmda_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="field-wrapper">
+                                        <select class="select-single js-states" title="Select Community"
+                                            data-live-search="true">
+                                            <option>Ward K</option>
+                                            <option>Tishigu</option>
+                                            <option>Kalpohini</option>
+                                            <option>Changli</option>
+                                            <option>Sakasaka</option>
+                                            <option>Agric</option>
+                                            <option>Gumani</option>
+                                            <option>Nyashegu</option>
+                                            <option>Mobiles</option>
+                                            <option>Music</option>
+                                            <option>Office</option>
+                                            <option>Pharmacy</option>
+                                            <option>Sports</option>
+                                            <option>Toys</option>
+                                        </select>
+                                        <div class="field-placeholder">Community <span class="text-danger">*</span></div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
                                 <!-- Field wrapper start -->
                                 <div class="field-wrapper">
                                     <textarea class="form-control @error('raw') is-invalid @enderror" name="raw"></textarea>
-                                    <div class="field-placeholder">Report Details<span class="text-danger">*</span></div>
+                                    <div class="field-placeholder">Report Details <span class="text-danger">*</span></div>
                                     @error('raw')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <!-- Field wrapper end -->
-                            </div>
-                            {{-- <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
-                                <!-- Field wrapper start -->
-                                <div class="field-wrapper">
-                                    <textarea class="form-control @error('ProceedMessage') is-invalid @enderror" name="ProceedMessage"></textarea>
-                                    <div class="field-placeholder">Processed Message<span class="text-danger">*</span>
-                                    </div>
-                                    @error('ProceedMessage')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <!-- Field wrapper end -->
-                            </div> --}}
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="field-wrapper">
-                                        <input id="txt-lng" readonly value="" name="longitude"
-                                            class="form-control @error('longitude') is-invalid @enderror" type="text">
-                                        <div class="field-placeholder">Longitude <span class="text-danger">*</span></div>
-                                        @error('longitude')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="field-wrapper">
-                                        <input id="txt-lat" readonly value="" name="latitude"
-                                            class="form-control @error('latitude') is-invalid @enderror" type="text">
-                                        <div class="field-placeholder">Latitude <span class="text-danger">*</span></div>
-                                        @error('latitude')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="field-wrapper">
-                        <input id="txt-lat" value="" name="dateProcessed"
+                        <input id="txt-lat" value="{{$complaint->name}}" name="dateProcessed"
                                class="form-control @error('dateProcessed') is-invalid @enderror" type="date">
                         <div class="field-placeholder">Date Processed <span class="text-danger">*</span></div>
                     </div>

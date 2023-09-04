@@ -22,6 +22,8 @@
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Complaint</th>
+                            <th>Region</th>
+                            <th>District</th>
                             <th>states</th>
                             <th>Actions</th>
                         </tr>
@@ -30,18 +32,12 @@
                         @foreach ($complaints as $item)
                             <tr>
                                 <td>{{ $item->code }}</td>
-                                <td>
-                                    {{ $item->name }}
-                                </td>
-                                <td>
-                                    {{ $item->phone }}
-                                </td>
-                                <td>
-                                    {{ $item->raw }}
-                                </td>
-                                <td>
-                                    {{ $item->states }}
-                                </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->phone }}</td>
+                                <td>{{ $item->raw }}</td>
+                                <td>{{ $item->region_id }}</td>
+                                <td>{{ $item->mmda_id }}</td>
+                                <td>{{ $item->states }}</td>
 
                                 <td>
                                     <div class="actions">
