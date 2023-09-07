@@ -5,7 +5,7 @@ $(function(){
 		zoomOnScroll: false,
 		regionStyle:{
 			initial: {
-				fill: '#17995e',
+				fill: '#1273eb',
 			},
 			hover: {
 				"fill-opacity": 0.8

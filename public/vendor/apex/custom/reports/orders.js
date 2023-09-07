@@ -21,7 +21,7 @@ var options = {
   theme: {
     monochrome: {
       enabled: true,
-      color: '#de3e3e',
+      color: '#ef503f',
       shadeIntensity: 0.2
     },
   },

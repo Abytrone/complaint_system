@@ -7,7 +7,7 @@
         <!-- Tabs nav start -->
         <div class="nav" role="tablist" aria-orientation="vertical">
             <a href="#" class="logo">
-                <img src="{{ asset('img/cecotap_logo.png') }}" alt="CECOTAP">
+                <img src="{{ asset('img/tama-foundation-logo.jpg') }}" alt="Tama-Foundation">
             </a>
             {{--            request()->routeIs('dashboard') --}}
             <a class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}" id="home-tab" data-bs-toggle="tab"
@@ -72,14 +72,23 @@
 
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                    class="{{ Request::is('complaints*') ? 'current-page' : '' }}">Complaints</a>
+                                    class="{{ Request::is('complaints*') ? 'current-page' : '' }}">Capture Complaints</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('conflicts/events*') ? 'current-page' : '' }}">Events</a>
+                                    class="{{ Request::is('conflicts/events*') ? 'current-page' : '' }}">Process Complaints</a>
                             </li>
                             <li>
-                                <a href="#">Events-Community</a>
+                                <a href="#">Awaiting Resolution</a>
+                            </li>
+                            <li>
+                                <a href="#">Response Overdue</a>
+                            </li>
+                            <li>
+                                <a href="#">Awaiting Closure</a>
+                            </li>
+                            <li>
+                                <a href="#">Reopen Complaints</a>
                             </li>
                         </ul>
                     </div>

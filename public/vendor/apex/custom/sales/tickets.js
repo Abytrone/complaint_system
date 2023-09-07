@@ -15,7 +15,7 @@ var options = {
     width: 2,
     colors: ['#ffffff'],
   },
-  colors: ['#17995e', '#de3e3e', '#4e4949'],
+  colors: ['#1273eb', '#59a2fb', '#8ec0fd'],
   tooltip: {
     y: {
       formatter: function(val) {

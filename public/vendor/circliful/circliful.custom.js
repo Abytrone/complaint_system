@@ -8,7 +8,7 @@ $( document ).ready(function() {
 		percent: 70,
 		textStyle: 'font-size: 12px;',
 		fontColor: '#111111',
-		foregroundColor: '#17995e',
+		foregroundColor: '#1273eb',
 		backgroundColor: '#f2f4f9',
 	});
 
@@ -20,8 +20,8 @@ $( document ).ready(function() {
 		backgroundBorderWidth: 10,
 		percent: 80,
 		textStyle: 'font-size: 12px;',
-		fontColor: '#17995e',
-		foregroundColor: '#17995e',
+		fontColor: '#1273eb',
+		foregroundColor: '#1273eb',
 		backgroundColor: '#efeff7',
 		multiPercentage: 1,
 		percentages: [10, 20, 30],
@@ -33,8 +33,8 @@ $( document ).ready(function() {
 		foregroundBorderWidth: 12,
 		backgroundBorderWidth: 10,
 		percent: 70,
-		fontColor: '#de3e3e',
-		foregroundColor: '#de3e3e',
+		fontColor: '#ef503f',
+		foregroundColor: '#ef503f',
 		backgroundColor: '#efeff7',
 		multiPercentage: 1,
 		percentages: [10, 20, 30]

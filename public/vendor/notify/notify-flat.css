@@ -1,7 +1,7 @@
 .notify .note {
   position: relative;
   padding: 21px 20px;
-  background-color: #17995e;
+  background-color: #1273eb;
   color: #ffffff;
   border-radius: 4px;
   -webkit-transition: all 0.5s ease-in-out;
@@ -12,7 +12,7 @@
   background-color: #5dab18;
 }
 .notify .note.note-info {
-  background-color: #17995e;
+  background-color: #1273eb;
 }
 .notify .note.note-warning {
   background-color: #e4b42b;

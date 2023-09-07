@@ -10,7 +10,7 @@ var options1 = {
 			enabled: true
 		}
 	},
-	colors: ['#17995e'],
+	colors: ['#1273eb'],
 	stroke: {
 		curve: 'smooth',
 		width: 1,
@@ -55,7 +55,7 @@ var options2 = {
 			enabled: true
 		}
 	},
-	colors: ['#17995e'],
+	colors: ['#1273eb'],
 	stroke: {
 		curve: 'smooth',
 		width: 1,
@@ -101,7 +101,7 @@ var options3 = {
 			enabled: true
 		}
 	},
-	colors: ['#ce270c'],
+	colors: ['#f16a5d'],
 	stroke: {
 		curve: 'smooth',
 		width: 1,

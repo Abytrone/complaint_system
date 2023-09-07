@@ -13,7 +13,7 @@ $(function(){
 	]
 	$('#us-map3').vectorMap({
 		map: 'us_aea_en',
-		scaleColors: ['#17995e'],
+		scaleColors: ['#1273eb'],
 		normalizeFunction: 'polynomial',
 		focusOn:{
 			x: 2,

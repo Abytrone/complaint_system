@@ -65,7 +65,7 @@ var options = {
       left: 0
     }, 
   },
-  colors: ['#cbe8ff', '#17995e'],
+  colors: ['#cbe8ff', '#1273eb'],
 }
 var chart = new ApexCharts(
   document.querySelector("#earnings-graph"),

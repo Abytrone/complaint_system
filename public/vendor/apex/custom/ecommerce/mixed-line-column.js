@@ -18,7 +18,7 @@ var options = {
 			show: false
 		},
 	},
-	colors: ['#17995e', '#ffc300'],
+	colors: ['#1273eb', '#ffc300'],
 	stroke: {
 		width: [0, 4],
 		curve: 'smooth',

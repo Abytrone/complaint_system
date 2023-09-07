@@ -57,11 +57,11 @@ var options = {
       stops: [15, 100]
     }
   },
-  colors: ['#17995e'],
+  colors: ['#1273eb'],
   markers: {
     size: 0,
     opacity: 0.2,
-    colors: ["#17995e"],
+    colors: ["#1273eb"],
     strokeColor: "#fff",
     strokeWidth: 2,
     hover: {

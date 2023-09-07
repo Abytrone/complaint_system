@@ -14,7 +14,7 @@
     background: transparent;
 }
 .schedule-calendar .fc .fc-bg-event {
-    background: #dbf1db !important;
+    background: #e5f0ff !important;
     opacity: 1;
 }
 .schedule-calendar .fc .fc-button-primary {
@@ -58,7 +58,7 @@
     font-size: 9px;
 }
 .schedule-calendar .fc-h-event {
-    background: #17995e;
+    background: #1273eb;
     border: 0;
 }
 
@@ -82,13 +82,13 @@
     background-color: #efeff7;
 }
 .fc .fc-list-event-dot {
-    border: 5px solid #17995e;
+    border: 5px solid #1273eb;
 }
 .fc-daygrid-dot-event .fc-event-title {
     font-weight: 600;
 }
 .fc-daygrid-event-dot {
-    border: 4px solid #17995e;
+    border: 4px solid #1273eb;
 }
 .fc-daygrid-dot-event:hover {
     background-color: #efeff7;
@@ -97,7 +97,7 @@
     font-size: 10px;
 }
 .fc-theme-standard .fc-popover-header {
-    background: #5dab18;
+    background: #1173eb;
     color: #fff;
     font-size: 12px;
     padding: 6px 8px;
@@ -106,8 +106,8 @@
     font-size: 16px;
 }
 .fc .fc-button-primary {
-    border-color: #17995e;
-    background-color: #17995e;
+    border-color: #1273eb;
+    background-color: #1273eb;
 }
 .fc .fc-button .fc-icon {
     font-size: 14px;
@@ -161,15 +161,15 @@
     margin: 2px 0;
 }
 .fc-h-event {
-    border: 1px solid #17995e;
-    background: #17995e;
+    border: 1px solid #1273eb;
+    background: #1273eb;
     padding: 2px 7px;
     font-size: 10px;
     border-radius: 2px;
 }
 .fc-v-event {
-    border: 1px solid #17995e;
-    background: #17995e;
+    border: 1px solid #1273eb;
+    background: #1273eb;
 }
 .fc table {
     font-size: 13px;

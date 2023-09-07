@@ -107,7 +107,7 @@
 .wizard > .steps .done a,
 .wizard > .steps .done a:hover,
 .wizard > .steps .done a:active {
-	color: #17995e;
+	color: #1273eb;
 }
 
 .wizard > .steps .error a,
@@ -217,7 +217,7 @@
 .wizard > .actions a,
 .wizard > .actions a:hover,
 .wizard > .actions a:active {
-	background: #17995e;
+	background: #1273eb;
 	color: #fff;
 	display: block;
 	padding: .375rem .75rem;
@@ -233,7 +233,7 @@
 .wizard > .actions .disabled a,
 .wizard > .actions .disabled a:hover,
 .wizard > .actions .disabled a:active {
-	background: #de3e3e;
+	background: #ef503f;
 	color: #ffffff;
 }
 
@@ -256,12 +256,12 @@
 	color: #ffffff;
 }
 .wizard > .steps > ul > li.done a .number {
-	background: #17995e;
-	border: 2px solid #17995e;
+	background: #1273eb;
+	border: 2px solid #1273eb;
 	color: #ffffff;
 }
 .wizard > .actions > ul > li:last-child a {
-	background: #17995e;
+	background: #1273eb;
 }
 
 /*

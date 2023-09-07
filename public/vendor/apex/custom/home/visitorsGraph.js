@@ -49,7 +49,7 @@ var options = {
   theme: {
     monochrome: {
       enabled: true,
-      color: '#17995e',
+      color: '#1273eb',
       shadeIntensity: 0.1
     },
   },
@@ -59,7 +59,7 @@ var options = {
   markers: {
     size: 0,
     opacity: 0.2,
-    colors: ["#17995e"],
+    colors: ["#1273eb"],
     strokeColor: "#fff",
     strokeWidth: 2,
     hover: {

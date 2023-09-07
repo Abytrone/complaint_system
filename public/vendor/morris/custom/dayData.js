@@ -22,5 +22,5 @@ Morris.Line({
 	gridLineColor: "#e1e5f1",
 	pointFillColors:['#ffffff'],
 	pointStrokeColors: ['#ee0000'],
-	lineColors:['#17995e', '#2b86f5', '#63a9ff'],
+	lineColors:['#1273eb', '#2b86f5', '#63a9ff'],
 });

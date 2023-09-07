@@ -120,7 +120,7 @@
 	border-width: 0 2px 2px 0;
 	border-radius: 0;
 	display: inline-block;
-	padding: 4px;
+	padding: 6px;
 	vertical-align: middle;
 	margin-right: 7px;
 }
@@ -201,7 +201,7 @@
 }
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-	background-color: #17995e;
+	background-color: #27b963;
 	color: #fff;
 }
 
@@ -320,7 +320,7 @@
 }
 
 .daterangepicker .ranges li.active {
-	background: #0f844f;
+	background: #1173eb;
 	color: #fff;
 }
 

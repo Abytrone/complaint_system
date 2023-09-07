@@ -66,7 +66,7 @@ var options = {
       }
     }
   },
-  colors: ['#17995e', '#999999'],
+  colors: ['#1273eb', '#999999'],
 }
 var chart = new ApexCharts(
   document.querySelector("#byCountry"),

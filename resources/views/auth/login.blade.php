@@ -56,7 +56,7 @@
                             <span>Management</span>
                             <span>System.</span>
                             <hr>
-                            <span>CECOTAPS</span>
+                            <span>TAMA FOUNDATION</span>
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@ var options1 = {
 	    show: false
 	  }
 	},
-	colors: ['#17995e'],
+	colors: ['#1273eb'],
 	xaxis: {
     categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   },
@@ -96,7 +96,7 @@ var options2 = {
 	    show: false
 	  }
 	},
-	colors: ['#17995e'],
+	colors: ['#1273eb'],
 	xaxis: {
     categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   },
@@ -161,7 +161,7 @@ var options3 = {
 	    show: false
 	  }
 	},
-	colors: ['#de3e3e'],
+	colors: ['#5dab18'],
 	xaxis: {
     categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   },

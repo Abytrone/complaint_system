@@ -14,7 +14,7 @@ var options = {
 			top: 10
 		},
 	},
-	colors: ['#17995e', '#63a9ff'],
+	colors: ['#1273eb', '#63a9ff'],
 	plotOptions: {
 		bar: {
 			horizontal: true,

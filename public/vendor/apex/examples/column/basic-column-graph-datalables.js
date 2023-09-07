@@ -48,7 +48,7 @@ var options = {
 			fill: {
 				type: 'gradient',
 				gradient: {
-					colorFrom: '#17995e',
+					colorFrom: '#1273eb',
 					colorTo: '#95c5ff',
 					stops: [0, 100],
 					opacityFrom: 0.4,
@@ -116,7 +116,7 @@ var options = {
       left: 0
     }, 
   },
-	colors: ['#17995e', '#2b86f5', '#63a9ff', '#95c5ff', '#c6e0ff'],
+	colors: ['#1273eb', '#2b86f5', '#63a9ff', '#95c5ff', '#c6e0ff'],
 }
 var chart = new ApexCharts(
 	document.querySelector("#basic-column-graph-datalables"),

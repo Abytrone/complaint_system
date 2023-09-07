@@ -37,7 +37,7 @@ var options = {
   series: [{
     data: [2000, 3000, 4000, 5000, 6000]
   }],
-  colors: ['#17995e', '#999999'],
+  colors: ['#1273eb', '#999999'],
   xaxis: {
     categories: ["Organic", "Search", "TV Ads", "Social", "Video"],
   },

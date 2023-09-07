@@ -62,7 +62,7 @@ var options = {
       }
     }
   },
-  colors: ['#17995e', '#dbf1db'],
+  colors: ['#1273eb', '#e5f0ff'],
 }
 var chart = new ApexCharts(
   document.querySelector("#revenue"),
