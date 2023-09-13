@@ -12,7 +12,7 @@ Last change:	29/06/2021
 2. Importing Web Fonts
     2.1 Open Sans Font
     2.2 Rubik Mono One Font
-3. Body CSS    
+3. Body CSS
 4. Loading
 5. Re Usable Styles
     5.1 Anchor Reset
@@ -24,7 +24,7 @@ Last change:	29/06/2021
     5.7 Text Colors
     5.8 Custom Height
     5.9 Icon Shadow
-6. Layout CSS 
+6. Layout CSS
     6.1 Page Wrapper
     6.2 Sidebar Wrapper
     6.3 Sidebar Menu
@@ -669,8 +669,8 @@ p {
 }
 
 .sidebar-wrapper .sidebar-tabs .nav a.nav-link i {
-  font-size: 1.2rem;
-  color: #5e6973;
+  font-size: 1.3rem;
+  color: black;
 }
 
 .sidebar-wrapper .sidebar-tabs .nav a.nav-link:hover {
@@ -723,7 +723,7 @@ p {
 }
 
 .sidebar-wrapper .sidebar-tabs .tab-content {
-  width: 240px;
+  width: 200px;
   padding: 0;
   background: #f6f6fd;
 }
@@ -733,7 +733,7 @@ p {
   padding: 1.5rem 20px;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1273eb;
+  color: black;
 }
 
 @media (max-width: 420px) {
@@ -775,7 +775,7 @@ p {
   position: relative;
   min-height: 36px;
   padding: 10px 20px 10px 20px;
-  color: #5e6973;
+  color: black;
   font-size: .825rem;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -2648,13 +2648,13 @@ ul.customer-rating li:last-child {
 }
 
 .field-wrapper input, .field-wrapper select, .field-wrapper textarea {
-  border: 1px solid #dbdaea;
+  border: 1px solid #989898;
   padding: 9px 12px;
   border-radius: 2px;
   width: 100%;
   min-height: 40px;
-  font-size: .725rem;
-  color: #8a96a0;
+  font-size: .8rem;
+  color: black;
 }
 
 .field-wrapper input:hover, .field-wrapper textarea:hover {

@@ -26,3 +26,6 @@ Route::get('/dashboard', function () {
 Route::resource('complaints', ComplaintController::class)->only(['index', 'create', 'edit', 'update', 'store', 'show', 'destroy']);
 Route::resource('complaint-process', ComplaintController::class)->only('create');
 Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);
+Route::get('get-constituencies', [ComplaintController::class, "loadConstituencies"]);
+Route::get('get-electoralareas', [ComplaintController::class, "loadElectoralAreas"]);
+Route::get('get-polling-station', [ComplaintController::class, "loadPollingStation"]);
