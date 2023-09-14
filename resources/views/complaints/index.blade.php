@@ -41,16 +41,16 @@
 
                                 <td>
                                     <div class="actions">
-                                        <a href="{{ route('complaints.edit', $item) }}">
+                                        <a href="{{ route('complaints.edit', $item->issue_id) }}">
                                             <i class="icon-edit1 text-primary"></i>
                                         </a>
-                                        <a onclick="deleteItem('deleteForm-{{ $item->id }}')" href="#"
+                                        <a onclick="deleteItem('deleteForm-{{ $item->issue_id }}')" href="#"
                                             data-toggle="tooltip" data-placement="top" title=""
                                             data-original-title="Delete">
                                             <i class="icon-x-circle text-danger"></i>
                                         </a>
-                                        <form hidden method="post" id="deleteForm-{{ $item->id }}"
-                                            action="{{ route('complaints.destroy', $item->id) }}">
+                                        <form hidden method="post" id="deleteForm-{{ $item->issue_id }}"
+                                            action="{{ route('complaints.destroy', $item->issue_id) }}">
                                             @csrf
                                             @method('delete')
                                         </form>
