@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Helpers\Helper;
+use Illuminate\Http\Request;
 
 class ComplaintStoreRequest extends FormRequest
 {
@@ -22,12 +23,13 @@ class ComplaintStoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules(Request $request):array
     {
+        $issue_id = $request->route('complaint');
         return array_merge([
             'name'=>'required|string',
-            'phone'=>'required|unique:issue_master',
-            'email'=>'required|email|unique:issue_master',
+            'phone'=>'required|unique:issue_master,phone,'.$issue_id.',issue_id',
+            'email'=>'required|email|unique:issue_master,email, '.$issue_id.',issue_id',
             'gender'=>'required',
             'mode_fk'=>'required',
             'subcategory_fk'=>'required',

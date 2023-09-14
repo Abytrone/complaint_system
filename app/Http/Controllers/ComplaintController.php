@@ -21,18 +21,16 @@ class ComplaintController extends Controller
 
     public function create()
     {
-        //get fieldname to help separate function for loading district and constituency base on region
+        //get fieldnames to help separate function for loading district and constituency base on region
         $fieldnames=DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()
         ->map(function($data){
             return $data->field_name;
         })->toArray();
-   // dd(Helper::dynamicFieldsValidation());
 
         $regions = Region::query()->where('id', '>', 0)->orderBy('region')->get();
         return view('complaints.create', [
             'regions' => $regions,
             'districts'=>DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
-            'categories' => DB::table('issue_category')->where('active', '=', 1)->get(),
             'subcategories'=>DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
             'issuesources'=>DB::table('issue_source')->get(),
             'modes'=>DB::table('communication_mode')->get(),
@@ -63,39 +61,36 @@ class ComplaintController extends Controller
         return view('complaints.show', ['complaint' => $complaint, 'region' => $region, 'category' => $category, 'district' => $district]);
     }
 
-    public function edit(Complaint $complaint)
+    public function edit($id)
     {
-        $regions = Region::query()->get();
-        $categories = DB::table('issue_category')->get();
-        return view('complaints.edit', ['complaint' => $complaint, 'regions' => $regions, 'categories' => $categories]);
+
+        //get fieldnames to help separate function for loading district and constituency base on region
+        $fieldnames=DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()
+            ->map(function($data){
+                return $data->field_name;
+            })->toArray();
+        $complaint = DB::table('issue_master')
+            ->join('district', 'issue_master.district_fk', 'district.id')
+            ->where('issue_id', '=', $id)
+            ->first();
+        //dd($complaint);
+        return view('complaints.edit',
+            ['complaint' => $complaint,
+                'regions' => Region::query()->where('id', '>', 0)->get(),
+            'districts'=>DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
+            'subcategories'=>DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
+            'issuesources'=>DB::table('issue_source')->get(),
+            'modes'=>DB::table('communication_mode')->get(),
+            'displayfields'=>DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()->toArray(),
+            'constituencies'=>DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
+            'electoralareas'=>DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
+            'fieldnames'=>$fieldnames,]);
     }
 
-    public function update(Request $request, Complaint $complaint)
+    public function update(ComplaintStoreRequest $request, $id)
     {
-        // return $request->all();
-        $data = $request->validate([
-            'code' => 'required',
-            'region_id' => 'required',
-            'mmda_id' => 'required',
-            'category_id' => 'required',
-            'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'sex' => 'required',
-            'mode' => 'required',
-            'raw' => 'required',
-            // 'longitude' => 'nullable',
-            // 'latitude' => 'nullable',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        // if ($request->hasFile('image')) {
-        //     $imagePath = $request->file('image')->store('images', 'public'); // Store the uploaded image
-        //     // You can save $imagePath to your database or perform any other actions you need
-        // }
-
-        $complaint->update($data);
-        return to_route('complaints.index')->with('Message', 'Record Updated Successfylly');
+        DB::table('issue_master')->where('issue_id', '=', $id)->update($request->validated());
+        return to_route('complaints.edit', $id)->with('message', 'Record Updated Successfylly');
     }
 
     public function loadDistricts(Request $request)
@@ -105,7 +100,6 @@ class ComplaintController extends Controller
             ->orderBy('District')
             ->get();
         return response()->json(['options' => $districts]);
-
     }
 
     public function loadConstituencies(Request $request)

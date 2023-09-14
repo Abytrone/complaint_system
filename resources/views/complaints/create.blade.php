@@ -27,8 +27,11 @@
     <!-- Row end -->
 
     <script>
+        const districtSelect = document.getElementById('districtSelect');
+        const constituencySelect = document.getElementById('constituencySelect');
+        const electoraAreaSelect = document.getElementById('electoraAreaSelect');
+        const pollingStationSelect = document.getElementById('pollingStationSelect');
         function loadDistricts(region) {
-                let districtSelect = document.getElementById('districtSelect');
                 $.get("/get-districts", {
                     region: region
                 }, function(data) {
@@ -46,7 +49,6 @@
             }
 
             function loadConstituencies(region) {
-                let constituencySelect = document.getElementById('constituencySelect');
                 $.get("/get-constituencies", {
                     region: region
                 }, function(data) {
@@ -64,7 +66,6 @@
             }
 
             function loadElectoralAreas(constituency){
-                let electoraAreaSelect = document.getElementById('electoraAreaSelect');
                 $.get("/get-electoralareas", {
                     constituency: constituency
                 }, function(data) {
@@ -82,7 +83,6 @@
             }
 
             function loadPollingStation(electoralarea){
-                let pollingStationSelect = document.getElementById('pollingStationSelect');
                 $.get("/get-polling-station", {
                     electoralArea: electoralarea
                 }, function(data) {

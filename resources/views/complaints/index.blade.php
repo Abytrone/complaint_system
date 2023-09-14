@@ -44,9 +44,6 @@
                                         <a href="{{ route('complaints.edit', $item) }}">
                                             <i class="icon-edit1 text-primary"></i>
                                         </a>
-                                        <a href="{{ route('complaints.show', $item) }}">
-                                            <i class="icon-eye text-warning"></i>
-                                        </a>
                                         <a onclick="deleteItem('deleteForm-{{ $item->id }}')" href="#"
                                             data-toggle="tooltip" data-placement="top" title=""
                                             data-original-title="Delete">

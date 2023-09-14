@@ -42,7 +42,7 @@
                 <option value="">Select Gender</option>
                 @foreach(['Male', 'Female'] as $gender)
                     <option
-                        @selected(($complaint?->sex??old('sex')) == $gender)) value="{{$gender}}">{{$gender}}</option>
+                        @selected(($complaint?->gender??old('gender')) == $gender) value="{{$gender}}">{{$gender}}</option>
                 @endforeach
             </select>
             <div class="field-placeholder">Gender</div>
@@ -51,11 +51,10 @@
             @enderror
         </div>
     </div>
-
     <div class="col-lg-3 col-md-12 col-sm-12">
         <div class="field-wrapper">
                 <input class="form-control @error('received_date') is-invalid @enderror" type="date"
-                       name="received_date" value="{{ $complaint?->email ?? old('received_date') }} ">
+                       name="received_date" value="{{$complaint?->received_date ?? old('received_date') }}">
             <div class="field-placeholder">Received Date</div>
             @error('received_date')
             <span class="text-danger">{{ $message }}</span>
@@ -70,7 +69,7 @@
                 <option value="">Select Mode</option>
                 @foreach($modes as $mode)
                     <option
-                        @selected(($complaint?->mode_id ?? old('mode_fk')==$mode->mode_id)) value="{{$mode->mode_id}}">{{$mode->mode}}</option>
+                        @selected(($complaint?->mode_fk ?? old('mode_fk'))==$mode->mode_id) value="{{$mode->mode_id}}">{{$mode->mode}}</option>
                 @endforeach
             </select>
             <div class="field-placeholder">Mode of Contact <span class="text-danger">*</span>
@@ -90,7 +89,7 @@
                 <option value="">Select Sub category</option>
                 @foreach ($subcategories as $subcategory)
                     <option
-                        @selected(($complaint?->issue_subcategory_fk??old('subcategory_fk'))==$subcategory->id) value="{{ $subcategory->id }}" @selected(old('subcategory_id') == $subcategory->id)>
+                        @selected(($complaint?->subcategory_fk??old('subcategory_fk'))==$subcategory->id) value="{{ $subcategory->id }}" @selected(old('subcategory_id') == $subcategory->id)>
                         {{ $subcategory->description }}</option>
                 @endforeach
             </select>
@@ -215,7 +214,7 @@
     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
         <!-- Field wrapper start -->
         <div class="field-wrapper">
-            <textarea class="form-control @error('raw_report') is-invalid @enderror" name="raw_report">{{$ccomplaint?->raw_report??old('raw_report')}}</textarea>
+            <textarea rows="8" class="form-control @error('raw_report') is-invalid @enderror" name="raw_report">{{$complaint?->raw_report??old('raw_report')}}</textarea>
             <div class="field-placeholder">Report Details <span class="text-danger">*</span></div>
             @error('raw_report')
             <span class="text-danger">{{ $message }}</span>
@@ -236,7 +235,7 @@
             </select>
             <div class="field-placeholder">Issue Source <span class="text-danger">*</span>
             </div>
-            @error('mode_fk')
+            @error('source_fk')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
@@ -246,7 +245,7 @@
         <div class="field-wrapper">
             <input
                 id="txt-latitude"
-                value="{{$complaint?->gps??old('gps_latitude')}}"
+                value="{{$complaint?->gps_latitude??old('gps_latitude')}}"
                 name="gps_latitude"
                 class="form-control @error('gps_latitude') is-invalid @enderror" type="text">
             <div class="field-placeholder">Latitude <span class="text-danger">*</span></div>
@@ -259,7 +258,7 @@
         <div class="field-wrapper">
             <input
                 id="txt-longitude"
-                value="{{$complaint?->gps??old('gps_longitude')}}"
+                value="{{$complaint?->gps_longitude??old('gps_longitude')}}"
                 name="gps_longitude"
                 class="form-control @error('gps_longitude') is-invalid @enderror" type="text">
             <div class="field-placeholder">Longitude<span class="text-danger">*</span></div>
