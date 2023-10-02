@@ -21,7 +21,7 @@
                     </form>
                     <!-- Row end -->
                 </div>
-            </div>
+            </div>d
             <!-- Card end -->
         </div>
     </div>
