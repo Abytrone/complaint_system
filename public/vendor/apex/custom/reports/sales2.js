@@ -66,7 +66,7 @@ var options = {
       }
     }
   },
-  colors: ['#1273eb', '#4c9dff'],
+  colors: ['#17995e', '#de3e3e'],
 }
 var chart = new ApexCharts(
   document.querySelector("#sales2"),

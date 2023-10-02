@@ -34,10 +34,10 @@
 	outline: none;
 }
 .select2-container--default .select2-results__option--selected {
-	background-color: #e5f0ff;
+	background-color: #dbf1db;
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-	background: #1273eb;
+	background: #17995e;
 }
 .select2-results__option {
 	padding: .5rem .75rem;
@@ -52,7 +52,7 @@
 
 /*************** Multi Select ***************/
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-	border: 1px solid #1273eb;
+	border: 1px solid #17995e;
 }
 .select2-container--default .select2-selection--multiple {
 	border: 1px solid #dbd9ea;

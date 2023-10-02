@@ -8,16 +8,16 @@
 	width: 100%;
 }
 .ui.icon.input ::-webkit-input-placeholder {
-	color: #16489F;
+	color: #17995e;
 }
 .ui.icon.input :-moz-placeholder {
-	color: #16489F;
+	color: #17995e;
 }
 .ui.icon.input ::-moz-placeholder {
-	color: #16489F;
+	color: #17995e;
 }
 .ui.icon.input :-ms-input-placeholder {
-	color: #16489F;
+	color: #17995e;
 }
 .ui.icon.input > input {
 	padding: 18px 15px;
@@ -41,7 +41,7 @@
 .ui.icon.input > input:focus {
 	outline: none;
 	background: #ffffff;
-	border: 2px solid #1ca2d9;
+	border: 2px solid #43a144;
 }
 .ui.search > .results {
 	display: none;

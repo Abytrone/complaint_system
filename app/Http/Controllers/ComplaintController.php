@@ -19,25 +19,32 @@ class ComplaintController extends Controller
         return view('complaints.index', ['complaints' => $complaints]);
     }
 
+    public function awaiting()
+    {
+        $complaints = Complaint::query()->get();
+        return view('complaints.awaiting_complaints', ['complaints' => $complaints]);
+    }
+
     public function create()
     {
         //get fieldnames to help separate function for loading district and constituency base on region
-        $fieldnames=DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()
-        ->map(function($data){
-            return $data->field_name;
-        })->toArray();
+        $fieldnames = DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()
+            ->map(function ($data) {
+                return $data->field_name;
+            })->toArray();
 
         $regions = Region::query()->where('id', '>', 0)->orderBy('region')->get();
         return view('complaints.create', [
+            'complaint' => null,
             'regions' => $regions,
-            'districts'=>DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
-            'subcategories'=>DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
-            'issuesources'=>DB::table('issue_source')->get(),
-            'modes'=>DB::table('communication_mode')->get(),
-            'displayfields'=>DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()->toArray(),
-            'constituencies'=>DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
-            'electoralareas'=>DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
-            'fieldnames'=>$fieldnames,
+            'districts' => DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
+            'subcategories' => DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
+            'issuesources' => DB::table('issue_source')->get(),
+            'modes' => DB::table('communication_mode')->get(),
+            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+            'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
+            'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
+            'fieldnames' => $fieldnames,
         ]);
     }
 
@@ -46,45 +53,73 @@ class ComplaintController extends Controller
         $insertData = array_merge($request->validated(), [
             'code' => Str::random(10),
             'created_by' => auth()->id(),
-            'created_date'=>Carbon::now()
+            'created_date' => Carbon::now()
         ]);
         DB::table('issue_master')->insert($insertData);
-//        Complaint::query()->create($insertData);
+        //        Complaint::query()->create($insertData);
         return to_route('complaints.create')->with('message', 'Record Added Successfylly');
     }
 
     public function show(Complaint $complaint)
     {
-        $region = Region::query()->where('id', '=', $complaint->region_id)->first();
-        $category = DB::table('issue_category')->where('id', '=', $complaint->category_id)->first();
-        $district = District::query()->where('id', '=', $complaint->mmda_id)->first();
-        return view('complaints.show', ['complaint' => $complaint, 'region' => $region, 'category' => $category, 'district' => $district]);
+        $fieldnames = DB::table('vw_issue_category_field')
+            ->select(['field_name', 'field_fk'])
+            ->where('display', '=', 1)
+            ->get()
+            ->map(function ($data) {
+                return $data->field_name;
+            })->toArray();
+
+        $complaint = DB::table('issue_master')
+            ->join('district', 'issue_master.district_fk', 'district.id')
+            ->where('issue_id', '=', $complaint->issue_id)
+            ->first();
+        return view('complaints.show', [
+            'complaint' => $complaint,
+            'regions' => Region::query()->where('id', '>', 0)->get(),
+            'districts' => DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
+            'subcategories' => DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
+            'issuesources' => DB::table('issue_source')->get(),
+            'modes' => DB::table('communication_mode')->get(),
+            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+            'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
+            'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
+            'fieldnames' => $fieldnames,
+        ]);
     }
 
     public function edit($id)
     {
 
         //get fieldnames to help separate function for loading district and constituency base on region
-        $fieldnames=DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()
-            ->map(function($data){
+        $fieldnames = DB::table('vw_issue_category_field')
+            ->select(['field_name', 'field_fk'])
+            ->where('display', '=', 1)
+            ->get()
+            ->map(function ($data) {
                 return $data->field_name;
             })->toArray();
+
         $complaint = DB::table('issue_master')
             ->join('district', 'issue_master.district_fk', 'district.id')
             ->where('issue_id', '=', $id)
             ->first();
         //dd($complaint);
-        return view('complaints.edit',
-            ['complaint' => $complaint,
+        return view(
+            'complaints.edit',
+            [
+                'complaint' => $complaint,
                 'regions' => Region::query()->where('id', '>', 0)->get(),
-            'districts'=>DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
-            'subcategories'=>DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
-            'issuesources'=>DB::table('issue_source')->get(),
-            'modes'=>DB::table('communication_mode')->get(),
-            'displayfields'=>DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()->toArray(),
-            'constituencies'=>DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
-            'electoralareas'=>DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
-            'fieldnames'=>$fieldnames,]);
+                'districts' => DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
+                'subcategories' => DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
+                'issuesources' => DB::table('issue_source')->get(),
+                'modes' => DB::table('communication_mode')->get(),
+                'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+                'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
+                'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
+                'fieldnames' => $fieldnames,
+            ]
+        );
     }
 
     public function update(ComplaintStoreRequest $request, $id)
@@ -108,23 +143,25 @@ class ComplaintController extends Controller
             ->where('region_fk', '=', $request->region)
             ->orderBy('constituency_name')
             ->get();
-        return response()->json(['options'=>$constituencies]);
+        return response()->json(['options' => $constituencies]);
     }
 
-    public function loadElectoralAreas(Request $request){
+    public function loadElectoralAreas(Request $request)
+    {
         $electoralAreas = DB::table('vw_ec_data_electoral_area')
             ->where('constituency_id', '=', $request->constituency)
             ->orderBy('ea_name')
             ->get();
-        return response()->json(['options'=>$electoralAreas]);
+        return response()->json(['options' => $electoralAreas]);
     }
 
-    public function loadPollingStation(Request $request){
+    public function loadPollingStation(Request $request)
+    {
         $pollingStations = DB::table('ec_data')
             ->where('ea_id', '=', $request->electoralArea)
             ->orderBy('ps_name')
             ->get();
-        return response()->json(['options'=>$pollingStations]);
+        return response()->json(['options' => $pollingStations]);
     }
 
     public function destroy($id)
@@ -134,6 +171,4 @@ class ComplaintController extends Controller
 
         return to_route('complaints.index')->with('message', 'Record Deleted Successfully');
     }
-
-
 }

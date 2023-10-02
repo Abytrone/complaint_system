@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       events: [
         {
           title: 'All Day Event',
-          start: '2023-02-26',
+          start: '2020-09-01',
           color: '#ec4f3d'
         },
         {

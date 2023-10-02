@@ -254,7 +254,7 @@
 	font-size: 10px; line-height: 1.333;
 	text-shadow: none;
 	padding: 1px 5px;
-	background: #ed5565;
+	background: #de3e3e;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
@@ -267,7 +267,7 @@
 	margin-left: -3px;
 	overflow: hidden;
 	border: 3px solid transparent;
-	border-top-color: #ed5565;
+	border-top-color: #de3e3e;
 }
 
 .irs-grid-pol {
@@ -338,7 +338,7 @@
 
 
 .irs-from, .irs-to, .irs-single {
-	background-color: #1173eb;
+	background-color: #17995e;
 	border-radius: 0;
 }
 .irs-bar {
@@ -369,7 +369,7 @@
 }
 .irs-from::after, .irs-to::after,
 .irs-single::after {
-	border-top-color: #1173eb;
+	border-top-color: #17995e;
 }
 .irs-slider {
 	background-image: none;
@@ -379,7 +379,7 @@
 	width: 2px;
 	height: 18px;
 	position: absolute;
-	background-color: #1273eb;
+	background-color: #17995e;
 	left: 50%;
 	margin-left: -1px;
 }

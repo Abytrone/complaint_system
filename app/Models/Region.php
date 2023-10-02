@@ -11,6 +11,7 @@ class Region extends Model
     use HasFactory;
 
     protected $table = 'region';
+    protected $primaryKey = 'id';
     protected $fillable = ['region'];
 
     // public function districts()

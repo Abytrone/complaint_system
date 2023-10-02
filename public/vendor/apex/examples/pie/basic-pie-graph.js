@@ -19,7 +19,7 @@ var options = {
 	stroke: {
 		width: 0,
 	},
-	colors: ['#1273eb', '#2b86f5', '#63a9ff', '#95c5ff', '#c6e0ff'],
+	colors: ['#17995e', '#2b86f5', '#63a9ff', '#95c5ff', '#c6e0ff'],
 }
 var chart = new ApexCharts(
 	document.querySelector("#basic-pie-graph"),

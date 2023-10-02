@@ -51,7 +51,7 @@ var options1 = {
 			left: 0
 		}, 
 	},
-	colors: ['#1273eb'],
+	colors: ['#17995e'],
 	xaxis: {
 		categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 	},
@@ -112,7 +112,7 @@ var options2 = {
 			show: false
 		}
 	},
-	colors: ['#1273eb'],
+	colors: ['#17995e'],
 	xaxis: {
 		categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 	},
@@ -175,7 +175,7 @@ var options3 = {
 			show: false
 		}
 	},
-	colors: ['#ef503f'],
+	colors: ['#de3e3e'],
 	xaxis: {
 		categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 	},
@@ -215,7 +215,7 @@ var options4 = {
 		curve: 'smooth',
 		width: 4,
 	},
-	colors: ['#1273eb'],
+	colors: ['#17995e'],
 	tooltip: {
 		fixed: {
 			enabled: false
@@ -260,7 +260,7 @@ var options5 = {
 		curve: 'smooth',
 		width: 4,
 	},
-	colors: ['#ef503f'],
+	colors: ['#de3e3e'],
 	tooltip: {
 		fixed: {
 			enabled: false

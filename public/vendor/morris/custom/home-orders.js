@@ -9,7 +9,7 @@ Morris.Donut({
 	backgroundColor: '#ffffff',
 	labelColor: '#13202b',
 	lineWidth: '10px',
-	colors:['#1273eb', '#2b86f5', '#7facfa'],
+	colors:['#17995e', '#2b86f5', '#7facfa'],
 	resize: true,
 	hideHover: "auto",
 	formatter: function (x) { return x}

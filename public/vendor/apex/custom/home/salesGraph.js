@@ -48,11 +48,11 @@ var options = {
 			show: false,
 		}
 	},
-	colors: ['#3e8ef1'],
+	colors: ['#17995e'],
 	markers: {
 		size: 0,
 		opacity: 0.3,
-		colors: ["#3e8ef1"],
+		colors: ["#17995e"],
 		strokeColor: "#ffffff",
 		strokeWidth: 2,
 		hover: {
