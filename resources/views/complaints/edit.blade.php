@@ -8,16 +8,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Edit Complaint</div>
-                    <a href="{{route('complaints.index')}}"><button class="btn btn-small btn-primary">Go Back</button></a>
+                    <a href="{{ route('complaints.index') }}"><button class="btn btn-small btn-primary">Go Back</button></a>
                 </div>
                 <hr>
                 <div class="card-body">
                     <x-success-message></x-success-message>
                     <!-- Row start -->
-                    <form method="POST" action="{{ route('complaints.update', $complaint?->issue_id??'') }}">
+                    <form method="POST" action="{{ route('complaints.update', $complaint?->issue_id ?? '') }}">
                         @method('PUT')
                         @csrf
-                       @include('complaints.form')
+                        @include('complaints.form', ['complaint' => $complaint, 'isShow' => false])
                     </form>
                     <!-- Row end -->
                 </div>
@@ -30,12 +30,13 @@
         const constituencySelect = document.getElementById('constituencySelect');
         const electoraAreaSelect = document.getElementById('electoraAreaSelect');
         const pollingStationSelect = document.getElementById('pollingStationSelect');
-        const districtID=@json($complaint?->id);
-        const districtName=@json($complaint?->District);
-        if(districtID){
-            districtSelect.innerHTML=''
-            districtSelect.innerHTML=`<option value="${districtID}">${districtName}</option>`
+        const districtID = @json($complaint?->id);
+        const districtName = @json($complaint?->District);
+        if (districtID) {
+            districtSelect.innerHTML = ''
+            districtSelect.innerHTML = `<option value="${districtID}">${districtName}</option>`
         }
+
         function loadDistricts(region) {
             $.get("/get-districts", {
                 region: region
@@ -52,6 +53,7 @@
                 }
             })
         }
+
         function loadConstituencies(region) {
             $.get("/get-constituencies", {
                 region: region
@@ -68,7 +70,8 @@
                 }
             })
         }
-        function loadElectoralAreas(constituency){
+
+        function loadElectoralAreas(constituency) {
             $.get("/get-electoralareas", {
                 constituency: constituency
             }, function(data) {
@@ -84,7 +87,8 @@
                 }
             })
         }
-        function loadPollingStation(electoralarea){
+
+        function loadPollingStation(electoralarea) {
             $.get("/get-polling-station", {
                 electoralArea: electoralarea
             }, function(data) {
@@ -100,10 +104,5 @@
                 }
             })
         }
-
-
-
-
-
     </script>
 @endsection

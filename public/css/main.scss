@@ -229,12 +229,14 @@ Last change:	29/06/2021
     font-display: swap;
 }
 
+
 /******** 2.2 Rubik Mono One Font ********/
 @font-face {
     font-family: 'Rubik Mono One';
     src: url('../fonts/rubik-mono/RubikMonoOne-Regular.ttf') format('truetype');
     font-style: normal;
 }
+
 
 
 /************************************************
@@ -395,8 +397,7 @@ body {
 	************************************************
 ************************************************/
 
-/******** 5.1 Anchor Reset ********/
-a {
+/******** 5.1 Anchor Reset ********/a {
 	color: $black;
 	text-decoration: none;
 	&:hover {
@@ -482,6 +483,7 @@ p {
 	width: 90px;
 	height: 90px;
 }
+
 
 
 /******** 5.6 BG Colors ********/
@@ -843,13 +845,13 @@ p {
 				color: $white;
 			}
 		}
-		&.blue {
+		&.green {
 			.bg-avatar {
-				background: $light-blue;
-				color: $dark-blue;
+				background: $light-green;
+				color: $dark-green;
 			}
 			&:hover {
-				background: $blue;
+				background: $green;
 				color: $white;
 			}
 		}
@@ -922,7 +924,6 @@ p {
 		}
 	}
 }
-
 
 /******** 6.5 Sidebar Settings ********/
 .sidebar-settings {
@@ -1790,7 +1791,7 @@ ul.activity {
 				border: 2px solid $blue;
 			}
 			&:before {
-				border: 4px solid lighten($blue, 50%);
+				border: 4px solid $light-blue;
 			}
 		}
 		&.success {
@@ -1798,7 +1799,7 @@ ul.activity {
 				border: 2px solid $green;
 			}
 			&:before {
-				border: 4px solid lighten($green, 50%);
+				border: 4px solid $light-green;
 			}
 		}
 		&.danger {
@@ -1806,7 +1807,7 @@ ul.activity {
 				border: 2px solid $red;
 			}
 			&:before {
-				border: 4px solid lighten($red, 35%);
+				border: 4px solid $light-red;
 			}
 		}
 		&.warning {
@@ -1814,7 +1815,7 @@ ul.activity {
 				border: 2px solid $yellow;
 			}
 			&:before {
-				border: 4px solid lighten($yellow, 35%);
+				border: 4px solid $light-yellow;
 			}
 		}
 	}
@@ -2083,10 +2084,10 @@ ul.activity {
 	justify-content: space-between;
 	flex-direction: row;
 	text-align: center;
-	margin: 1rem 0 0 0;
+margin: 1rem 0 0 0;
 	.tiles-list {
 		width: 100%;
-		padding: 5px;
+		padding: 5px;	
 		border-right: 1px solid $border-bg;
 		img {
 			width: 30px;
@@ -2299,8 +2300,8 @@ ul.customer-rating {
 		&::after {
 			min-height: 38px;
 			background: $light-bg;
-			padding: 10px 12px;
-    		@include roundedCorners(2);
+    	padding: 10px 12px;
+    	@include roundedCorners(2);
 		}
 	}
 }
@@ -2632,7 +2633,7 @@ ul.customer-rating {
 
 /******** 6.38 Report Stats ********/
 .report-card {
-	background: #5A4E9A url('../img/pattern.svg') no-repeat;
+	background: #043974 url('../img/pattern.svg') no-repeat;
 	background-position: center 100px;
 	background-size: cover;
 	@include roundedCorners(4);
@@ -2777,7 +2778,7 @@ ul.customer-rating {
 
 /******** 6.42 Followers Card ********/
 .followers-card {
-	background: #002ca9;
+	background: #043667;
 	@include roundedCorners(4);
 	margin-bottom: 20px;
 	padding: 1.25rem 1.25rem;
@@ -3604,7 +3605,7 @@ ul.recent-orders {
 	}
 	.profile-header-content {
 		@include roundedCorners(4);
-		background: lighten($pink, 15%);
+		background: $primary-color;
 		padding: 1rem 1.5rem 1rem 1.5rem;
 		display: flex;
 		align-items: center;
@@ -3643,7 +3644,7 @@ ul.recent-orders {
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					background: $pink;
+					background: $red;
 					i {
 						font-size: 1rem;
 						color: $white;
@@ -4469,8 +4470,6 @@ ul.recent-orders {
 		-webkit-transform: rotate(-900deg);
 	}
 }
-
-
 /******** 7.5 Login Screen 2 ********/
 .error-screen2 {
 	position: relative;
@@ -5187,7 +5186,7 @@ figure.user-card {
 								@include roundedCorners(50);
 								width: 16px;
 								height: 16px;
-								background: $blue;
+								background: $green;
 								color: $white;
 								font-size: .6rem;
 								font-weight: 600;
@@ -6935,7 +6934,7 @@ button {
 		background-color: darken($primary-color, 5%);
 		border-color: darken($primary-color, 5%);
 		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgb(228, 240, 255);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 	}
 	&.dropdown-toggle.show,
 	.btn-check:checked + &,
@@ -6945,12 +6944,12 @@ button {
 		color: $primary-text-color;
 		background-color: darken($primary-color, 5%);
 		border-color: darken($primary-color, 5%);
-		box-shadow: 0 0 0 0.2rem rgb(228, 240, 255);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		&:focus {
 			color: $primary-text-color;
 			background-color: darken($primary-color, 5%);
 			border-color: darken($primary-color, 5%);
-			box-shadow: 0 0 0 0.2rem rgb(228, 240, 255);
+			box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		}
 	}
 	&:disabled,
@@ -6977,7 +6976,7 @@ button {
 		background-color: darken($primary-color, 5%);
 		border-color: darken($primary-color, 5%);
 		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgb(228, 240, 255);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 	}
 	&.dropdown-toggle.show,
 	.btn-check:checked + &,
@@ -6987,12 +6986,12 @@ button {
 		color: $primary-text-color;
 		background-color: darken($primary-color, 5%);
 		border-color: darken($primary-color, 5%);
-		box-shadow: 0 0 0 0.2rem rgb(228, 240, 255);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		&:focus {
 			color: $primary-text-color;
 			background-color: darken($primary-color, 5%);
 			border-color: darken($primary-color, 5%);
-			box-shadow: 0 0 0 0.2rem rgb(228, 240, 255);
+			box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		}
 	}
 	&:disabled,
@@ -7370,7 +7369,7 @@ button {
 		background-color: darken($green, 5%);
 		border-color: darken($green, 5%);
 		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgba(81, 149, 21, .30%);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 	}
 	&.dropdown-toggle.show,
 	.btn-check:checked + &,
@@ -7380,12 +7379,12 @@ button {
 		color: $white;
 		background-color: darken($green, 5%);
 		border-color: darken($green, 5%);
-		box-shadow: 0 0 0 0.2rem rgba(81, 149, 21, .30%);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		&:focus {
 			color: $white;
 			background-color: darken($green, 5%);
 			border-color: darken($green, 5%);
-			box-shadow: 0 0 0 0.2rem rgba(81, 149, 21, .30%);
+			box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		}
 	}
 	&:disabled,
@@ -7412,7 +7411,7 @@ button {
 		background-color: darken($green, 5%);
 		border-color: darken($green, 5%);
 		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgba(81, 149, 21, .30%);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 	}
 	&.dropdown-toggle.show,
 	.btn-check:checked + &,
@@ -7422,12 +7421,12 @@ button {
 		color: $white;
 		background-color: darken($green, 5%);
 		border-color: darken($green, 5%);
-		box-shadow: 0 0 0 0.2rem rgba(81, 149, 21, .30%);
+		box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		&:focus {
 			color: $white;
 			background-color: darken($green, 5%);
 			border-color: darken($green, 5%);
-			box-shadow: 0 0 0 0.2rem rgba(81, 149, 21, .30%);
+			box-shadow: 0 0 0 0.2rem rgb(219, 245, 234);
 		}
 	}
 	&:disabled,
@@ -7506,6 +7505,7 @@ label {
 	font-size: .8rem;
 	font-weight: 600;
 }
+
 
 /******** 10.7.2 Validations ********/
 .form-control.is-valid, .was-validated .form-control:valid {
@@ -7865,7 +7865,7 @@ label {
 	@include roundedCorners(4);
 	margin-bottom: 20px;
 	&.light-green {
-		background: $white;
+		background: $light-green;
 		.table {
 			th {
 				color: $green;
@@ -7879,7 +7879,7 @@ label {
 		}
 	}
 	&.light-blue {
-		background: $white;
+		background: $light-blue;
 		.table {
 			th {
 				color: $blue;

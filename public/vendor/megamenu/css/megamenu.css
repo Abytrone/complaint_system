@@ -31,7 +31,7 @@
   margin-top: 0;
   height: 2px;
   width: 6px;
-  background: #1173eb;
+  background: #17995e;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transition: width 0.3s, -webkit-transform 0.3s;
@@ -56,7 +56,7 @@
 }
 .cd-dropdown-trigger > .menu-icon {
   display: block;
-  color: #1273eb;
+  color: #17995e;
   font-size: 1.4rem;
   margin-right: 7px;
 }
@@ -217,7 +217,7 @@
   border-bottom: none;
 }
 .no-touch .cd-dropdown-content > li:not(.has-children) a:hover {
-  color: #1273eb;
+  color: #17995e;
 }
 .cd-dropdown-content.move-out > li > a, .cd-dropdown-content.move-out > li > .cd-search, .cd-dropdown-content.move-out > .cd-divider {
   /* reset mobile style */
@@ -313,7 +313,7 @@
   max-height: calc(100vh - 100px);
 }
 .cd-dropdown-content .cd-secondary-dropdown > li > a {
-  color: #1273eb;
+  color: #17995e;
   font-size: .9rem;
   font-weight: 600;
   margin-bottom: 10px;
@@ -359,7 +359,7 @@
   padding-left: 0;
 }
 .no-touch .cd-dropdown-content .cd-secondary-dropdown a:hover {
-  color: #1273eb;
+  color: #17995e;
 }
 .cd-dropdown-content .cd-secondary-dropdown ul {
   overflow: hidden;
@@ -395,7 +395,7 @@
   align-items: center;
 }
 .cd-dropdown-content .cd-dropdown-icons a.cd-dropdown-item:hover {
-  color: #1273eb;
+  color: #17995e;
 }
 .cd-dropdown-content > .has-children > ul {
   visibility: hidden;
@@ -410,14 +410,14 @@
 }
 .cd-dropdown-content > .has-children > a.is-active {
   /* hover effect for .cd-dropdown-content items with subnavigation */
-  box-shadow: inset 2px 0 0 #1273eb;
-  color: #1273eb;
+  box-shadow: inset 2px 0 0 #17995e;
+  color: #17995e;
 }
 .cd-dropdown-content > .has-children > a.is-active::before, .cd-dropdown-content > .has-children > a.is-active::after {
-  background: #1273eb;
+  background: #17995e;
 }
 .open-to-left .cd-dropdown-content > .has-children > a.is-active {
-  box-shadow: inset -2px 0 0 #1273eb;
+  box-shadow: inset -2px 0 0 #17995e;
 }
 
 @-webkit-keyframes cd-fade-in {
@@ -566,7 +566,7 @@
       display: block;
   }
   .has-children > a {
-      color: #1273eb;
+      color: #17995e;
       font-size: 18px;
       font-weight: 600;
   }

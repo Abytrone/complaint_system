@@ -18,6 +18,10 @@
                 href="#tab-main-menu" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-layers2"></i>
             </a>
+            <a class="nav-link {{ Request::is('reports*') ? 'active' : '' }}" id="reports-tab" data-bs-toggle="tab"
+                href="#tab-reports" role="tab" aria-controls="tab-product" aria-selected="false">
+                <i class="icon-documents"></i>
+            </a>
             <a class="nav-link {{ Request::is('setups*') ? 'active' : '' }}" id="system-settings-tab"
                 data-bs-toggle="tab" href="#tab-system-settings" role="tab" aria-controls="tab-system-settings"
                 aria-selected="false">
@@ -55,8 +59,8 @@
             </div>
 
             <!-- Pages tab -->
-            <div class="tab-pane fade {{ Request::is('complaints*') ? 'show active' : '' }}" id="tab-main-menu"
-                role="tabpanel" aria-labelledby="tab-main-menu">
+            <div class="tab-pane fade {{ Request::is('complaints*') || Request::is('awaiting-complaints*') ? 'show active' : '' }}"
+                id="tab-main-menu" role="tabpanel" aria-labelledby="tab-main-menu">
 
                 <!-- Tab content header start -->
                 <div class="tab-pane-header">
@@ -71,15 +75,19 @@
                             <li class="list-heading">Complaints</li>
 
                             <li>
+                                <a href="{{ route('complaints.create') }}"
+                                    class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Capture
+                                    Complaints</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('complaints.index') }}"
-                                    class="{{ Request::is('complaints*') ? 'current-page' : '' }}">Capture Complaints</a>
+                                    class="{{ Request::is('complaints') ? 'current-page' : '' }}">Process
+                                    Complaints</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="{{ Request::is('conflicts/events*') ? 'current-page' : '' }}">Process Complaints</a>
-                            </li>
-                            <li>
-                                <a href="#">Awaiting Resolution</a>
+                                <a href="{{ route('awaiting_complaints') }}"
+                                    class="{{ Request::is('awaiting-complaints/awaiting_complaints*') ? 'current-page' : '' }}">Awaiting
+                                    Resolution</a>
                             </li>
                             <li>
                                 <a href="#">Response Overdue</a>
@@ -89,6 +97,35 @@
                             </li>
                             <li>
                                 <a href="#">Reopen Complaints</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Sidebar menu ends -->
+            </div>
+
+            <div class="tab-pane fade {{ Request::is('reports*') ? 'show active' : '' }}"
+                id="tab-reports" role="tabpanel" aria-labelledby="tab-reports">
+
+                <!-- Tab content header start -->
+                <div class="tab-pane-header">
+                    Report Summaries
+                </div>
+                <!-- Tab content header end -->
+
+                <!-- Sidebar menu starts -->
+                <div class="sidebarMenuScroll">
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="list-heading">Summaries</li>
+
+                            <li>
+                                <a href="{{ route('complaints.create') }}"
+                                    class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Statistics</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('complaints.index') }}"
+                                    class="{{ Request::is('complaints') ? 'current-page' : '' }}">Reports Print</a>
                             </li>
                         </ul>
                     </div>
@@ -110,38 +147,58 @@
                 <div class="sidebarMenuScroll">
                     <div class="sidebar-menu">
                         <ul>
-                            <li class="list-heading">Conflicts</li>
+                            <li class="list-heading">Setup</li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/actors*') ? 'current-page' : '' }}">Actors</a>
+                                    class="{{ Request::is('setups/actors*') ? 'current-page' : '' }}">Regions</a>
                             </li>
 
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/communities*') ? 'current-page' : '' }}">Communities</a>
+                                    class="{{ Request::is('setups/communities*') ? 'current-page' : '' }}">Districts</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Event
-                                    Types</a>
+                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Report Roles</a>
                             </li>
                             <li>
                                 <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Violence
-                                    Types</a>
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Report Categories</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Report Support Groups</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Banner | News | Articles</a>
                             </li>
                         </ul>
 
                         <ul>
-                            <li class="list-heading">Users</li>
+                            <li class="list-heading">Configurations</li>
                             <li>
-                                <a href="#" class="{{ Request::is('setups/users*') ? 'current-page' : '' }}">Add
-                                    Users</a>
+                                <a href="#" class="{{ Request::is('setups/users*') ? 'current-page' : '' }}">User Manager</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">User
-                                    Roles</a>
+                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">User Support Groups</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Support Groups Mapping</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Manage Messages</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Global Configuration</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Roles Access</a>
                             </li>
                         </ul>
 

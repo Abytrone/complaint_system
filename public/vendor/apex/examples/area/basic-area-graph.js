@@ -101,14 +101,14 @@ var options = {
 	theme: {
 		monochrome: {
 			enabled: true,
-			color: '#1273eb',
+			color: '#17995e',
 			shadeIntensity: 0.1
 		},
 	},
 	markers: {
 		size: 0,
 		opacity: 0.2,
-		colors: ["#1273eb"],
+		colors: ["#17995e"],
 		strokeColor: "#fff",
 		strokeWidth: 2,
 		hover: {

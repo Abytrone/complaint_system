@@ -62,7 +62,7 @@ var options = {
       left: 0
     }, 
   },
-	colors: ['#1273eb', '#63a9ff'],
+	colors: ['#17995e', '#63a9ff'],
 }
 var chart = new ApexCharts(
 	document.querySelector("#basic-bar-graph-grouped"),

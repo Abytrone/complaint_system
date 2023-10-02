@@ -63,7 +63,7 @@ var options = {
 	plotOptions: {
 		candlestick: {
 			colors: {
-				upward: '#1273eb',
+				upward: '#17995e',
 				downward: '#95c5ff'
 			}
 		}

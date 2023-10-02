@@ -33,7 +33,7 @@ var options = {
 	},
 	series: [75, 25],
 	labels: ['New', 'Delivered'],
-	colors: ['#1273eb', '#f16a5d'],
+	colors: ['#17995e', '#ce270c'],
 }
 
 var chart = new ApexCharts(

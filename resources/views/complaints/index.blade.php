@@ -15,7 +15,7 @@
             </div>
             <div class="table-responsive">
                 <x-success-message></x-success-message>
-                <table id="copy-print-csv" class="table v-middle">
+                <table id="basicExample" class="table custom-table">
                     <thead>
                         <tr>
                             <th>Code</th>
@@ -41,6 +41,9 @@
 
                                 <td>
                                     <div class="actions">
+                                        <a href="{{ route('complaints.show', $item->issue_id) }}">
+                                            <i class="icon-eye text-primary"></i>
+                                        </a>
                                         <a href="{{ route('complaints.edit', $item->issue_id) }}">
                                             <i class="icon-edit1 text-primary"></i>
                                         </a>

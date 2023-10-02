@@ -10,7 +10,7 @@ class  Complaint extends Model
     use HasFactory;
 
     protected $table = 'issue_master';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'issue_id';
     public const CREATED_AT = 'created_date';
 
     protected $guarded = [];
