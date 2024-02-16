@@ -16,14 +16,18 @@ use App\Http\Controllers\UserComplaintController;
 */
 
 
-Route::resource(
-    '/',
-    UserComplaintController::class
-)->only('index');
+// Route::resource(
+//     '/',
+//     UserComplaintController::class
+// )->only('index');
 
 
 Route::get('/login', function () {
     return view('auth.login');
+});
+
+Route::get('/', function () {
+   return redirect()->route('dashboard');
 });
 
 Route::get('/dashboard', function () {
