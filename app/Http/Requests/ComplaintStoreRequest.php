@@ -32,7 +32,7 @@ class ComplaintStoreRequest extends FormRequest
             'email'=>'required|email|unique:issue_master,email, '.$issue_id.',issue_id',
             'gender'=>'required',
             'mode_fk'=>'required',
-            'subcategory_fk'=>'required',
+            'subcategory_id'=>'required',
             'region_fk'=>'required',
             'raw_report'=>'required',
             'gps_longitude'=>'required',
@@ -46,7 +46,7 @@ class ComplaintStoreRequest extends FormRequest
         return [
             'mode_fk.required'=>'mode of contact is required',
             'category_id.required'=>'category is required',
-            'subcategory_fk.required'=>'subcategory is required',
+            'subcategory_id.required'=>'subcategory is required',
             'region_fk.required'=>'region is required',
             'district_fk.required'=>'district is required',
             'raw_report.required'=>'report details is required',

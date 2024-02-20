@@ -43,7 +43,7 @@ class ComplaintController extends Controller
             'modes' =>   DB::table('communication_mode')->get(),
             'displayfields' =>  DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()->toArray(),
             'constituencies' =>   DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
-            'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
+            'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('electoral_area_id', '>', 0)->get(),
             'fieldnames' => $fieldnames,
         ]);
     }
@@ -126,7 +126,7 @@ class ComplaintController extends Controller
     {
         DB::table('issue_master')->where('issue_id', '=', $id)->update($request->validated());
         return to_route('complaints.edit', $id)->with('message', 'Record Updated Successfylly');
-    } 
+    }
 
     public function loadDistricts(Request $request)
     {

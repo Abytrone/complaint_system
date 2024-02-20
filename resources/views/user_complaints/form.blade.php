@@ -73,16 +73,16 @@
     <div class="col-lg-4 col-md-12 col-sm-12">
         <!-- Field wrapper start -->
         <div class="field-wrapper">
-            <select @disabled($isShow) class="form-select @error('subcategory_fk') is-invalid @enderror"
-                name="subcategory_fk">
+            <select @disabled($isShow) class="form-select @error('subcategory_id') is-invalid @enderror"
+                name="subcategory_id">
                 <option value="">Select Category</option>
                 @foreach ($subcategories as $subcategory)
-                    <option @selected(($complaint?->subcategory_fk ?? old('subcategory_fk')) == $subcategory->id) value="{{ $subcategory->id }}" @selected(old('subcategory_id') == $subcategory->id)>
+                    <option @selected(($complaint?->subcategory_id ?? old('subcategory_id')) == $subcategory->id) value="{{ $subcategory->id }}" @selected(old('subcategory_id') == $subcategory->id)>
                         {{ $subcategory->description }}</option>
                 @endforeach
             </select>
             <div class="field-placeholder">Category<span class="text-danger">*</span></div>
-            @error('subcategory_fk')
+            @error('subcategory_id')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
