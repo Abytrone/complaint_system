@@ -95,7 +95,7 @@
 
                     <div class="row">
                         @foreach ($displayfields as $fields)
-                            @if ($fields->field_fk == 1)
+                            @if ($fields->field_id == 1)
                                 @if (in_array('Disrict', $fieldnames))
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="field-wrapper">
@@ -139,7 +139,7 @@
                                     </div>
                                 @endif
                             @endif
-                            @if ($fields->field_fk == 2)
+                            @if ($fields->field_id == 2)
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="field-wrapper">
                                         <select @disabled(true) name="district_fk" id="districtSelect"
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if ($fields->field_fk == 3)
+                            @if ($fields->field_id == 3)
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="field-wrapper">
                                         <select @disabled(true) onchange="loadElectoralAreas(this.value)"
@@ -171,7 +171,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if ($fields->field_fk == 4)
+                            @if ($fields->field_id == 4)
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="field-wrapper">
                                         <input @disabled(true) type="text" name="community"
@@ -184,7 +184,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if ($fields->field_fk == 5)
+                            @if ($fields->field_id == 5)
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="field-wrapper">
                                         <select @disabled(true) onchange="loadPollingStation(this.value)"
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if ($fields->field_fk == 6)
+                            @if ($fields->field_id == 6)
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="field-wrapper">
                                         <select @disabled(true) name="polling_station_fk"

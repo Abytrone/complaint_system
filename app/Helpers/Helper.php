@@ -9,7 +9,7 @@ class Helper{
     public static function dynamicFieldsValidation()
     {
         $fieldValidation=[];
-        $fieldnames=DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=',1)->get()
+        $fieldnames=DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=',1)->get()
             ->map(function($data){
                 return $data->field_name;
             })->toArray();

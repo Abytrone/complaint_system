@@ -19,7 +19,7 @@ class UserComplaintController extends Controller
         // return view('user_complaints.index', ['complaints' => $complaints]);
 
         $fieldnames = [];
-        //  DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()
+        //  DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()
            // ->map(function ($data) {
              //   return $data->field_name;
             //})->toArray();
@@ -32,7 +32,7 @@ class UserComplaintController extends Controller
             'subcategories' => [], // DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
             'issuesources' => [], //DB::table('issue_source')->get(),
             'modes' => [], //DB::table('communication_mode')->get(),
-            'displayfields' => [], //DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+            'displayfields' => [], //DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()->toArray(),
             'constituencies' =>[],// DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
             'electoralareas' =>[],// DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
             'fieldnames' => $fieldnames,
@@ -42,7 +42,7 @@ class UserComplaintController extends Controller
     public function create()
     {
         //get fieldnames to help separate function for loading district and constituency base on region
-        $fieldnames = DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()
+        $fieldnames = DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()
             ->map(function ($data) {
                 return $data->field_name;
             })->toArray();
@@ -55,7 +55,7 @@ class UserComplaintController extends Controller
             'subcategories' => DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
             'issuesources' => DB::table('issue_source')->get(),
             'modes' => DB::table('communication_mode')->get(),
-            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()->toArray(),
             'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
             'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
             'fieldnames' => $fieldnames,
@@ -77,7 +77,7 @@ class UserComplaintController extends Controller
     public function show(Complaint $complaint)
     {
         $fieldnames = DB::table('vw_issue_category_field')
-            ->select(['field_name', 'field_fk'])
+            ->select(['field_name', 'field_id'])
             ->where('display', '=', 1)
             ->get()
             ->map(function ($data) {
@@ -95,7 +95,7 @@ class UserComplaintController extends Controller
             'subcategories' => DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
             'issuesources' => DB::table('issue_source')->get(),
             'modes' => DB::table('communication_mode')->get(),
-            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()->toArray(),
             'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
             'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
             'fieldnames' => $fieldnames,
@@ -107,7 +107,7 @@ class UserComplaintController extends Controller
 
         //get fieldnames to help separate function for loading district and constituency base on region
         $fieldnames = DB::table('vw_issue_category_field')
-            ->select(['field_name', 'field_fk'])
+            ->select(['field_name', 'field_id'])
             ->where('display', '=', 1)
             ->get()
             ->map(function ($data) {
@@ -128,7 +128,7 @@ class UserComplaintController extends Controller
                 'subcategories' => DB::table('vw_issue_subcategory')->where('category_fk', '=', 1)->orderBy('description')->get(),
                 'issuesources' => DB::table('issue_source')->get(),
                 'modes' => DB::table('communication_mode')->get(),
-                'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_fk'])->where('display', '=', 1)->get()->toArray(),
+                'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()->toArray(),
                 'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
                 'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
                 'fieldnames' => $fieldnames,
