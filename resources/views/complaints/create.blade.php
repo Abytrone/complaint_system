@@ -14,10 +14,7 @@
                 <div class="card-body">
                     <x-success-message></x-success-message>
                     <!-- Row start -->
-                    <form method="POST" action="{{ route('complaints.store') }}">
-                        @csrf
-                        @include('complaints.form', ['complaint' => $complaint, 'isShow' => false])
-                    </form>
+                  <livewire:complaint-form></livewire:complaint-form>
                     <!-- Row end -->
                 </div>
             </div>

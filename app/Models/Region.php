@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\WithoutZeroId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\District;
 
 class Region extends Model
 {
-    use HasFactory;
+    use  WithoutZeroId;
 
     protected $table = 'region';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'region_id';
     protected $fillable = ['region'];
 
     // public function districts()

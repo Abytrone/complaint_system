@@ -2,23 +2,44 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ComplaintModel;
-use Illuminate\Support\Facades\DB;
+use App\Models\Category;
+use App\Models\CommunicationMode;
+use App\Models\Complaint;
+use App\Models\Region;
+use App\Models\Source;
+use App\Models\Subcategory;
 use Livewire\Component;
 
 class ComplaintForm extends Component
 {
-    public $modalTitle = 'Add New';
-    public $currentComplaintId = null;
-    public $isShow = false;
-    public $code;
+
+    public ?Complaint $complaint;
     public $name;
-    public $email;
     public $phone;
+    public $email;
     public $sex;
-    public $mode;
-    public $source;
-    public $raw;
+    public $received_date;
+    public $mode_id;
+    public $source_id;
+    public $raw_report;
+    public $subcategory_id;
+    public $category_id;
+    public $region_id;
+    public $district_id;
+    public $constituency_id;
+    public $polling_station_id;
+    public $community;
+    public $code;
+
+
+    public $modes = [];
+    public $sources = [];
+    public $subcategories = [];
+    public $categories = [];
+    public $regions = [];
+    public $districts = [];
+    public $constituencies = [];
+    public $polling_stations = [];
 
     protected $listeners = ['editItem', 'showItem'];
 
@@ -33,6 +54,15 @@ class ComplaintForm extends Component
         'source' => 'required|string',
         'raw' => 'required|string',
     ];
+
+    public function mount()
+    {
+        $this->categories = Category::withoutZeroId()->active()->get();
+        $this->modes = CommunicationMode::all();
+        $this->subcategories = Subcategory::withoutZeroId()->get();
+        $this->regions = Region::withoutZeroId()->get();
+        $this->sources = Source::all();
+    }
 
     public function updated($value)
     {
@@ -87,7 +117,6 @@ class ComplaintForm extends Component
 
     public function render()
     {
-        // $districts = DB::select('select district_id as id, district_name as name from districts');
 
         return view('livewire.complaint-form');
     }
