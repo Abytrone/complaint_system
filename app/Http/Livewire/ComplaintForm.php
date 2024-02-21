@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use App\Models\CategoryField;
 use App\Models\CommunicationMode;
 use App\Models\Complaint;
+use App\Models\Field;
 use App\Models\Region;
 use App\Models\Source;
 use App\Models\Subcategory;
@@ -50,26 +52,65 @@ class ComplaintForm extends Component
         'email' => 'required|string',
         'phone' => 'required|string',
         'sex' => 'required|string',
-        'mode' => 'required|string',
-        'source' => 'required|string',
-        'raw' => 'required|string',
+        'mode_id' => 'required|string',
+        'source_id' => 'required|string',
+        'raw_report' => 'required|string',
     ];
 
-    public function mount()
+
+    public function updatedCategoryId($val): void
+    {
+        $this->subcategory_id = null;
+        $this->subcategories = Subcategory::withoutZeroId()->active()
+            ->where('category_id', $val)->get();
+    }
+
+    public function showRegion(): bool
+    {
+        return $this->activeFieldsCount(Field::IS_REGION) > 0;
+    }
+
+    public function showDistrict(): bool
+    {
+        return $this->activeFieldsCount(Field::IS_DISTRICT) > 0;
+    }
+
+    public function showConstituency(): bool
+    {
+        return $this->activeFieldsCount(Field::IS_CONSTITUENCY) > 0;
+    }
+
+    public function showElectoralArea(): bool
+    {
+        return $this->activeFieldsCount(Field::IS_ELECTORAL_AREA) > 0;
+    }
+
+    public function showPollingStation(): bool
+    {
+        return $this->activeFieldsCount(Field::IS_POLLING_STATION) > 0;
+    }
+
+    public function showCommunity(): bool
+    {
+        return $this->activeFieldsCount(Field::IS_COMMUNITY) > 0;
+    }
+
+
+    public function mount(): void
     {
         $this->categories = Category::withoutZeroId()->active()->get();
         $this->modes = CommunicationMode::all();
-        $this->subcategories = Subcategory::withoutZeroId()->get();
+
         $this->regions = Region::withoutZeroId()->get();
         $this->sources = Source::all();
     }
 
-    public function updated($value)
+    public function updated($value): void
     {
         $this->validateOnly($value);
     }
 
-    private function generateRandomNumber($length)
+    private function generateRandomNumber($length): string
     {
         $min = pow(10, $length - 1);
         $max = pow(10, $length) - 1;
@@ -117,7 +158,6 @@ class ComplaintForm extends Component
 
     public function render()
     {
-
         return view('livewire.complaint-form');
     }
 
@@ -137,5 +177,11 @@ class ComplaintForm extends Component
         $this->mode = $com->mode;
         $this->source = $com->source;
         $this->raw = $com->raw;
+    }
+
+
+    private function activeFieldsCount(int $field): int
+    {
+        return (Category::find($this->category_id)?->fields()->active()->where('field_id', $field)->count() ?? 0);
     }
 }

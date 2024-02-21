@@ -60,4 +60,5 @@
     <link rel="stylesheet"
         href="{{ asset('vendor/datatables/responsive.bootstrap4.min.css?version=' . Str::random(5) . '') }}">
 
+    @livewireStyles
 </head>

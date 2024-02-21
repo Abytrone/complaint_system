@@ -100,6 +100,7 @@
 
     </div>
     @include('includes.footer')
+@livewireScripts
 </body>
 
 </html>

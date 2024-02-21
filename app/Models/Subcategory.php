@@ -14,4 +14,9 @@ class Subcategory extends Model
     protected $primaryKey = 'issue_subcategory_id';
     public $incrementing = false;
     public $timestamps = false;
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 }
