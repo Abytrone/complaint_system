@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Deploy app on push to main
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - uses: php-actions/composer@v5
+        with:
+          dev: no
+          args: --ignore-platform-reqs
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.13.0
+      - run: npm install --legacy-peer-deps
+      - run: npm run build
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}

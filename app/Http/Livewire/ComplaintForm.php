@@ -189,6 +189,7 @@ class ComplaintForm extends Component
     {
         $this->gps_latitude = $data[0];
         $this->gps_longitude = $data[1];
+        $this->resetValidation(['gps_latitude', 'gps_longitude']);
     }
 
 
