@@ -3,35 +3,43 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
-use App\Models\CategoryField;
 use App\Models\CommunicationMode;
 use App\Models\Complaint;
+use App\Models\Constituency;
+use App\Models\District;
+use App\Models\ElectoralArea;
 use App\Models\Field;
+use App\Models\PollingStation;
 use App\Models\Region;
 use App\Models\Source;
 use App\Models\Subcategory;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ComplaintForm extends Component
 {
 
-    public ?Complaint $complaint;
-    public $name;
-    public $phone;
-    public $email;
-    public $sex;
-    public $received_date;
-    public $mode_id;
-    public $source_id;
-    public $raw_report;
-    public $subcategory_id;
-    public $category_id;
-    public $region_id;
-    public $district_id;
-    public $constituency_id;
-    public $polling_station_id;
-    public $community;
-    public $code;
+    public ?Complaint $complaint = null;
+    public $name = null;
+    public $phone = null;
+    public $email = null;
+    public $gender = null;
+    public $mode_id = null;
+    public $source_id = null;
+    public $raw_report = null;
+    public $received_date = null;
+    public $category_id = null;
+    public $subcategory_id = null;
+    public $region_id = null;
+    public $district_id = null;
+    public $constituency_id = null;
+    public $electoral_area_id = null;
+    public $polling_station_id = null;
+    public $community = null;
+    public $gps_latitude = null;
+    public $gps_longitude = null;
 
 
     public $modes = [];
@@ -41,21 +49,44 @@ class ComplaintForm extends Component
     public $regions = [];
     public $districts = [];
     public $constituencies = [];
+    public $electoral_areas = [];
     public $polling_stations = [];
 
-    protected $listeners = ['editItem', 'showItem'];
+    public $fields = [];
+
+    protected $listeners = ['update-lat-long' => 'updateLatLng'];
 
 
     protected $rules = [
-        // 'code' => 'required|string',
-        'name' => 'required|string',
-        'email' => 'required|string',
-        'phone' => 'required|string',
-        'sex' => 'required|string',
-        'mode_id' => 'required|string',
-        'source_id' => 'required|string',
-        'raw_report' => 'required|string',
+        'name' => 'required|max:200',
+        'phone' => 'required|min:10',
+        'email' => 'required|email',
+        'gender' => 'required|in:Male,Female',
+        'received_date' => 'required|date',
+        'mode_id' => 'required|exists:communication_mode,mode_id',
+        'source_id' => 'required|exists:issue_source,source_id',
+        'raw_report' => 'required',
+        'subcategory_id' => 'required|exists:issue_subcategory,issue_subcategory_id',
+        'category_id' => 'required|exists:issue_category,category_id',
+        'region_id' => 'nullable|exists:region,region_id',
+        'district_id' => 'nullable|exists:vw_district,district_id',
+        'constituency_id' => 'nullable|exists:vw_constituency,id',
+        'electoral_area_id' => 'nullable|exists:vw_electoral_areas,id',
+        'polling_station_id' => 'nullable|exists:vw_polling_stations,id',
+        'community' => 'nullable',
+        'gps_latitude' => 'required',
+        'gps_longitude' => 'required',
     ];
+
+    public function store(): void
+    {
+        $valid = $this->validate();
+        $valid['code'] = $this->generateRandomNumber();
+        $valid['created_by'] = auth()->id() ?? 1;
+        Complaint::create($valid);
+        $this->resetExcept(['category', 'regions']);
+        $this->dispatchBrowserEvent('swal:success', ['message' => 'hello']);
+    }
 
 
     public function updatedCategoryId($val): void
@@ -63,36 +94,80 @@ class ComplaintForm extends Component
         $this->subcategory_id = null;
         $this->subcategories = Subcategory::withoutZeroId()->active()
             ->where('category_id', $val)->get();
+
+        $this->fields = Category::find($this->category_id)?->fields()
+            ->active()->pluck('field_id')->toArray() ?? [];
+
+//        reset fields
+        $this->reset([
+            'subcategory_id',
+            'region_id',
+            'district_id',
+            'districts',
+            'constituency_id',
+            'constituencies',
+            'electoral_area_id',
+            'electoral_areas',
+            'polling_station_id',
+            'polling_stations',
+            'community'
+        ]);
+
     }
 
-    public function showRegion(): bool
+    public function updatedRegionId($val): void
     {
-        return $this->activeFieldsCount(Field::IS_REGION) > 0;
+        $this->reset([
+            'district_id',
+            'districts',
+            'constituency_id',
+            'constituencies',
+            'electoral_area_id',
+            'electoral_areas',
+            'polling_station_id',
+            'polling_stations',
+            'community'
+        ]);
+
+        $this->constituencies = Constituency::where('region_id', $val)
+            ->orderBy('name')
+            ->get();
+
+
+        $this->districts = District::withoutZeroId()
+            ->where('region_id', $val)
+            ->orderBy('district')
+            ->get();
     }
 
-    public function showDistrict(): bool
+    public function updatedConstituencyId($val): void
     {
-        return $this->activeFieldsCount(Field::IS_DISTRICT) > 0;
+        $this->reset([
+            'electoral_area_id',
+            'electoral_areas',
+            'polling_station_id',
+            'polling_stations',
+            'community'
+        ]);
+
+        $this->electoral_areas = ElectoralArea::where('constituency_id', $val)
+            ->orderBy('name')
+            ->get();
+
     }
 
-    public function showConstituency(): bool
+    public function updatedElectoralAreaId($val): void
     {
-        return $this->activeFieldsCount(Field::IS_CONSTITUENCY) > 0;
-    }
+        $this->reset([
+            'polling_station_id',
+            'polling_stations',
+            'community'
+        ]);
 
-    public function showElectoralArea(): bool
-    {
-        return $this->activeFieldsCount(Field::IS_ELECTORAL_AREA) > 0;
-    }
+        $this->polling_stations = PollingStation::where('electoral_area_id', $val)
+            ->orderBy('name')
+            ->get();
 
-    public function showPollingStation(): bool
-    {
-        return $this->activeFieldsCount(Field::IS_POLLING_STATION) > 0;
-    }
-
-    public function showCommunity(): bool
-    {
-        return $this->activeFieldsCount(Field::IS_COMMUNITY) > 0;
     }
 
 
@@ -110,78 +185,52 @@ class ComplaintForm extends Component
         $this->validateOnly($value);
     }
 
-    private function generateRandomNumber($length): string
+    public function updateLatLng($data): void
     {
-        $min = pow(10, $length - 1);
-        $max = pow(10, $length) - 1;
-        return strval(rand($min, $max));
-    }
-
-    public function store()
-    {
-        if ($this->currentComplaintId) {
-            ComplaintModel::query()->where('id', $this->currentComplaintId)->update($this->validate());
-            return to_route('complaints.index')->with('message', 'Record Updated Successfully');
-        } else {
-            $randomNumber = $this->generateRandomNumber(10);
-            ComplaintModel::query()->create($this->validate() + ['code' => $randomNumber] + ['created_by' => auth()->id() ?? 1]);
-            $this->resetForm();
-            return to_route('complaints.index')->with('message', 'Record Created Successfully');
-        }
-    }
-
-    private function resetForm()
-    {
-        $this->name = '';
-        $this->email = '';
-        $this->phone = '';
-        $this->sex = '';
-        $this->mode = '';
-        $this->source = '';
-        $this->raw = '';
+        $this->gps_latitude = $data[0];
+        $this->gps_longitude = $data[1];
     }
 
 
-    public function editItem($id)
-    {
-        $this->modalTitle = 'Update  Record';
-        $this->isShow = false;
-        $this->populateFields($id);
-    }
-
-    public function showItem($id)
-    {
-        $this->modalTitle = 'View  Record';
-        $this->isShow = true;
-        $this->populateFields($id);
-    }
-
-    public function render()
+    public function render(): Factory|View|Application
     {
         return view('livewire.complaint-form');
     }
 
-    /**
-     * @param $id
-     * @return void
-     */
-    public function populateFields($id): void
+    public function showRegion(): bool
     {
-        $com = ComplaintModel::find($id);
-        $this->currentComplaintId = $com->community_id;
-        $this->code = $com->code;
-        $this->name = $com->name;
-        $this->email = $com->email;
-        $this->phone = $com->phone;
-        $this->sex = $com->sex;
-        $this->mode = $com->mode;
-        $this->source = $com->source;
-        $this->raw = $com->raw;
+        return in_array(Field::IS_REGION, $this->fields);
     }
 
-
-    private function activeFieldsCount(int $field): int
+    public function showDistrict(): bool
     {
-        return (Category::find($this->category_id)?->fields()->active()->where('field_id', $field)->count() ?? 0);
+        return in_array(Field::IS_DISTRICT, $this->fields);
+    }
+
+    public function showConstituency(): bool
+    {
+        return in_array(Field::IS_CONSTITUENCY, $this->fields);
+    }
+
+    public function showElectoralArea(): bool
+    {
+        return in_array(Field::IS_ELECTORAL_AREA, $this->fields);
+    }
+
+    public function showPollingStation(): bool
+    {
+        return in_array(Field::IS_POLLING_STATION, $this->fields);
+    }
+
+    public function showCommunity(): bool
+    {
+        return in_array(Field::IS_COMMUNITY, $this->fields);
+    }
+
+    private function generateRandomNumber($length = 15): string
+    {
+        $min = pow(10, $length - 1);
+        $max = pow(10, $length) - 1;
+        return strval(rand($min, $max));
     }
 }

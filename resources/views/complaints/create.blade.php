@@ -8,13 +8,21 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">New Complaint</div>
-                    <a href="{{ route('complaints.index') }}"><button class="btn btn-small btn-primary">Go Back</button></a>
+                    <a href="{{ route('complaints.index') }}">
+                        <button class="btn btn-small btn-primary">Go Back</button>
+                    </a>
                 </div>
                 <hr>
                 <div class="card-body">
                     <x-success-message></x-success-message>
                     <!-- Row start -->
-                  <livewire:complaint-form></livewire:complaint-form>
+                    <livewire:complaint-form></livewire:complaint-form>
+                    <div class="mt-3">
+                        <input style="max-width: 500px; margin-top: 10px;" id="pac-input" class="form-control"
+                               type="text"
+                               placeholder="Search Box"/>
+                        <div style="width:100%; height: 500px;" id="google-map"></div>
+                    </div>
                     <!-- Row end -->
                 </div>
             </div>
@@ -23,78 +31,5 @@
     </div>
     <!-- Row end -->
 
-    <script>
-        const districtSelect = document.getElementById('districtSelect');
-        const constituencySelect = document.getElementById('constituencySelect');
-        const electoraAreaSelect = document.getElementById('electoraAreaSelect');
-        const pollingStationSelect = document.getElementById('pollingStationSelect');
 
-        function loadDistricts(region) {
-            $.get("/get-districts", {
-                region: region
-            }, function(data) {
-                console.log(data)
-                if (data) {
-                    districtSelect.innerHTML = `<option value="">Select Districts</option>`;
-                    data.options.forEach((item) => {
-                        let option = document.createElement('option');
-                        option.text = item.District;
-                        option.value = item.id;
-                        districtSelect.appendChild(option);
-                    })
-                }
-            })
-        }
-
-        function loadConstituencies(region) {
-            $.get("/get-constituencies", {
-                region: region
-            }, function(data) {
-                console.log(data)
-                if (data) {
-                    constituencySelect.innerHTML = `<option value="">Select Constituency</option>`;
-                    data.options.forEach((item) => {
-                        let option = document.createElement('option');
-                        option.text = item.constituency_name;
-                        option.value = item.constituency_id;
-                        constituencySelect.appendChild(option);
-                    })
-                }
-            })
-        }
-
-        function loadElectoralAreas(constituency) {
-            $.get("/get-electoralareas", {
-                constituency: constituency
-            }, function(data) {
-                console.log(data)
-                if (data) {
-                    electoraAreaSelect.innerHTML = `<option value="">Select Electoral Area</option>`;
-                    data.options.forEach((item) => {
-                        let option = document.createElement('option');
-                        option.text = item.ea_name;
-                        option.value = item.ea_id;
-                        electoraAreaSelect.appendChild(option);
-                    })
-                }
-            })
-        }
-
-        function loadPollingStation(electoralarea) {
-            $.get("/get-polling-station", {
-                electoralArea: electoralarea
-            }, function(data) {
-                console.log(data)
-                if (data) {
-                    pollingStationSelect.innerHTML = `<option value="">Select Polling Station</option>`;
-                    data.options.forEach((item) => {
-                        let option = document.createElement('option');
-                        option.text = item.ps_name;
-                        option.value = item.ps_id;
-                        pollingStationSelect.appendChild(option);
-                    })
-                }
-            })
-        }
-    </script>
 @endsection

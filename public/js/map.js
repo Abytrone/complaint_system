@@ -40,6 +40,8 @@ function initAutocomplete() {
         const lng = axis.lng;
         document.getElementById('txt-latitude').value = lat
         document.getElementById('txt-longitude').value = lng
+
+        window.Livewire.emit('update-lat-long', [lat, lng])
     });
     let markers = [];
 

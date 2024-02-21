@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\WithoutZeroId;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Region;
 
 class District extends Model
 {
-    use HasFactory;
+    use WithoutZeroId;
 
     protected $table = 'district';
-    protected $fillable = ['region_fk', 'District'];
+    protected $primaryKey = 'district_id';
 
-    // public function region()
-    // {
-    //     return $this->belongsTo(Region::class, 'region_fk', 'id');
-    // }
+    public function getDistrictAttribute($val): string
+    {
+        return strtoupper($val);
+    }
+
 }

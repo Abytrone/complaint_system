@@ -46,7 +46,6 @@
 <script src="{{ asset('vendor/datatables/responsive.bootstrap4.min.js?version=' . Str::random(5) . '') }}"></script>
 
 
-
 <!-- Custom Data tables -->
 <script src="{{ asset('vendor/datatables/custom/custom-datatables.js?version=' . Str::random(5) . '') }}"></script>
 <script src="{{ asset('vendor/datatables/custom/fixedHeader.js?version=' . Str::random(5) . '') }}"></script>
@@ -77,11 +76,21 @@
 <script src="{{ asset('vendor/bs-select/bs-select.min.js?version=' . Str::random(5) . '') }}"></script>
 <script src="{{ asset('vendor/bs-select/bs-select-custom.js?version=' . Str::random(5) . '') }}"></script>
 <script src="{{ asset('js/activity-management.js?version=' . Str::random(5) . '') }}"></script>
+@livewireScripts
 <script src="{{ asset('js/map.js') }}"></script>
 <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChd0TVcVJuB-5yaZDW4ODpj3GF6sbzC2I&callback=initAutocomplete&libraries=places&v=weekly">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChd0TVcVJuB-5yaZDW4ODpj3GF6sbzC2I&callback=initAutocomplete&libraries=places&v=weekly">
 </script>
 
-
-
 @yield('scripts')
+
+<script>
+    window.addEventListener('swal:success', function(evt){
+        window.Swal.fire({
+            title: "Success!",
+            text: evt.detail.message,
+            icon: "success"
+        });
+    })
+
+</script>
