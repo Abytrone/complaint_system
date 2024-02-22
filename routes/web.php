@@ -51,3 +51,9 @@ Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);
 Route::get('get-constituencies', [ComplaintController::class, "loadConstituencies"]);
 Route::get('get-electoralareas', [ComplaintController::class, "loadElectoralAreas"]);
 Route::get('get-polling-station', [ComplaintController::class, "loadPollingStation"]);
+
+Route::get('clear', function(){
+    Artisan::call('route:clear', ['--force' => true]);
+    Artisan::call('view:clear', ['--force' => true]);
+    Artisan::call('optimize:clear', ['--force' => true]);
+});
