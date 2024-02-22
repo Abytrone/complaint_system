@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 @include('includes.header')
- @vite(['resources/css/app.css','resources/js/app.js'])
 
 <body>
 
