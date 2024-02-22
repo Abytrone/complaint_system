@@ -2655,7 +2655,7 @@ ul.customer-rating li:last-child {
   width: 100%;
   min-height: 40px;
   font-size: .725rem;
-  color: #8a96a0;
+  color: #000000;
 }
 
 .field-wrapper input:hover, .field-wrapper textarea:hover {
@@ -8907,7 +8907,7 @@ fieldset:disabled .btn-outline-success {
 .form-control {
   border: 1px solid #dbdaea;
   border-radius: 2px;
-  color: #8a96a0;
+  color: #000000;
   font-size: .725rem;
   min-height: 40px;
 }
