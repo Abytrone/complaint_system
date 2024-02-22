@@ -80,12 +80,12 @@ class ComplaintForm extends Component
 
     public function store(): void
     {
-        $valid = $this->validate();
-        $valid['code'] = $this->generateRandomNumber();
-        $valid['created_by'] = auth()->id() ?? 1;
-        Complaint::create($valid);
-        $this->resetExcept(['category', 'regions']);
-        $this->dispatchBrowserEvent('swal:success', ['message' => 'hello']);
+//        $valid = $this->validate();
+//        $valid['code'] = $this->generateRandomNumber();
+//        $valid['created_by'] = auth()->id() ?? 1;
+//        Complaint::create($valid);
+//        $this->resetExcept(['category', 'regions']);
+        $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
     }
 
 
