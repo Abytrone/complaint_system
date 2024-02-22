@@ -61,5 +61,6 @@
         href="{{ asset('vendor/datatables/responsive.bootstrap4.min.css?version=' . Str::random(5) . '') }}">
 
     @livewireStyles
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
