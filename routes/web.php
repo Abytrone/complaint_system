@@ -53,7 +53,7 @@ Route::get('get-electoralareas', [ComplaintController::class, "loadElectoralArea
 Route::get('get-polling-station', [ComplaintController::class, "loadPollingStation"]);
 
 Route::get('clear', function(){
-    Artisan::call('route:clear', ['--force' => true]);
-    Artisan::call('view:clear', ['--force' => true]);
-    Artisan::call('optimize:clear', ['--force' => true]);
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
 });
