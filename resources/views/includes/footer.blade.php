@@ -86,7 +86,7 @@
 
 <script>
     window.addEventListener('swal:success', function(evt){
-        window.Swal.fire({
+Swal.fire({
             title: "Success!",
             text: evt.detail.message,
             icon: "success"
