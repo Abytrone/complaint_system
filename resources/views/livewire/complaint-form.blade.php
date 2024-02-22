@@ -285,15 +285,15 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="text-align-right">
-                    <div class="col-12" style="text-align: right;">
-                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                                data-bs-target="#uploads-media">Upload Media
-                        </button>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="col-md-3">--}}
+{{--                <div class="text-align-right">--}}
+{{--                    <div class="col-12" style="text-align: right;">--}}
+{{--                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"--}}
+{{--                                data-bs-target="#uploads-media">Upload Media--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                 <button class="btn btn-primary btn-sm" type="submit">Submit</button>
