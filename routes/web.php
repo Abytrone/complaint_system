@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommunicationModeSetupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\UserComplaintController;
@@ -44,6 +45,10 @@ Route::get('awaiting-complaints', [ComplaintController::class, 'awaiting'])->nam
 Route::resource('complaints', ComplaintController::class)->only(
     ['index', 'create', 'edit', 'update', 'store', 'show', 'destroy']
 );
+
+Route::prefix('setups')->group(function(){
+Route::resource('communication-mode', CommunicationModeSetupController::class)->except('show');
+});
 
 
 Route::resource('complaint-process', ComplaintController::class)->only('create');
