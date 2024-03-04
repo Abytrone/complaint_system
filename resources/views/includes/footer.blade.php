@@ -92,5 +92,4 @@ Swal.fire({
             icon: "success"
         });
     })
-
 </script>
