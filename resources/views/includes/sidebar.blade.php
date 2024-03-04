@@ -150,28 +150,36 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/actors*') ? 'current-page' : '' }}">Regions</a>
+                                    class="{{ Request::is('setups/actors*') ? 'current-page' : '' }}">Communication Mode</a>
                             </li>
 
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/communities*') ? 'current-page' : '' }}">Districts</a>
+                                    class="{{ Request::is('setups/communities*') ? 'current-page' : '' }}">Issue Category</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Report Roles</a>
+                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Issue Category Field</a>
                             </li>
                             <li>
                                 <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Report Categories</a>
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Field</a>
                             </li>
                             <li>
                                 <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Report Support Groups</a>
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Subcategory</a>
                             </li>
                             <li>
                                 <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Banner | News | Articles</a>
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Source</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Status</a>
+                            </li> 
+                            <li>
+                                <a href=""
+                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Support Group</a>
                             </li>
                         </ul>
 
