@@ -1,3 +1,49 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <div class="card">
+        <div class="card-header">
+            <h3>Complaints</h3>
+        </div>
+        {{-- <x-headers.hr /> --}}
+        <div class="card-body">
+            <div class="my-3">
+                <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
+                    <i class="icon-plus"></i> Add New
+                </a>
+            </div>
+            <div class="table-responsive">
+                <x-success-message></x-success-message>
+                <table id="basicExample" class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th>Modes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($communicationModes as $item)
+                            <tr>
+                                <td>{{ $item->mode }}</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="">
+                                            <i class="icon-eye text-primary"></i>
+                                        </a>
+                                        <a href="">
+                                            <i class="icon-edit1 text-primary"></i>
+                                        </a>
+                                        <a  href="#"
+                                            data-toggle="tooltip" data-placement="top" title=""
+                                            data-original-title="Delete">
+                                            <i class="icon-x-circle text-danger"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

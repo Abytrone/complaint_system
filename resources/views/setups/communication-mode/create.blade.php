@@ -14,15 +14,8 @@
                 </div>
                 <hr>
                 <div class="card-body">
-                    <x-success-message></x-success-message>
                     <!-- Row start -->
-                    <livewire:communication-modes></livewire:communication-modes>
-                    <div class="mt-3">
-                        <input style="max-width: 500px; margin-top: 10px;" id="pac-input" class="form-control"
-                               type="text"
-                               placeholder="Search Box"/>
-                        <div style="width:100%; height: 500px;" id="google-map"></div>
-                    </div>
+                    <livewire:communication-mode-form></livewire:communication-mode-form>
                     <!-- Row end -->
                 </div>
             </div>

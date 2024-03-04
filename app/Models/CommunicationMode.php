@@ -9,6 +9,7 @@ class CommunicationMode extends Model
 {
     protected $table='communication_mode';
      protected $primaryKey = 'mode_id';
+     protected $guarded = [];
      public $incrementing = false;
      public $timestamps = false;
 }

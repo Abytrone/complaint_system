@@ -149,8 +149,8 @@
                         <ul>
                             <li class="list-heading">Setup</li>
                             <li>
-                                <a href="#"
-                                    class="{{ Request::is('setups/actors*') ? 'current-page' : '' }}">Communication Mode</a>
+                                <a href="{{route('communication-mode.index')}}"
+                                    class="{{ Request::is('setups/communication-mode*') ? 'current-page' : '' }}">Communication Mode</a>
                             </li>
 
                             <li>

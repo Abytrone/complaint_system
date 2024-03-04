@@ -13,7 +13,7 @@ class CommunicationModeSetupController extends Controller
      */
     public function index()
     {
-        return view('setup');
+        return view('setups.communication-mode.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class CommunicationModeSetupController extends Controller
      */
     public function create()
     {
-        //
+        return view('setups.communication-mode.create');
     }
 
     /**
