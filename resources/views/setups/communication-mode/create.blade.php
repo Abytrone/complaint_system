@@ -7,7 +7,7 @@
             <!-- Card start -->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Communication Setup</div>
+                    <div class="card-title">Communication Setup Create</div>
                     <a href="{{ route('communication-mode.index') }}">
                         <button class="btn btn-small btn-primary">Go Back</button>
                     </a>
@@ -15,7 +15,7 @@
                 <hr>
                 <div class="card-body">
                     <!-- Row start -->
-                    <livewire:communication-mode-form></livewire:communication-mode-form>
+                   @livewire('communication-mode-form')
                     <!-- Row end -->
                 </div>
             </div>

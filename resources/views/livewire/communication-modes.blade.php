@@ -6,13 +6,13 @@
         {{-- <x-headers.hr /> --}}
         <div class="card-body">
             <div class="my-3">
-                <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
+                <button  href="{{ route('communication-mode.create') }}" id="addBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#communication-mode-modal">
                     <i class="icon-plus"></i> Add New
-                </a>
+                </button>
+                @include('setups.modals.communication-mode-modal')
             </div>
-            <div class="table-responsive">
-                <x-success-message></x-success-message>
-                <table id="basicExample" class="table custom-table">
+            <div wire:ignore class="table-responsive">
+                <table  id="basicExample" class="table custom-table">
                     <thead>
                         <tr>
                             <th>Modes</th>
@@ -25,10 +25,7 @@
                                 <td>{{ $item->mode }}</td>
                                 <td>
                                     <div class="actions">
-                                        <a href="">
-                                            <i class="icon-eye text-primary"></i>
-                                        </a>
-                                        <a href="">
+                                        <a href="#" wire:click.prevent="edit({{$item->mode_id}})" data-bs-toggle="modal" data-bs-target="#communication-mode-modal">
                                             <i class="icon-edit1 text-primary"></i>
                                         </a>
                                         <a  href="#"
@@ -40,7 +37,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>

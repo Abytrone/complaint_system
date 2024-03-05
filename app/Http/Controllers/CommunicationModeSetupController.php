@@ -56,7 +56,7 @@ class CommunicationModeSetupController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('setups.communication-mode.edit');
     }
 
     /**
