@@ -15,7 +15,7 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        $complaints = Complaint::query()->get();
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])->get();
         return view('complaints.index', ['complaints' => $complaints]);
     }
 

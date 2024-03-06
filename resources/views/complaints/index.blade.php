@@ -18,12 +18,12 @@
                 <table id="basicExample" class="table custom-table">
                     <thead>
                         <tr>
-                            <th>Code</th>
-                            <th>Name</th>
+
+                            <th>Reporter</th>
                             <th>Phone Number</th>
                             <th>Complaint</th>
-                            <th>Region</th>
-                            <th>District</th>
+                            <th>Category</th>
+                            <th>Sub Category</th>
                             <th>states</th>
                             <th>Actions</th>
                         </tr>
@@ -31,29 +31,28 @@
                     <tbody>
                         @foreach ($complaints as $item)
                             <tr>
-                                <td>{{ $item->code }}</td>
+
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->phone }}</td>
-                                <td>{{ $item->raw }}</td>
-                                <td>{{ $item->region_id }}</td>
-                                <td>{{ $item->mmda_id }}</td>
-                                <td>{{ $item->states }}</td>
-
+                                <td>{{ substr($item->raw_report, 0, 100).'...' }}</td>
+                                <td>{{ $item->category->category }}</td>
+                                <td>{{ $item->subcategory->description }}</td>
+                                <td>{{ $item->status->status }}</td>
                                 <td>
                                     <div class="actions">
-                                        <a href="{{ route('complaints.show', $item->id) }}">
+                                        <a href="{{ route('complaints.show', $item) }}">
                                             <i class="icon-eye text-primary"></i>
                                         </a>
-                                        <a href="{{ route('complaints.edit', $item->id) }}">
+                                        <a href="{{ route('complaints.edit', $item) }}">
                                             <i class="icon-edit1 text-primary"></i>
                                         </a>
-                                        <a onclick="deleteItem('deleteForm-{{ $item->id }}')" href="#"
+                                        <a onclick="deleteItem('deleteForm-{{ $item->issue_id }}')" href="#"
                                             data-toggle="tooltip" data-placement="top" title=""
                                             data-original-title="Delete">
                                             <i class="icon-x-circle text-danger"></i>
                                         </a>
-                                        <form hidden method="post" id="deleteForm-{{ $item->id }}"
-                                            action="{{ route('complaints.destroy', $item->id) }}">
+                                        <form hidden method="post" id="deleteForm-{{ $item->issue_id }}"
+                                            action="{{ route('complaints.destroy', $item->issue_id) }}">
                                             @csrf
                                             @method('delete')
                                         </form>

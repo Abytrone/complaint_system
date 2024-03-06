@@ -20,6 +20,21 @@ class  Complaint extends Model
         return $this->belongsTo(Region::class, 'region_id');
     }
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'category_id');
+    }
+
+    public function subcategory(): BelongsTo
+    {
+        return $this->belongsTo(Subcategory::class, 'subcategory_id', 'issue_subcategory_id');
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'status_id');
+    }
+
     protected static function boot(): void
     {
         parent::boot();
