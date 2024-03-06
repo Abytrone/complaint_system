@@ -1,6 +1,5 @@
 <div>
     <form wire:submit.prevent="store">
-
         <div class="row mb-3">
             <div class="col-md-6 col-12">
                 <div class="field-wrapper">
@@ -165,7 +164,7 @@
                                 class="form-select @error('district_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($districts as $district)
-                                <option value="{{ $district->id }}">  {{ $district->district }}  </option>
+                                <option value="{{ $district->district_id }}">  {{ $district->district }}  </option>
                             @endforeach
                         </select>
                         <div class="field-placeholder">District<span class="text-danger">*</span></div>
@@ -183,8 +182,8 @@
                                 class="form-select @error('constituency_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($constituencies as $constituency)
-                                <option value="{{ $constituency->id }}">
-                                    {{ $constituency->name }}
+                                <option value="{{ $constituency->constituency_id }}">
+                                    {{ $constituency->constituency_name }}
                                 </option>
                             @endforeach
                         </select>

@@ -19,11 +19,6 @@ use App\Http\Livewire\IssueCategory;
 */
 
 
-// Route::resource(
-//     '/',
-//     UserComplaintController::class
-// )->only('index');
-
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -59,9 +54,3 @@ Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);
 Route::get('get-constituencies', [ComplaintController::class, "loadConstituencies"]);
 Route::get('get-electoralareas', [ComplaintController::class, "loadElectoralAreas"]);
 Route::get('get-polling-station', [ComplaintController::class, "loadPollingStation"]);
-
-Route::get('clear', function(){
-    Artisan::call('cache:clear');
-    Artisan::call('route:clear');
-    Artisan::call('view:clear');
-});

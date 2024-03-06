@@ -70,9 +70,9 @@ class ComplaintForm extends Component
         'category_id' => 'required|exists:issue_category,category_id',
         'region_id' => 'nullable|exists:region,region_id',
         'district_id' => 'nullable|exists:vw_district,district_id',
-        'constituency_id' => 'nullable|exists:vw_constituency,id',
-        'electoral_area_id' => 'nullable|exists:vw_electoral_areas,id',
-        'polling_station_id' => 'nullable|exists:vw_polling_stations,id',
+        'constituency_id' => 'nullable|exists:vw_ec_data_constituency,constituency_id',
+        'electoral_area_id' => 'nullable|exists:vw_ec_data_electoral_area,electoral_area_id',
+        'polling_station_id' => 'nullable|exists:ec_data,polling_station_id',
         'community' => 'nullable',
         'gps_latitude' => 'required',
         'gps_longitude' => 'required',
@@ -84,7 +84,7 @@ class ComplaintForm extends Component
         $valid['code'] = $this->generateRandomNumber();
         $valid['created_by'] = auth()->id() ?? 1;
         Complaint::create($valid);
-        $this->resetExcept(['category', 'regions']);
+        $this->resetExcept(['categories', 'regions']);
         $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
     }
 
@@ -129,8 +129,8 @@ class ComplaintForm extends Component
             'community'
         ]);
 
-        $this->constituencies = Constituency::where('region_id', $val)
-            ->orderBy('name')
+        $this->constituencies = Constituency::where('region_id', '>', 0)->where('region_id', $val)
+            ->orderBy('constituency_name')
             ->get();
 
 
