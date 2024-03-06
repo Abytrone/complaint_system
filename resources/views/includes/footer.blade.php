@@ -92,4 +92,37 @@ Swal.fire({
             icon: "success"
         });
     })
+
+    window.addEventListener('reloadPage', function(){
+        location.reload();
+    })
+
+    window.addEventListener('swal:confirm', function(evt){
+Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            buttonsStyling: false,
+            confirmButtonText: "Yes, delete!",
+            customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton:"btn btn-danger" 
+            }
+}).then(function(result){
+    if (result.value) {
+                Livewire.emit('deleteRecord');
+            }
+})
+    })
+
+    window.addEventListener('swal:delete', function(evt){
+Swal.fire({
+            title: "Record Deleted!",
+            text: evt.detail.message,
+            icon: "success"
+        }).then(function(result){
+            location.reload();
+        })
+    })
 </script>

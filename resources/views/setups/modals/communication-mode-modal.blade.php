@@ -1,5 +1,5 @@
 <!-- Modal start -->
-<div wire:ignore.self class="modal fade" id="communication-mode-modal" tabindex="-1" aria-labelledby="communication-mode-modalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"  id="communication-mode-modal" tabindex="-1" aria-labelledby="communication-mode-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">

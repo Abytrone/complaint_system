@@ -12,7 +12,7 @@
                 @include('setups.modals.communication-mode-modal')
             </div>
             <div wire:ignore class="table-responsive">
-                <table  id="basicExample" class="table custom-table">
+                <table id="basicExample" class="table custom-table">
                     <thead>
                         <tr>
                             <th>Modes</th>
@@ -29,8 +29,9 @@
                                             <i class="icon-edit1 text-primary"></i>
                                         </a>
                                         <a  href="#"
-                                            data-toggle="tooltip" data-placement="top" title=""
-                                            data-original-title="Delete">
+                                        wire:click="delete({{$item->mode_id}})"
+                                        wire:confirm    
+                                        >
                                             <i class="icon-x-circle text-danger"></i>
                                         </a>
                                     </div>
