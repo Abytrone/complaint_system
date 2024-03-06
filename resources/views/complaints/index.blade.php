@@ -24,7 +24,7 @@
                             <th>Complaint</th>
                             <th>Category</th>
                             <th>Sub Category</th>
-                            <th>states</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
