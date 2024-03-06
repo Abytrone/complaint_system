@@ -40,6 +40,22 @@
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="field-wrapper">
+                    <select wire:model="priority"
+                            class="form-select @error('priority') is-invalid @enderror">
+                        <option>Select Gender</option>
+                        @foreach ($priorities as $priority)
+                            <option value="{{$priority}}">{{ $priority }}</option>
+                        @endforeach
+                    </select>
+                    <div class="field-placeholder">Priority</div>
+                    @error('priority')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                <div class="field-wrapper">
                     <input class="form-control @error('name') is-invalid @enderror" type="text"
                            name="name" wire:model="name">
                     <div class="field-placeholder">Reporter Name <span class="text-danger">*</span></div>
@@ -284,20 +300,9 @@
                     @enderror
                 </div>
             </div>
-{{--            <div class="col-md-3">--}}
-{{--                <div class="text-align-right">--}}
-{{--                    <div class="col-12" style="text-align: right;">--}}
-{{--                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"--}}
-{{--                                data-bs-target="#uploads-media">Upload Media--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                 <button class="btn btn-primary btn-sm" type="submit">Submit</button>
             </div>
-
         </div>
     </form>
 </div>
