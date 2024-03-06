@@ -14,10 +14,18 @@ class CommunicationModes extends Component
     public $modalTitle=null;
     public $modalAction=null;
     public $deleteRecordID=null;
+
     public $communicationModes=[];
 
 
     protected $listeners=['deleteRecord'=>'confirmDelete'];
+
+  
+
+    // public function rules()
+    // {
+    //    return [ 'mode'=> ['required', Rule::unique('communication_mode')->ignore('id', 'mode_id')]];
+    // }
 
     public function rules()
     {
@@ -36,13 +44,12 @@ class CommunicationModes extends Component
         {
             CommunicationMode::find($this->modeID)->update($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
-            $this->reset('mode');
         }
         else
         {
             CommunicationMode::create($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset('mode');
+            $this->reset();
         }
     }
 

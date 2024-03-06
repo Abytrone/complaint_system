@@ -154,8 +154,8 @@
                             </li>
 
                             <li>
-                                <a href="#"
-                                    class="{{ Request::is('setups/communities*') ? 'current-page' : '' }}">Issue Category</a>
+                                <a href="{{route('issue-category.index')}}"
+                                    class="{{ Request::is('setups/issue-category*') ? 'current-page' : '' }}">Issue Category</a>
                             </li>
                             <li>
                                 <a href="#"

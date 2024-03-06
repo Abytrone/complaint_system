@@ -16,6 +16,8 @@ class Category extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $guarded=[];
+
     public function fields(): HasMany
     {
         return $this->hasMany(CategoryField::class,  'category_id','category_id');

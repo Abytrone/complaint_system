@@ -23,7 +23,7 @@ class CommunicationModeSetupController extends Controller
      */
     public function create()
     {
-        return view('setups.communication-mode.create');
+       
     }
 
     /**

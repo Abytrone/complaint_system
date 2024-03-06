@@ -1,15 +1,15 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <h3>Complaints</h3>
+            <h3>Communication Modes</h3>
         </div>
         {{-- <x-headers.hr /> --}}
         <div class="card-body">
             <div class="my-3">
-                <button  href="{{ route('communication-mode.create') }}" id="addBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#communication-mode-modal">
+                <button  href="#" id="addBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#communication-mode-modal">
                     <i class="icon-plus"></i> Add New
                 </button>
-                @include('setups.modals.communication-mode-modal')
+                @include('setups.communication-mode.communication-mode-modal')
             </div>
             <div wire:ignore class="table-responsive">
                 <table id="basicExample" class="table custom-table">

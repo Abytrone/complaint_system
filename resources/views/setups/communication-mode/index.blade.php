@@ -4,5 +4,5 @@
     @section('app-content')
        @livewire('communication-modes')
     @endsection
-    {{-- </x-app-layout> --}}
+{{-- </x-app-layout> --}}
     
