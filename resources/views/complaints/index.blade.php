@@ -24,6 +24,7 @@
                             <th>Complaint</th>
                             <th>Category</th>
                             <th>Sub Category</th>
+                            <th>Priority</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -37,6 +38,7 @@
                                 <td>{{ substr($item->raw_report, 0, 100).'...' }}</td>
                                 <td>{{ $item->category->category }}</td>
                                 <td>{{ $item->subcategory->description }}</td>
+                                <td>{{ $item->priority}}</td>
                                 <td>{{ $item->status->status }}</td>
                                 <td>
                                     <div class="actions">

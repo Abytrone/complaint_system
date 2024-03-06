@@ -84,11 +84,18 @@ class ComplaintForm extends Component
     public function store(): void
     {
         $valid = $this->validate();
-        $valid['code'] = $this->generateRandomNumber();
-        $valid['created_by'] = auth()->id() ?? 1;
-        Complaint::create($valid);
-        $this->resetExcept(['categories', 'regions']);
-        $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
+        if ($this->complaint !== null) {
+            $valid['updated_by'] = auth()->id() ?? 1;
+            $this->complaint->update($valid);
+            $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
+        } else {
+            $valid['code'] = $this->generateRandomNumber();
+            $valid['created_by'] = auth()->id() ?? 1;
+            Complaint::create($valid);
+            $this->resetExcept(['categories', 'regions']);
+            $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
+        }
+
     }
 
 
@@ -181,6 +188,8 @@ class ComplaintForm extends Component
 
         $this->regions = Region::withoutZeroId()->get();
         $this->sources = Source::all();
+
+        $this->fillForm();
     }
 
     public function updated($value): void
@@ -199,6 +208,57 @@ class ComplaintForm extends Component
     public function render(): Factory|View|Application
     {
         return view('livewire.complaint-form');
+    }
+
+    public function fillForm(): void
+    {
+        if ($this->complaint != null) {
+            $this->name = $this->complaint->name;
+            $this->phone = $this->complaint->phone;
+            $this->email = $this->complaint->email;
+            $this->gender = $this->complaint->gender;
+            $this->mode_id = $this->complaint->mode_id;
+            $this->source_id = $this->complaint->source_id;
+            $this->raw_report = $this->complaint->raw_report;
+            $this->received_date = $this->complaint->received_date;
+            $this->priority = $this->complaint->priority;
+            $this->category_id = $this->complaint->category_id;
+            $this->subcategory_id = $this->complaint->subcategory_id;
+            $this->region_id = $this->complaint->region_id;
+            $this->district_id = $this->complaint->district_id;
+            $this->constituency_id = $this->complaint->constituency_id;
+            $this->electoral_area_id = $this->complaint->electoral_area_id;
+            $this->polling_station_id = $this->complaint->polling_station_id;
+            $this->community = $this->complaint->community;
+            $this->gps_latitude = $this->complaint->gps_latitude;
+            $this->gps_longitude = $this->complaint->gps_longitude;
+
+
+            $this->subcategories = Subcategory::withoutZeroId()->active()
+                ->where('category_id', $this->category_id)->get();
+
+            $this->fields = Category::find($this->category_id)?->fields()
+                ->active()->pluck('field_id')->toArray() ?? [];
+
+            $this->constituencies = Constituency::where('region_id', '>', 0)->where('region_id', $this->region_id)
+                ->orderBy('constituency_name')
+                ->get();
+
+
+            $this->districts = District::withoutZeroId()
+                ->where('region_id', $this->region_id)
+                ->orderBy('district')
+                ->get();
+
+            $this->polling_stations = PollingStation::where('electoral_area_id', $this->electoral_area_id)
+                ->orderBy('name')
+                ->get();
+
+            $this->electoral_areas = ElectoralArea::where('constituency_id', $this->constituency_id)
+                ->orderBy('name')
+                ->get();
+        }
+
     }
 
     public function showRegion(): bool

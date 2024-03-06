@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,13 @@ class  Complaint extends Model
     protected $primaryKey = 'issue_id';
 
     protected $guarded = [];
+
+    protected function priority(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value, array $attributes) => strtoupper($value),
+        );
+    }
 
     public function region(): BelongsTo
     {
