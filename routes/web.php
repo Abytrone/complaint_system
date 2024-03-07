@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommunicationModeSetupController;
+use App\Http\Controllers\ComplaintMediaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\IssueCategoryController;
@@ -40,6 +41,7 @@ Route::resource('user_complaints', UserComplaintController::class)->only(
 Route::get('awaiting-complaints', [ComplaintController::class, 'awaiting'])->name('awaiting_complaints');
 
 Route::resource('complaints', ComplaintController::class);
+Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 
 Route::prefix('setups')->group(function(){
 Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
@@ -50,5 +52,5 @@ Route::resource('issue-category', IssueCategoryController::class)->only('index')
 //Route::resource('complaint-process', ComplaintController::class)->only('create');
 Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);
 Route::get('get-constituencies', [ComplaintController::class, "loadConstituencies"]);
-Route::get('get-electoralareas', [ComplaintController::class, "loadElectoralAreas"]);
+Route::get('get-electoral-areas', [ComplaintController::class, "loadElectoralAreas"]);
 Route::get('get-polling-station', [ComplaintController::class, "loadPollingStation"]);
