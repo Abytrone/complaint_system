@@ -158,12 +158,12 @@
                                     class="{{ Request::is('setups/issue-category*') ? 'current-page' : '' }}">Issue Category</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Issue Category Field</a>
+                                <a href="{{route('issue-field.index')}}"
+                                    class="{{ Request::is('setups/issue-field*') ? 'current-page' : '' }}">Issue Field</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Field</a>
+                                <a href="#"
+                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Issue Category Field</a>
                             </li>
                             <li>
                                 <a href=""

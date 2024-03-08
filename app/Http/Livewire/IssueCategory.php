@@ -60,7 +60,7 @@ class IssueCategory extends Component
     public function confirmDelete()
     {
         Category::destroy($this->deleteRecordID);
-        $this->dispatchBrowserEvent('swal:delete', ['message' => 'Record deleted successfully!']);
+        $this->dispatchBrowserEvent('swal:confirm', ['message'=>'You won\'t be able to revert this!', 'emitfunction'=>'deleteRecord']);
     }
 
     public function closeModal()

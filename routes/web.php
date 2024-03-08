@@ -4,6 +4,7 @@ use App\Http\Controllers\CommunicationModeSetupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\IssueCategoryController;
+use App\Http\Controllers\IssueFieldController;
 use App\Http\Controllers\UserComplaintController;
 use App\Http\Livewire\IssueCategory;
 
@@ -51,6 +52,7 @@ Route::resource('complaints', ComplaintController::class)->only(
 Route::prefix('setups')->group(function(){
 Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
 Route::resource('issue-category', IssueCategoryController::class)->only('index');
+Route::resource('issue-field', IssueFieldController::class)->only('index');
 });
 
 

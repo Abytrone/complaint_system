@@ -64,7 +64,7 @@ class CommunicationModes extends Component
     public function delete($id)
     {
         $this->deleteRecordID=$id;
-        $this->dispatchBrowserEvent('swal:confirm');
+        $this->dispatchBrowserEvent('swal:confirm', ['message'=>'You won\'t be able to revert this!', 'emitfunction'=>'deleteRecord']);
     }
 
     public function confirmDelete()

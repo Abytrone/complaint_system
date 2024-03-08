@@ -86,7 +86,7 @@
 
 <script>
     window.addEventListener('swal:success', function(evt){
-Swal.fire({
+    Swal.fire({
             title: "Success!",
             text: evt.detail.message,
             icon: "success"
@@ -98,9 +98,9 @@ Swal.fire({
     })
 
     window.addEventListener('swal:confirm', function(evt){
-Swal.fire({
+    Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: evt.detail.message,
             icon: "warning",
             showCancelButton: true,
             buttonsStyling: false,
@@ -111,13 +111,13 @@ Swal.fire({
             }
 }).then(function(result){
     if (result.value) {
-                Livewire.emit('deleteRecord');
+                Livewire.emit(evt.detail.emitfunction);
             }
 })
     })
 
     window.addEventListener('swal:delete', function(evt){
-Swal.fire({
+    Swal.fire({
             title: "Record Deleted!",
             text: evt.detail.message,
             icon: "success"
