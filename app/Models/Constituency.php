@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Constituency extends Model
 {
-    protected $table = 'vw_constituency';
-
+    protected $table = 'vw_ec_data_constituency';
+    protected $primaryKey = 'constituency_id';
 }

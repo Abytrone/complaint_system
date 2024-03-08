@@ -69,7 +69,7 @@
         }
 
         function loadElectoralAreas(constituency) {
-            $.get("/get-electoralareas", {
+            $.get("/get-electoral-areas", {
                 constituency: constituency
             }, function(data) {
                 console.log(data)
