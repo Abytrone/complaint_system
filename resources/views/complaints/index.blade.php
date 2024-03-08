@@ -44,15 +44,22 @@
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">
-                                    <a href="{{ route('complaints.show', $item) }}">
+                                    <a href="#"  data-bs-toggle="tooltip"
+                                       data-bs-placement="top" title=""
+                                       data-bs-original-title="Process">
+                                        <i class="icon-sync text-primary"></i>
+                                    </a>
+                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                       data-bs-original-title="Show">
                                         <i class="icon-eye text-primary"></i>
                                     </a>
-                                    <a href="{{ route('complaints.edit', $item) }}">
+                                    <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" title="" data-bs-original-title="Edit">
                                         <i class="icon-edit1 text-primary"></i>
                                     </a>
                                     <a onclick="deleteItem('deleteForm-{{ $item->issue_id }}')" href="#"
-                                       data-toggle="tooltip" data-placement="top" title=""
-                                       data-original-title="Delete">
+                                       data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                       data-bs-original-title="Delete">
                                         <i class="icon-x-circle text-danger"></i>
                                     </a>
                                     <form hidden method="post" id="deleteForm-{{ $item->issue_id }}"
@@ -71,14 +78,15 @@
 
         </div>
     </div>
-    @section('scripts')
-        <script>
-            function deleteItem(form) {
-                if (confirm('Are you sure you want to delete this item?')) {
-                    document.getElementById(form).submit();
-                }
-            }
-        </script>
-    @endsection
+
 @endsection
 {{-- </x-app-layout> --}}
+@section('scripts')
+    <script>
+        function deleteItem(form) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                document.getElementById(form).submit();
+            }
+        }
+    </script>
+@endsection

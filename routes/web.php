@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommunicationModeSetupController;
 use App\Http\Controllers\ComplaintMediaController;
+use App\Http\Controllers\ProcessComplaintController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\IssueCategoryController;
@@ -21,13 +22,12 @@ use App\Http\Livewire\IssueCategory;
 */
 
 
-
 Route::get('/login', function () {
     return view('auth.login');
 });
 
 Route::get('/', function () {
-   return redirect()->route('dashboard');
+    return redirect()->route('dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -41,13 +41,15 @@ Route::resource('user_complaints', UserComplaintController::class)->only(
 
 Route::get('awaiting-complaints', [ComplaintController::class, 'awaiting'])->name('awaiting_complaints');
 
+Route::get('complaints/{complaint}/process', [ProcessComplaintController::class, 'create'])->name('complaints.process.create');
+Route::post('complaints/{complaint}/process', [ProcessComplaintController::class, 'store'])->name('complaints.process.store');
 Route::resource('complaints', ComplaintController::class);
 Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 
-Route::prefix('setups')->group(function(){
-Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
-Route::resource('issue-category', IssueCategoryController::class)->only('index');
-Route::resource('issue-field', IssueFieldController::class)->only('index');
+Route::prefix('setups')->group(function () {
+    Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
+    Route::resource('issue-category', IssueCategoryController::class)->only('index');
+    Route::resource('issue-field', IssueFieldController::class)->only('index');
 });
 
 

@@ -85,20 +85,20 @@
 @yield('scripts')
 
 <script>
-    window.addEventListener('swal:success', function(evt){
-    Swal.fire({
+    window.addEventListener('swal:success', function (evt) {
+        Swal.fire({
             title: "Success!",
             text: evt.detail.message,
             icon: "success"
         });
     })
 
-    window.addEventListener('reloadPage', function(){
+    window.addEventListener('reloadPage', function () {
         location.reload();
     })
 
-    window.addEventListener('swal:confirm', function(evt){
-    Swal.fire({
+    window.addEventListener('swal:confirm', function (evt) {
+        Swal.fire({
             title: "Are you sure?",
             text: evt.detail.message,
             icon: "warning",
@@ -106,22 +106,22 @@
             buttonsStyling: false,
             confirmButtonText: "Yes, delete!",
             customClass: {
-            confirmButton: "btn btn-success",
-            cancelButton:"btn btn-danger" 
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
             }
-}).then(function(result){
-    if (result.value) {
+        }).then(function (result) {
+            if (result.value) {
                 Livewire.emit(evt.detail.emitfunction);
             }
-})
+        })
     })
 
-    window.addEventListener('swal:delete', function(evt){
-    Swal.fire({
+    window.addEventListener('swal:delete', function (evt) {
+        Swal.fire({
             title: "Record Deleted!",
             text: evt.detail.message,
             icon: "success"
-        }).then(function(result){
+        }).then(function (result) {
             location.reload();
         })
     })
