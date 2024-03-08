@@ -31,7 +31,7 @@ class IssueField extends Component
     public function save()
     {
         $validatedData = $this->validate();
-        if($this->issueFieldID!=null)
+        if($this->issueFieldID!==null)
         {
             ComplaintIssueField::find($this->issueFieldID)->update($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);

@@ -27,7 +27,7 @@ class IssueCategory extends Component
     public function save()
     {
         $validatedData = $this->validate();
-        if($this->categoryID!=null)
+        if($this->categoryID!==null)
         {
             Category::find($this->categoryID)->update($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
@@ -44,7 +44,7 @@ class IssueCategory extends Component
     {
         $this->modalTitle="Update Record";
         $this->modalAction="Update";
-        $dbCategory = Category::where('category_id', '=', $id)->first();
+        $dbCategory = Category::find($id);
         $this->category=$dbCategory->category;
         $this->active=$dbCategory->active;
         $this->description=$dbCategory->description;

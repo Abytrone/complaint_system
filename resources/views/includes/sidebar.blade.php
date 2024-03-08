@@ -155,15 +155,15 @@
 
                             <li>
                                 <a href="{{route('issue-category.index')}}"
-                                    class="{{ Request::is('setups/issue-category*') ? 'current-page' : '' }}">Issue Category</a>
+                                    class="{{ Request::is('setups/issue-category') ? 'current-page' : '' }}">Issue Category</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-field.index')}}"
                                     class="{{ Request::is('setups/issue-field*') ? 'current-page' : '' }}">Issue Field</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Issue Category Field</a>
+                                <a href="{{route('issue-category-field.index')}}"
+                                    class="{{ Request::is('setups/issue-category-field') ? 'current-page' : '' }}">Issue Category Field</a>
                             </li>
                             <li>
                                 <a href=""
