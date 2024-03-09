@@ -11,20 +11,20 @@
             </a>
             {{--            request()->routeIs('dashboard') --}}
             <a class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}" id="home-tab" data-bs-toggle="tab"
-                href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
+               href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
                 <i class="icon-home2"></i>
             </a>
             <a class="nav-link {{ Request::is('complaints*') ? 'active' : '' }}" id="main-menu-tab" data-bs-toggle="tab"
-                href="#tab-main-menu" role="tab" aria-controls="tab-product" aria-selected="false">
+               href="#tab-main-menu" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-layers2"></i>
             </a>
             <a class="nav-link {{ Request::is('reports*') ? 'active' : '' }}" id="reports-tab" data-bs-toggle="tab"
-                href="#tab-reports" role="tab" aria-controls="tab-product" aria-selected="false">
+               href="#tab-reports" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-documents"></i>
             </a>
             <a class="nav-link {{ Request::is('setups*') ? 'active' : '' }}" id="system-settings-tab"
-                data-bs-toggle="tab" href="#tab-system-settings" role="tab" aria-controls="tab-system-settings"
-                aria-selected="false">
+               data-bs-toggle="tab" href="#tab-system-settings" role="tab" aria-controls="tab-system-settings"
+               aria-selected="false">
                 <i class="icon-settings"></i>
             </a>
 
@@ -36,7 +36,7 @@
 
             <!-- Chat tab -->
             <div class="tab-pane fade {{ Request::is('dashboard*') ? 'show active' : '' }}" id="tab-home"
-                role="tabpanel" aria-labelledby="home-tab">
+                 role="tabpanel" aria-labelledby="home-tab">
 
                 <!-- Tab content header start -->
                 <div class="tab-pane-header">
@@ -50,7 +50,7 @@
                         <ul>
                             <li>
                                 <a href="{{ route('dashboard') }}"
-                                    class="{{ Request::is('dashboard') ? 'current-page' : '' }}">Dashboard</a>
+                                   class="{{ Request::is('dashboard') ? 'current-page' : '' }}">Dashboard</a>
                             </li>
                         </ul>
                     </div>
@@ -59,7 +59,8 @@
             </div>
 
             <!-- Pages tab -->
-            <div class="tab-pane fade {{ Request::is('complaints*') || Request::is('awaiting-complaints*') ? 'show active' : '' }}"
+            <div
+                class="tab-pane fade {{ Request::is('complaints*') || Request::is('awaiting-complaints*') ? 'show active' : '' }}"
                 id="tab-main-menu" role="tabpanel" aria-labelledby="tab-main-menu">
 
                 <!-- Tab content header start -->
@@ -76,17 +77,17 @@
 
                             <li>
                                 <a href="{{ route('complaints.create') }}"
-                                    class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Capture
+                                   class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Capture
                                     Complaints</a>
                             </li>
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                    class="{{ Request::is('complaints') ? 'current-page' : '' }}">Process
+                                   class="{{ Request::is('complaints') ? 'current-page' : '' }}">
                                     Complaints</a>
                             </li>
                             <li>
                                 <a href="{{ route('awaiting_complaints') }}"
-                                    class="{{ Request::is('awaiting-complaints/awaiting_complaints*') ? 'current-page' : '' }}">Awaiting
+                                   class="{{ Request::is('awaiting-complaints/awaiting_complaints*') ? 'current-page' : '' }}">Awaiting
                                     Resolution</a>
                             </li>
                             <li>
@@ -105,7 +106,7 @@
             </div>
 
             <div class="tab-pane fade {{ Request::is('reports*') ? 'show active' : '' }}"
-                id="tab-reports" role="tabpanel" aria-labelledby="tab-reports">
+                 id="tab-reports" role="tabpanel" aria-labelledby="tab-reports">
 
                 <!-- Tab content header start -->
                 <div class="tab-pane-header">
@@ -121,11 +122,11 @@
 
                             <li>
                                 <a href="{{ route('complaints.create') }}"
-                                    class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Statistics</a>
+                                   class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Statistics</a>
                             </li>
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                    class="{{ Request::is('complaints') ? 'current-page' : '' }}">Reports Print</a>
+                                   class="{{ Request::is('complaints') ? 'current-page' : '' }}">Reports Print</a>
                             </li>
                         </ul>
                     </div>
@@ -135,7 +136,7 @@
 
             <!-- Authentication tab -->
             <div class="tab-pane fade {{ Request::is('setups*') ? 'show active' : '' }}" id="tab-system-settings"
-                role="tabpanel" aria-labelledby="system-settings-tab">
+                 role="tabpanel" aria-labelledby="system-settings-tab">
 
                 <!-- Tab content header start -->
                 <div class="tab-pane-header">
@@ -150,11 +151,14 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="{{route('communication-mode.index')}}"
+
                                     class="{{ Request::is('setups/communication-mode*') ? 'current-page' : '' }}">Communication Mode</a>
+
                             </li>
 
                             <li>
                                 <a href="{{route('issue-category.index')}}"
+
                                     class="{{ Request::is('setups/issue-category*') ? 'current-page' : '' }}">Issue Category</a>
                             </li>
                             <li>
@@ -176,37 +180,45 @@
                             <li>
                                 <a href=""
                                     class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Status</a>
-                            </li> 
+                            </li>
+
                             <li>
                                 <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Support Group</a>
+                                   class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Support
+                                    Group</a>
                             </li>
                         </ul>
 
                         <ul>
                             <li class="list-heading">Configurations</li>
                             <li>
-                                <a href="#" class="{{ Request::is('setups/users*') ? 'current-page' : '' }}">User Manager</a>
+                                <a href="#" class="{{ Request::is('setups/users*') ? 'current-page' : '' }}">User
+                                    Manager</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">User Support Groups</a>
+                                   class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">User Support
+                                    Groups</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Support Groups Mapping</a>
+                                   class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Support Groups
+                                    Mapping</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Manage Messages</a>
+                                   class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Manage
+                                    Messages</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Global Configuration</a>
+                                   class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Global
+                                    Configuration</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Roles Access</a>
+                                   class="{{ Request::is('setups/user-roles*') ? 'current-page' : '' }}">Roles
+                                    Access</a>
                             </li>
                         </ul>
 

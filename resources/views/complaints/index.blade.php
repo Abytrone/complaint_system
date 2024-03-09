@@ -44,6 +44,7 @@
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">
+ 
                                     <a href="#"  data-bs-toggle="tooltip"
                                        data-bs-placement="top" title=""
                                        data-bs-original-title="Process">
@@ -51,6 +52,7 @@
                                     </a>
                                     <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
                                        data-bs-original-title="Show">
+
                                         <i class="icon-eye text-primary"></i>
                                     </a>
                                     <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
