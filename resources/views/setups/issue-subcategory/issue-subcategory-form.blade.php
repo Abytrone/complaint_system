@@ -33,8 +33,8 @@
                     <select wire:model="active" name="active"
                             class="form-select @error('active') is-invalid @enderror">
                         <option>Select</option>
-                            <option selected value="0">No</option>
-                            <option  value="1">Yes</option>
+                            <option selected value="1">Yes</option>
+                            <option  value="0">Yes</option>
                     </select>
                     <div class="field-placeholder">Set Active</div>
                     @error('active')

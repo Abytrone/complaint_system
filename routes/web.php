@@ -11,6 +11,7 @@ use App\Http\Controllers\IssueSubcategoryController;
 use App\Http\Controllers\UserComplaintController;
 use App\Http\Controllers\IssueSourceController;
 use App\Http\Controllers\IssueStatusController;
+use App\Http\Controllers\SupportGroupController;
 use App\Http\Livewire\IssueCategory;
 
 /*
@@ -56,6 +57,7 @@ Route::resource('issue-category-field', IssueCategoryFieldController::class)->on
 Route::resource('issue-subcategory', IssueSubcategoryController::class)->only('index');
 Route::resource('issue-source', IssueSourceController::class)->only('index');
 Route::resource('issue-status', IssueStatusController::class)->only('index');
+Route::resource('support-groups', SupportGroupController::class)->only('index');
 });
 
 

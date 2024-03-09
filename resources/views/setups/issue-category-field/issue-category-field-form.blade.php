@@ -36,8 +36,8 @@
                     <select wire:model="display" name="display"
                             class="form-select @error('display') is-invalid @enderror">
                         <option>Select</option>
-                            <option selected value="0">No</option>
-                            <option  value="1">Yes</option>
+                            <option selected value="1">Yes</option>
+                            <option  value="0">No</option>
                     </select>
                     <div class="field-placeholder">Display</div>
                     @error('display')field_id

@@ -178,8 +178,8 @@
                                     class="{{ Request::is('setups/issue-status') ? 'current-page' : '' }}">Issue Status</a>
                             </li> 
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Support Group</a>
+                                <a href="{{route('support-groups.index')}}"
+                                    class="{{ Request::is('setups/support-group') ? 'current-page' : '' }}">Support Group</a>
                             </li>
                         </ul>
 
