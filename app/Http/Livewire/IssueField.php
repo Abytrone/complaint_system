@@ -18,7 +18,7 @@ class IssueField extends Component
 
     protected $listeners=['deleteRecord'=>'confirmDelete'];
 
-    public function rules()
+    protected function rules()
     {
        return [ 'field_name'=> 'required'];
     }

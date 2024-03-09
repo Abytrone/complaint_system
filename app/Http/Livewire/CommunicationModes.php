@@ -27,7 +27,7 @@ class CommunicationModes extends Component
     //    return [ 'mode'=> ['required', Rule::unique('communication_mode')->ignore('id', 'mode_id')]];
     // }
 
-    public function rules()
+    protected function rules()
     {
        return [ 'mode'=> 'required'];
     }

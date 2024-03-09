@@ -171,6 +171,19 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 	return new bootstrap.Popover(popoverTriggerEl)
 })
 
+// Custom Scroll for Modal Dailog
+$(function() {
+	$('.modal-body').slimScroll({
+		height: "95%",
+		color: '#d6dbe6',
+		alwaysVisible: true,
+		size: "5px",
+		distance: '1px',
+		railVisible: false,
+		railColor: "#d6dbe6",
+	});
+});
+
 // Tabs on Hover
 // jQuery('.sidebar-tabs .nav a.nav-link').hover(function(e){
 // 	e.preventDefault();

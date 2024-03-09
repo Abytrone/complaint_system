@@ -19,7 +19,7 @@ class IssueCategory extends Component
 
     protected $listeners=['deleteRecord'=>'confirmDelete'];
 
-    public function rules()
+    protected function rules()
     {
        return [ 'category'=> 'required', 'active'=>'required', 'description'=>'nullable'];
     }

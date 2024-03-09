@@ -171,11 +171,11 @@
                             </li>
                             <li>
                                 <a href="{{route('issue-source.index')}}"
-                                    class="{{ Request::is(' setups/issue-subcategory') ? 'current-page' : '' }}">Issue Source</a>
+                                    class="{{ Request::is('setups/issue-source') ? 'current-page' : '' }}">Issue Source</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Status</a>
+                                <a href="{{route('issue-status.index')}}"
+                                    class="{{ Request::is('setups/issue-status') ? 'current-page' : '' }}">Issue Status</a>
                             </li> 
                             <li>
                                 <a href=""
