@@ -150,7 +150,7 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="{{route('communication-mode.index')}}"
-                                    class="{{ Request::is('setups/communication-mode*') ? 'current-page' : '' }}">Communication Mode</a>
+                                    class="{{ Request::is('setups/communication-mode') ? 'current-page' : '' }}">Communication Mode</a>
                             </li>
 
                             <li>
@@ -159,15 +159,15 @@
                             </li>
                             <li>
                                 <a href="{{route('issue-field.index')}}"
-                                    class="{{ Request::is('setups/issue-field*') ? 'current-page' : '' }}">Issue Field</a>
+                                    class="{{ Request::is('setups/issue-field') ? 'current-page' : '' }}">Issue Field</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-category-field.index')}}"
                                     class="{{ Request::is('setups/issue-category-field') ? 'current-page' : '' }}">Issue Category Field</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Subcategory</a>
+                                <a href="{{route('issue-subcategory.index')}}"
+                                    class="{{ Request::is('setups/issue-subcategory') ? 'current-page' : '' }}">Issue Subcategory</a>
                             </li>
                             <li>
                                 <a href=""

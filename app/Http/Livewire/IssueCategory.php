@@ -36,7 +36,7 @@ class IssueCategory extends Component
         {
             Category::create($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset();
+            $this->resetExcept(['modalTitle', 'modalAction']);
         }
     }
 

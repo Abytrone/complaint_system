@@ -49,7 +49,7 @@ class IssueCategoryField extends Component
             $insertionData = array_merge($validatedData, ['created_by'=>0, 'modified_by'=>0]); // do later use auth user
             CategoryField::create($insertionData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset();
+            $this->resetExcept(['modalTitle', 'modalAction']);
         }
     }
 

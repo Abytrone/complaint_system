@@ -40,7 +40,7 @@ class IssueField extends Component
         {
             ComplaintIssueField::create($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset();
+            $this->resetExcept(['modalTitle', 'modalAction']);
         }
     }
 
