@@ -12,5 +12,7 @@ class Source extends Model
     protected $table = 'issue_source';
     protected $primaryKey = 'source_id';
 
+    protected $guarded=[];
+    
     public $timestamps = false;
 }

@@ -10,6 +10,9 @@ class Status extends Model
 {
     protected $table = 'issue_status';
     protected $primaryKey = 'status_id';
+    public $timestamps = false;
+
+    protected $guarded=[];
 
     const IS_NEW = 1;
     const IS_SUBMITTED = 2;

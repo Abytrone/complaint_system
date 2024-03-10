@@ -7,7 +7,7 @@
             {{-- <x-headers.hr /> --}}
             <div class="card-body">
                 <div class="my-3">
-                    <button  href="#" id="addBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#issue-category-modal">
+                    <button  href="#" id="addBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#issue-category-field-modal">
                         <i class="icon-plus"></i> Add New
                     </button>
                     @include('setups.issue-category-field.issue-category-field-modal')
@@ -17,24 +17,24 @@
                         <thead>
                             <tr>
                                 <th>Category</th>
-                                <th>Active</th>
-                                <th>Description</th>
+                                <th>Field</th>
+                                <th>Display</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($IssueCategories as $item)
+                            @foreach ($issueCategoryFields as $item)
                                 <tr>
-                                    <td>{{ strtoUpper($item?->category) }}</td>
-                                    <td>{{ strtoUpper($item?->active==1 ? 'yes' : 'No') }}</td>
-                                    <td>{{ $item?->description }}</td>
+                                    <td>{{ strtoUpper($item->category->category) }}</td>
+                                    <td>{{ strtoUpper($item->field->field_name) }}</td>
+                                    <td>{{ strtoUpper($item->display === 1 ? 'yes' : 'No') }}</td>
                                     <td>
                                         <div class="actions">
-                                            <a href="#" wire:click.prevent="edit({{$item?->category_id}})" data-bs-toggle="modal" data-bs-target="#issue-category-modal">
+                                            <a href="#" wire:click.prevent="edit({{$item?->issue_category_id}})" data-bs-toggle="modal" data-bs-target="#issue-category-field-modal">
                                                 <i class="icon-edit1 text-primary"></i>
                                             </a>
                                             <a  href="#"
-                                            wire:click="delete({{$item?->category_id}})"
+                                            wire:click="delete({{$item?->issue_category_id}})"
                                             >
                                                 <i class="icon-x-circle text-danger"></i>
                                             </a>

@@ -151,41 +151,36 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="{{route('communication-mode.index')}}"
-
-                                    class="{{ Request::is('setups/communication-mode*') ? 'current-page' : '' }}">Communication Mode</a>
-
+                                    class="{{ Request::is('setups/communication-mode') ? 'current-page' : '' }}">Communication Mode</a>
                             </li>
 
                             <li>
                                 <a href="{{route('issue-category.index')}}"
-
-                                    class="{{ Request::is('setups/issue-category*') ? 'current-page' : '' }}">Issue Category</a>
+                                    class="{{ Request::is('setups/issue-category') ? 'current-page' : '' }}">Issue Category</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-field.index')}}"
-                                    class="{{ Request::is('setups/issue-field*') ? 'current-page' : '' }}">Issue Field</a>
+                                    class="{{ Request::is('setups/issue-field') ? 'current-page' : '' }}">Issue Field</a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="{{ Request::is('setups/event-types*') ? 'current-page' : '' }}">Issue Category Field</a>
+                                <a href="{{route('issue-category-field.index')}}"
+                                    class="{{ Request::is('setups/issue-category-field') ? 'current-page' : '' }}">Issue Category Field</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Subcategory</a>
+                                <a href="{{route('issue-subcategory.index')}}"
+                                    class="{{ Request::is('setups/issue-subcategory') ? 'current-page' : '' }}">Issue Subcategory</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Source</a>
+                                <a href="{{route('issue-source.index')}}"
+                                    class="{{ Request::is('setups/issue-source') ? 'current-page' : '' }}">Issue Source</a>
                             </li>
                             <li>
-                                <a href=""
-                                    class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Issue Status</a>
-                            </li>
-
+                                <a href="{{route('issue-status.index')}}"
+                                    class="{{ Request::is('setups/issue-status') ? 'current-page' : '' }}">Issue Status</a>
+                            </li> 
                             <li>
-                                <a href=""
-                                   class="{{ Request::is('setups/violence-types*') ? 'current-page' : '' }}">Support
-                                    Group</a>
+                                <a href="{{route('support-groups.index')}}"
+                                    class="{{ Request::is('setups/support-group') ? 'current-page' : '' }}">Support Group</a>
                             </li>
                         </ul>
 

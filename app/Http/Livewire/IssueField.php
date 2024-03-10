@@ -18,9 +18,9 @@ class IssueField extends Component
 
     protected $listeners=['deleteRecord'=>'confirmDelete'];
 
-    public function rules()
+    protected function rules()
     {
-       return [ 'field_name'=> 'required'];
+       return [ 'field_name'=> 'required|unique:issue_field,field_name,'.$this->issueFieldID.',field_id'];
     }
 
 
@@ -31,7 +31,7 @@ class IssueField extends Component
     public function save()
     {
         $validatedData = $this->validate();
-        if($this->issueFieldID!=null)
+        if($this->issueFieldID!==null)
         {
             ComplaintIssueField::find($this->issueFieldID)->update($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
@@ -40,7 +40,7 @@ class IssueField extends Component
         {
             ComplaintIssueField::create($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset();
+            $this->resetExcept(['modalTitle', 'modalAction']);
         }
     }
 

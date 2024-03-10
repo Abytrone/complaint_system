@@ -27,9 +27,9 @@ class CommunicationModes extends Component
     //    return [ 'mode'=> ['required', Rule::unique('communication_mode')->ignore('id', 'mode_id')]];
     // }
 
-    public function rules()
+    protected function rules()
     {
-       return [ 'mode'=> 'required'];
+       return [ 'mode'=> 'required|unique:communication_mode,mode,'.$this->modeID.',mode_id'];
     }
 
     protected $messages = [
@@ -49,7 +49,7 @@ class CommunicationModes extends Component
         {
             CommunicationMode::create($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset();
+            $this->resetExcept(['modalTitle', 'modalAction']);
         }
     }
 

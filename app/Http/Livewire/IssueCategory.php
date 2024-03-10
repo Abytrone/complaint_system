@@ -19,15 +19,17 @@ class IssueCategory extends Component
 
     protected $listeners=['deleteRecord'=>'confirmDelete'];
 
-    public function rules()
+    protected function rules()
     {
-       return [ 'category'=> 'required', 'active'=>'required', 'description'=>'nullable'];
+       return [ 'category'=> 'required|unique:issue_category,category,'.$this->categoryID.',category_id', 
+                'active'=>'required', 
+                'description'=>'nullable'];
     }
 
     public function save()
     {
         $validatedData = $this->validate();
-        if($this->categoryID!=null)
+        if($this->categoryID!==null)
         {
             Category::find($this->categoryID)->update($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
@@ -36,7 +38,7 @@ class IssueCategory extends Component
         {
             Category::create($validatedData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
-            $this->reset();
+            $this->resetExcept(['modalTitle', 'modalAction']);
         }
     }
 
@@ -44,7 +46,7 @@ class IssueCategory extends Component
     {
         $this->modalTitle="Update Record";
         $this->modalAction="Update";
-        $dbCategory = Category::where('category_id', '=', $id)->first();
+        $dbCategory = Category::find($id);
         $this->category=$dbCategory->category;
         $this->active=$dbCategory->active;
         $this->description=$dbCategory->description;

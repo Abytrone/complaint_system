@@ -6,8 +6,13 @@ use App\Http\Controllers\ProcessComplaintController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\IssueCategoryController;
+use App\Http\Controllers\IssueCategoryFieldController;
 use App\Http\Controllers\IssueFieldController;
+use App\Http\Controllers\IssueSubcategoryController;
 use App\Http\Controllers\UserComplaintController;
+use App\Http\Controllers\IssueSourceController;
+use App\Http\Controllers\IssueStatusController;
+use App\Http\Controllers\SupportGroupController;
 use App\Http\Livewire\IssueCategory;
 
 /*
@@ -46,10 +51,15 @@ Route::post('complaints/{complaint}/process', [ProcessComplaintController::class
 Route::resource('complaints', ComplaintController::class);
 Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 
-Route::prefix('setups')->group(function () {
-    Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
-    Route::resource('issue-category', IssueCategoryController::class)->only('index');
-    Route::resource('issue-field', IssueFieldController::class)->only('index');
+Route::prefix('setups')->group(function(){
+Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
+Route::resource('issue-category', IssueCategoryController::class)->only('index');
+Route::resource('issue-field', IssueFieldController::class)->only('index');
+Route::resource('issue-category-field', IssueCategoryFieldController::class)->only('index');
+Route::resource('issue-subcategory', IssueSubcategoryController::class)->only('index');
+Route::resource('issue-source', IssueSourceController::class)->only('index');
+Route::resource('issue-status', IssueStatusController::class)->only('index');
+Route::resource('support-groups', SupportGroupController::class)->only('index');
 });
 
 
