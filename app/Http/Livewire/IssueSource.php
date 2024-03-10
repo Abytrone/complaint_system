@@ -19,7 +19,7 @@ class IssueSource extends Component
 
     protected function rules()
     {
-       return [ 'source'=> 'required'];
+       return [ 'source'=> 'required|unique:issue_source,source,'.$this->sourceID,',source_id'];
     }
 
     public function save()

@@ -40,7 +40,7 @@
                             <option  value="0">No</option>
                     </select>
                     <div class="field-placeholder">Display</div>
-                    @error('display')field_id
+                    @error('display')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

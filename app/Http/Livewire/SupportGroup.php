@@ -25,10 +25,10 @@ class SupportGroup extends Component
 
     protected function rules()
     {
-       return [ 'name'=> 'required', 
+       return [ 'name'=> 'required|unique:support_group,name,'.$this->supportGroupID.',support_group_id', 
                 'description'=>'required',
                 'contact_name'=>'required',
-                'phone'=>'required|regex:/^\+?(\d{1,3})?-?\d{9,15}$/|max:10|min:10',
+                'phone'=>'required|unique:support_group,phone,'.$this->supportGroupID.',support_group_id|regex:/^\+?(\d{1,3})?-?\d{9,15}$/|max:10|min:10',
                 'duration'=>'required|integer',
                 'active'=>'required'            
     ];

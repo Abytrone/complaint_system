@@ -23,7 +23,7 @@ class IssueStatus extends Component
     protected function rules()
     {
        return [ 
-        'status'=> 'required', 
+        'status'=> 'required|unique:issue_status,status,'.$this->statusID,',status_id', 
         'description'=>'required', 
         'sms_msg'=>'required', 
         'email_msg'=>'required'];

@@ -20,7 +20,7 @@ class IssueField extends Component
 
     protected function rules()
     {
-       return [ 'field_name'=> 'required'];
+       return [ 'field_name'=> 'required|unique:issue_field,field_name,'.$this->issueFieldID.',field_id'];
     }
 
 

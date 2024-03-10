@@ -21,7 +21,9 @@ class IssueCategory extends Component
 
     protected function rules()
     {
-       return [ 'category'=> 'required', 'active'=>'required', 'description'=>'nullable'];
+       return [ 'category'=> 'required|unique:issue_category,category,'.$this->categoryID.',category_id', 
+                'active'=>'required', 
+                'description'=>'nullable'];
     }
 
     public function save()

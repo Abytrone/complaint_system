@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class IssueSubcategory extends Component
 {
@@ -25,7 +26,12 @@ class IssueSubcategory extends Component
 
     public function rules()
     {
-       return [ 'category_id'=> 'required', 'description'=>'required', 'active'=>'required'];
+       return [ 
+        'category_id'=> 'required', 
+        'description'=>['required',
+        Rule::unique('issue_subcategory', 'description')->where('category_id', $this->category_id)->ignore($this->subcategoryID, 'issue_subcategory_id')      
+        ], 
+        'active'=>'required'];
     }
 
     public function save()
@@ -53,6 +59,7 @@ class IssueSubcategory extends Component
         $this->category_id=$subcategory->category_id;
         $this->description = $subcategory->description;
         $this->active=$subcategory->active;
+        $this->subcategoryID=$id;
     }
 
     public function delete($id)

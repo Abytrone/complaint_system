@@ -8,6 +8,7 @@ use App\Models\Complaint;
 use App\Models\ComplaintIssueField;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class IssueCategoryField extends Component
 {
@@ -29,7 +30,9 @@ class IssueCategoryField extends Component
     protected function rules()
     {
        return [ 'category_id'=> 'required',
-        'field_id'=>'required',
+        'field_id'=>['required',
+        Rule::unique('issue_category_field', 'field_id')->where('category_id', $this->category_id)->ignore($this->issueCategoryFieldID)
+                     ],
         'display'=>'required'
     ];
     }

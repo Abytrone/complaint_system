@@ -29,7 +29,7 @@ class CommunicationModes extends Component
 
     protected function rules()
     {
-       return [ 'mode'=> 'required'];
+       return [ 'mode'=> 'required|unique:communication_mode,mode,'.$this->modeID.',mode_id'];
     }
 
     protected $messages = [
