@@ -11,6 +11,14 @@ class Status extends Model
     protected $table = 'issue_status';
     protected $primaryKey = 'status_id';
 
+    const IS_NEW = 1;
+    const IS_SUBMITTED = 2;
+    const IS_RECEIVED = 3;
+    const IS_PROCESSED = 4;
+    const IS_RESOLVED = 5;
+    const IS_CLOSED = 6;
+    const IS_REOPENED = 7;
+
 
     protected function status(): Attribute
     {

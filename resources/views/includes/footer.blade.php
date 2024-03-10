@@ -76,13 +76,13 @@
 <script src="{{ asset('vendor/bs-select/bs-select.min.js?version=' . Str::random(5)) }}"></script>
 <script src="{{ asset('vendor/bs-select/bs-select-custom.js?version=' . Str::random(5)) }}"></script>
 <script src="{{ asset('js/activity-management.js?version=' . Str::random(5)) }}"></script>
-@livewireScripts
-{{--@livewire('livewire-ui-modal')--}}
+
 <script src="{{ asset('js/map.js') }}"></script>
 <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChd0TVcVJuB-5yaZDW4ODpj3GF6sbzC2I&callback=initAutocomplete&libraries=places&v=weekly">
 </script>
-
+@livewireScripts
+@livewire('livewire-ui-modal')
 @yield('scripts')
 
 <script>

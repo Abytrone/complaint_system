@@ -4,6 +4,7 @@ export default {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
+        './vendor/wire-elements/modal/src/ModalComponent.php',
     ],
     theme: {
         extend: {},
