@@ -40,23 +40,18 @@
                             <td>{{ substr($item->raw_report, 0, 100).'...' }}</td>
                             <td>{{ $item->category->category }}</td>
                             <td>{{ $item->subcategory->description }}</td>
-
-                            <td>{{ $item->status->status }}</td>
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
+                            <td>{{ $item->status->status }}</td>
                             <td>
                                 <div class="actions">
-                                    <a href="#" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title=""
-                                       data-bs-original-title="Submit"
-                                       onclick="Livewire.emit('openModal', 'confirm-submit-modal', {'item': {{$item}}})"
-                                    >
-                                        <i class="icon-edit-2 text-primary"></i>
-                                    </a>
-                                    <a href="#" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title=""
-                                       data-bs-original-title="Process">
+                                    <a
+                                        onclick="Livewire.emit('openModal', 'toggle-status-modal', {'complaint': {{$item}}})"
+                                        href="#" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title=""
+                                        data-bs-original-title="Toggle Status">
                                         <i class="icon-sync text-primary"></i>
                                     </a>
+
                                     <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
                                        data-bs-original-title="Show">
                                         <i class="icon-eye text-primary"></i>

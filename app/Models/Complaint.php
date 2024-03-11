@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class  Complaint extends Model
 {
-
-
     protected $table = 'issue_master';
     protected $primaryKey = 'issue_id';
 
     protected $guarded = [];
+
+    protected $casts = ['processed_date' => 'date'];
 
     protected function priority(): Attribute
     {
@@ -26,7 +26,7 @@ class  Complaint extends Model
 
     public function media(): HasMany
     {
-        return $this->hasMany(ComplaintMedia::class,  'issue_id',  'issue_id');
+        return $this->hasMany(ComplaintMedia::class, 'issue_id', 'issue_id');
     }
 
     public function region(): BelongsTo

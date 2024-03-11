@@ -12,7 +12,7 @@ class Status extends Model
     protected $primaryKey = 'status_id';
     public $timestamps = false;
 
-    protected $guarded=[];
+    protected $guarded = [];
 
     const IS_NEW = 1;
     const IS_SUBMITTED = 2;
@@ -22,6 +22,40 @@ class Status extends Model
     const IS_CLOSED = 6;
     const IS_REOPENED = 7;
 
+    public function isNew(): bool
+    {
+        return $this->id == self::IS_NEW;
+    }
+
+    public function isSubmitted(): bool
+    {
+        return $this->id == self::IS_SUBMITTED;
+    }
+
+    public function isReceived(): bool
+    {
+        return $this->id == self::IS_RECEIVED;
+    }
+
+    public function isProcessed(): bool
+    {
+        return $this->id == self::IS_PROCESSED;
+    }
+
+    public function isResolved(): bool
+    {
+        return $this->id == self::IS_RESOLVED;
+    }
+
+    public function isClosed(): bool
+    {
+        return $this->id == self::IS_CLOSED;
+    }
+
+    public function isReOpened(): bool
+    {
+        return $this->id == self::IS_REOPENED;
+    }
 
     protected function status(): Attribute
     {

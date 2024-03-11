@@ -21,9 +21,11 @@ class Modal extends ModalComponent
         '6xl' => 'sm:tw-max-w-md md:tw-max-w-xl lg:tw-max-w-3xl xl:tw-max-w-5xl 2xl:tw-tw-max-w-6xl',
         '7xl' => 'sm:tw-max-w-md md:tw-max-w-xl lg:tw-max-w-3xl xl:tw-max-w-5xl 2xl:tw-max-w-7xl',
     ];
+
+
     public static function modalMaxWidth(): string
     {
-        return '7xl';
+        return '2xl';
     }
 
 }
