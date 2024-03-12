@@ -46,8 +46,3 @@ Route::prefix('setups')->group(function () {
     Route::resource('issue-status', IssueStatusController::class)->only('index');
     Route::resource('support-groups', SupportGroupController::class)->only('index');
 });
-
-Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);
-Route::get('get-constituencies', [ComplaintController::class, "loadConstituencies"]);
-Route::get('get-electoral-areas', [ComplaintController::class, "loadElectoralAreas"]);
-Route::get('get-polling-station', [ComplaintController::class, "loadPollingStation"]);

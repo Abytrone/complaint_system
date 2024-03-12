@@ -1,1 +1,3 @@
-[ ] add complaint media
+[ ] after media upload, clear form
+[ ] fix complaint for alignment
+[ ] received date should not be in the future
