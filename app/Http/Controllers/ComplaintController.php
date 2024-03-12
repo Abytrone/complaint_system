@@ -6,6 +6,7 @@ use App\Http\Requests\ComplaintStoreRequest;
 use App\Models\Complaint;
 use App\Models\District;
 use App\Models\Region;
+use App\Models\Status;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,70 +16,111 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        $complaints = Complaint::with(['category', 'subcategory', 'status'])->get();
-        return view('complaints.index', ['complaints' => $complaints]);
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_NEW)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'New Complaints',
+            'hasNew' => true,
+            'hasActions' => true
+        ]);
     }
 
-    public function awaiting()
+    public function submitted()
     {
-        $complaints = Complaint::query()->get();
-        return view('complaints.awaiting_complaints', ['complaints' => $complaints]);
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_SUBMITTED)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'Submitted Complaints',
+        ]);
     }
+
+    public function received()
+    {
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_RECEIVED)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'Received Complaints',
+        ]);
+    }
+
+    public function processed()
+    {
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_PROCESSED)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'Processed Complaints',
+        ]);
+    }
+
+    public function resolved()
+    {
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_RESOLVED)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'Resolved Complaints',
+        ]);
+    }
+
+    public function closed()
+    {
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_CLOSED)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'Closed Complaints',
+        ]);
+    }
+
+    public function reopened()
+    {
+//        todo: add filter to get only the complaints created by current user
+        $complaints = Complaint::with(['category', 'subcategory', 'status'])
+            ->where('status_id', Status::IS_REOPENED)
+            ->get();
+        return view('complaints.index', [
+            'complaints' => $complaints,
+            'title' => 'Reopened Complaints',
+        ]);
+    }
+
+
 
     public function create()
     {
         return view('complaints.create');
     }
 
-    public function store(ComplaintStoreRequest $request)
-    {
-        $insertData = array_merge($request->validated(), [
-            'code' => Str::random(10),
-            'created_by' => auth()->id(),
-            'created_date' => Carbon::now()
-        ]);
-        DB::table('issue_master')->insert($insertData);
-        //        Complaint::query()->create($insertData);
-        return to_route('complaints.create')->with('message', 'Record Added Successfylly');
-    }
 
-    public function show(Complaint $complaint)
-    {
-        $fieldnames = DB::table('vw_issue_category_field')
-            ->select(['field_name', 'field_id'])
-            ->where('display', '=', 1)
-            ->get()
-            ->map(function ($data) {
-                return $data->field_name;
-            })->toArray();
 
-        $complaint = DB::table('issue_master')
-            ->join('district', 'issue_master.district_id', 'district.id')
-            ->where('issue_id', '=', $complaint->issue_id)
-            ->first();
-        return view('complaints.show', [
-            'complaint' => $complaint,
-            'regions' => Region::query()->where('id', '>', 0)->get(),
-            'districts' => DB::table('district')->where('id', '>', 0)->orderBy('district')->get(),
-            'subcategories' => DB::table('vw_issue_subcategory')->where('category_id', '=', 1)->orderBy('description')->get(),
-            'issuesources' => DB::table('issue_source')->get(),
-            'modes' => DB::table('communication_mode')->get(),
-            'displayfields' => DB::table('vw_issue_category_field')->select(['field_name', 'field_id'])->where('display', '=', 1)->get()->toArray(),
-            'constituencies' => DB::table('vw_ec_data_constituency')->where('constituency_id', '>', 0)->get(),
-            'electoralareas' => DB::table('vw_ec_data_electoral_area')->where('ea_id', '>', 0)->get(),
-            'fieldnames' => $fieldnames,
-        ]);
-    }
 
     public function edit(Complaint $complaint)
     {
         return view('complaints.edit', compact('complaint'));
     }
 
-    public function update(ComplaintStoreRequest $request, $id)
+    public function destroy($id)
     {
-        DB::table('issue_master')->where('issue_id', '=', $id)->update($request->validated());
-        return to_route('complaints.edit', $id)->with('message', 'Record Updated Successfylly');
+        $com = Complaint::query()->find($id);
+        $com->delete();
+
+        return to_route('complaints.index')->with('message', 'Record Deleted Successfully');
     }
 
     public function loadDistricts(Request $request)
@@ -117,11 +159,5 @@ class ComplaintController extends Controller
         return response()->json(['options' => $pollingStations]);
     }
 
-    public function destroy($id)
-    {
-        $com = Complaint::query()->find($id);
-        $com->delete();
 
-        return to_route('complaints.index')->with('message', 'Record Deleted Successfully');
-    }
 }

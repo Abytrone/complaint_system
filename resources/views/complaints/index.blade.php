@@ -4,29 +4,27 @@
 @section('app-content')
     <div class="card">
         <div class="card-header">
-            <h3>Complaints</h3>
+            <h3> {{$title ?? 'Complaints' }} </h3>
         </div>
-        {{-- <x-headers.hr /> --}}
         <div class="card-body">
-            <div class="my-3">
-                <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
-                    <i class="icon-plus"></i> Add New
-                </a>
+            @if($hasNew ?? false)
+                <div class="my-3">
+                    <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
+                        <i class="icon-plus"></i> Add New
+                    </a>
+                </div>
+            @endif
 
-                <button class="btn btn-danger" onclick="Livewire.emit('openModal', 'test-modal')">Modal Test</button>
-            </div>
             <div class="table-responsive">
                 <x-success-message></x-success-message>
                 <table id="basicExample" class="table custom-table">
                     <thead>
                     <tr>
-
                         <th>Reporter</th>
                         <th>Phone Number</th>
                         <th>Complaint</th>
                         <th>Category</th>
                         <th>Sub Category</th>
-
                         <th>Status</th>
                         <th>Media</th>
                         <th>Actions</th>
@@ -40,8 +38,8 @@
                             <td>{{ substr($item->raw_report, 0, 100).'...' }}</td>
                             <td>{{ $item->category->category }}</td>
                             <td>{{ $item->subcategory->description }}</td>
-                            <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>{{ $item->status->status }}</td>
+                            <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">
                                     <a
@@ -51,25 +49,26 @@
                                         data-bs-original-title="Toggle Status">
                                         <i class="icon-sync text-primary"></i>
                                     </a>
-
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Show">
-                                        <i class="icon-eye text-primary"></i>
-                                    </a>
-                                    <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title="" data-bs-original-title="Edit">
-                                        <i class="icon-edit1 text-warning"></i>
-                                    </a>
-                                    <a onclick="deleteItem('deleteForm-{{ $item->issue_id }}')" href="#"
-                                       data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                       data-bs-original-title="Delete">
-                                        <i class="icon-x-circle text-danger"></i>
-                                    </a>
-                                    <form hidden method="post" id="deleteForm-{{ $item->issue_id }}"
-                                          action="{{ route('complaints.destroy', $item->issue_id) }}">
-                                        @csrf
-                                        @method('delete')
-                                    </form>
+                                    @if($hasActions ??false)
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                           data-bs-original-title="Show">
+                                            <i class="icon-eye text-primary"></i>
+                                        </a>
+                                        <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
+                                           data-bs-placement="top" title="" data-bs-original-title="Edit">
+                                            <i class="icon-edit1 text-warning"></i>
+                                        </a>
+                                        <a onclick="deleteItem('deleteForm-{{ $item->issue_id }}')" href="#"
+                                           data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                           data-bs-original-title="Delete">
+                                            <i class="icon-x-circle text-danger"></i>
+                                        </a>
+                                        <form hidden method="post" id="deleteForm-{{ $item->issue_id }}"
+                                              action="{{ route('complaints.destroy', $item->issue_id) }}">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

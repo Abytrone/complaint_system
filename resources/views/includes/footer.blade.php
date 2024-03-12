@@ -13,15 +13,6 @@
    ************ Vendor Js Files *************
   ************* -->
 
-<!-- Pie Graphs -->
-<script src="{{ asset('vendor/apex/examples/pie/basic-pie-graph.js?version=' . Str::random(5)) }}"></script>
-<script src="{{ asset('vendor/apex/examples/pie/basic-pie-graph-gradient.js?version=' . Str::random(5)) }}">
-</script>
-<script src="{{ asset('vendor/apex/examples/pie/basic-pie-graph-monochrome.js?version=' . Str::random(5)) }}">
-</script>
-<script
-    src="{{ asset('vendor/apex/examples/pie/basic-pie-graph-monochrome-gradient.js?version=' . Str::random(5)) }}">
-</script>
 
 <!-- Megamenu JS -->
 <script src="{{ asset('vendor/megamenu/js/megamenu.js?version=' . Str::random(5)) }}"></script>
@@ -42,8 +33,6 @@
 <!-- Data Tables ?version='.Str::random(5).'' -->
 <script src="{{ asset('vendor/datatables/dataTables.min.js?version=' . Str::random(5)) }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap.min.js?version=' . Str::random(5)) }}"></script>
-<script src="{{ asset('vendor/datatables/dataTables.responsive.min.js?version=' . Str::random(5)) }}"></script>
-<script src="{{ asset('vendor/datatables/responsive.bootstrap4.min.js?version=' . Str::random(5)) }}"></script>
 
 
 <!-- Custom Data tables -->
@@ -56,17 +45,6 @@
 <!-- Main Js Required -->
 <script src="{{ asset('js/main.js?version=' . Str::random(5)) }}"></script>
 
-<!--App JS Required -->
-<script src="{{ asset('js/app.js?version=' . Str::random(5)) }}"></script>
-
-<!--App JS Required -->
-<script src="{{ asset('js/loading-data-tables.js?version=' . Str::random(5)) }}"></script>
-
-<!--App JS Required -->
-<script src="{{ asset('js/pieChart.js?version=' . Str::random(5)) }}"></script>
-
-<!--App JS Required -->
-<script src="{{ asset('js/user-roles.js?version=' . Str::random(5)) }}"></script>
 
 <!-- Date Range JS -->
 <script src="{{ asset('vendor/daterange/daterange.js?version=' . Str::random(5)) }}"></script>
@@ -75,11 +53,10 @@
 <!-- Bootstrap Select JS -->
 <script src="{{ asset('vendor/bs-select/bs-select.min.js?version=' . Str::random(5)) }}"></script>
 <script src="{{ asset('vendor/bs-select/bs-select-custom.js?version=' . Str::random(5)) }}"></script>
-<script src="{{ asset('js/activity-management.js?version=' . Str::random(5)) }}"></script>
 
 <script src="{{ asset('js/map.js') }}"></script>
 <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChd0TVcVJuB-5yaZDW4ODpj3GF6sbzC2I&callback=initAutocomplete&libraries=places&v=weekly">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChd0TVcVJuB-5yaZDW4ODpj3GF6sbzC2I&callback=initAutocomplete&libraries=places&v=weekly&loading=async">
 </script>
 @livewireScripts
 @livewire('livewire-ui-modal')

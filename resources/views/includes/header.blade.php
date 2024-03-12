@@ -56,10 +56,6 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bs4.css?version=' . Str::random(5)) }}"/>
     <link rel="stylesheet"
           href="{{ asset('vendor/datatables/dataTables.bs4-custom.css?version=' . Str::random(5)) }}"/>
-    <link rel="stylesheet"
-          href="{{ asset('vendor/datatables/buttons.dataTables.min.css?version=' . Str::random(5)) }}"/>
-    <link rel="stylesheet"
-          href="{{ asset('vendor/datatables/responsive.bootstrap4.min.css?version=' . Str::random(5)) }}">
 
     @livewireStyles
 

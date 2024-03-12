@@ -13,19 +13,23 @@
             <a class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}" id="home-tab" data-bs-toggle="tab"
                href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
                 <i class="icon-home2"></i>
+                <span class="nav-link-text">Dashboard</span>
             </a>
             <a class="nav-link {{ Request::is('complaints*') ? 'active' : '' }}" id="main-menu-tab" data-bs-toggle="tab"
                href="#tab-main-menu" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-layers2"></i>
+                <span class="nav-link-text">Complaints</span>
             </a>
             <a class="nav-link {{ Request::is('reports*') ? 'active' : '' }}" id="reports-tab" data-bs-toggle="tab"
                href="#tab-reports" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-documents"></i>
+                <span class="nav-link-text">Reports</span>
             </a>
             <a class="nav-link {{ Request::is('setups*') ? 'active' : '' }}" id="system-settings-tab"
                data-bs-toggle="tab" href="#tab-system-settings" role="tab" aria-controls="tab-system-settings"
                aria-selected="false">
                 <i class="icon-settings"></i>
+                <span class="nav-link-text">Setups</span>
             </a>
 
         </div>
@@ -35,7 +39,7 @@
         <div class="tab-content">
 
             <!-- Chat tab -->
-            <div class="tab-pane fade {{ Request::is('dashboard*') ? 'show active' : '' }}" id="tab-home"
+            <div class="tab-pane fade {{ request()->routeIs('dashboard') ? 'show active' : '' }}" id="tab-home"
                  role="tabpanel" aria-labelledby="home-tab">
 
                 <!-- Tab content header start -->
@@ -59,9 +63,8 @@
             </div>
 
             <!-- Pages tab -->
-            <div
-                class="tab-pane fade {{ Request::is('complaints*') || Request::is('awaiting-complaints*') ? 'show active' : '' }}"
-                id="tab-main-menu" role="tabpanel" aria-labelledby="tab-main-menu">
+            <div class="tab-pane fade {{ request()->routeIs('complaints.*') ? 'show active' : '' }}"
+                 id="tab-main-menu" role="tabpanel" aria-labelledby="tab-main-menu">
 
                 <!-- Tab content header start -->
                 <div class="tab-pane-header">
@@ -77,35 +80,53 @@
 
                             <li>
                                 <a href="{{ route('complaints.create') }}"
-                                   class="{{ Request::is('complaints/create*') ? 'current-page' : '' }}">Capture
-                                    Complaints</a>
+                                   class="{{ request()->routeIs('complaints.create') ? 'current-page' : '' }}">Capture</a>
                             </li>
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                   class="{{ Request::is('complaints') ? 'current-page' : '' }}">
-                                    Complaints</a>
+                                   class="{{ request()->routeIs('complaints.index') ? 'current-page' : '' }}">
+                                    New</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('complaints.submitted') }}"
+                                   class="{{ request()->routeIs('complaints.submitted') ? 'current-page' : '' }}">
+                                    Submitted</a>
                             </li>
                             <li>
-                                <a href="{{ route('awaiting_complaints') }}"
-                                   class="{{ Request::is('awaiting-complaints/awaiting_complaints*') ? 'current-page' : '' }}">Awaiting
-                                    Resolution</a>
+                                <a href="{{ route('complaints.received') }}"
+                                   class="{{ request()->routeIs('complaints.received') ? 'current-page' : '' }}">
+                                    Received</a>
                             </li>
                             <li>
-                                <a href="#">Response Overdue</a>
+                                <a href="{{ route('complaints.processed') }}"
+                                   class="{{ request()->routeIs('complaints.processed') ? 'current-page' : '' }}">
+                                    Processed</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('complaints.resolved') }}"
+                                   class="{{ request()->routeIs('complaints.resolved') ? 'current-page' : '' }}">
+                                    Resolved</a>
                             </li>
                             <li>
-                                <a href="#">Awaiting Closure</a>
+                                <a href="{{ route('complaints.closed') }}"
+                                   class="{{ request()->routeIs('complaints.closed') ? 'current-page' : '' }}">
+                                    Closed</a>
                             </li>
                             <li>
-                                <a href="#">Reopen Complaints</a>
+                                <a href="{{ route('complaints.reopened') }}"
+                                   class="{{ request()->routeIs('complaints.reopened') ? 'current-page' : '' }}">
+                                    Reopened</a>
                             </li>
+
                         </ul>
                     </div>
                 </div>
                 <!-- Sidebar menu ends -->
             </div>
 
-            <div class="tab-pane fade {{ Request::is('reports*') ? 'show active' : '' }}"
+            <div class="tab-pane fade {{ request()->routeIs('reports.*') ? 'show active' : '' }}"
                  id="tab-reports" role="tabpanel" aria-labelledby="tab-reports">
 
                 <!-- Tab content header start -->
@@ -135,7 +156,7 @@
             </div>
 
             <!-- Authentication tab -->
-            <div class="tab-pane fade {{ Request::is('setups*') ? 'show active' : '' }}" id="tab-system-settings"
+            <div class="tab-pane fade {{ request()->routeIs('setups.*') ? 'show active' : '' }}" id="tab-system-settings"
                  role="tabpanel" aria-labelledby="system-settings-tab">
 
                 <!-- Tab content header start -->
@@ -151,36 +172,43 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="{{route('communication-mode.index')}}"
-                                    class="{{ Request::is('setups/communication-mode') ? 'current-page' : '' }}">Communication Mode</a>
+                                   class="{{ Request::is('setups/communication-mode') ? 'current-page' : '' }}">Communication
+                                    Mode</a>
                             </li>
 
                             <li>
                                 <a href="{{route('issue-category.index')}}"
-                                    class="{{ Request::is('setups/issue-category') ? 'current-page' : '' }}">Issue Category</a>
+                                   class="{{ Request::is('setups/issue-category') ? 'current-page' : '' }}">Issue
+                                    Category</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-field.index')}}"
-                                    class="{{ Request::is('setups/issue-field') ? 'current-page' : '' }}">Issue Field</a>
+                                   class="{{ Request::is('setups/issue-field') ? 'current-page' : '' }}">Issue Field</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-category-field.index')}}"
-                                    class="{{ Request::is('setups/issue-category-field') ? 'current-page' : '' }}">Issue Category Field</a>
+                                   class="{{ Request::is('setups/issue-category-field') ? 'current-page' : '' }}">Issue
+                                    Category Field</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-subcategory.index')}}"
-                                    class="{{ Request::is('setups/issue-subcategory') ? 'current-page' : '' }}">Issue Subcategory</a>
+                                   class="{{ Request::is('setups/issue-subcategory') ? 'current-page' : '' }}">Issue
+                                    Subcategory</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-source.index')}}"
-                                    class="{{ Request::is('setups/issue-source') ? 'current-page' : '' }}">Issue Source</a>
+                                   class="{{ Request::is('setups/issue-source') ? 'current-page' : '' }}">Issue
+                                    Source</a>
                             </li>
                             <li>
                                 <a href="{{route('issue-status.index')}}"
-                                    class="{{ Request::is('setups/issue-status') ? 'current-page' : '' }}">Issue Status</a>
-                            </li> 
+                                   class="{{ Request::is('setups/issue-status') ? 'current-page' : '' }}">Issue
+                                    Status</a>
+                            </li>
                             <li>
                                 <a href="{{route('support-groups.index')}}"
-                                    class="{{ Request::is('setups/support-group') ? 'current-page' : '' }}">Support Group</a>
+                                   class="{{ Request::is('setups/support-group') ? 'current-page' : '' }}">Support
+                                    Group</a>
                             </li>
                         </ul>
 

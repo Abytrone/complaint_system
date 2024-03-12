@@ -1,14 +1,18 @@
-
 function initAutocomplete() {
     var myLatLng = {lat: 9.4075, lng: -0.8428};
-
-    const map = new google.maps.Map(document.getElementById("google-map"), {
+    const mapDiv = document.getElementById("google-map")
+    if (mapDiv == null)
+        return
+    const map = new google.maps.Map(mapDiv, {
         center: myLatLng,
         zoom: 13,
         mapTypeId: "roadmap",
     });
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
+    if (input == null) {
+        return
+    }
     const searchBox = new google.maps.places.SearchBox(input);
 
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);

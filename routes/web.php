@@ -2,29 +2,15 @@
 
 use App\Http\Controllers\CommunicationModeSetupController;
 use App\Http\Controllers\ComplaintMediaController;
-use App\Http\Controllers\ProcessComplaintController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\IssueCategoryController;
 use App\Http\Controllers\IssueCategoryFieldController;
 use App\Http\Controllers\IssueFieldController;
 use App\Http\Controllers\IssueSubcategoryController;
-use App\Http\Controllers\UserComplaintController;
 use App\Http\Controllers\IssueSourceController;
 use App\Http\Controllers\IssueStatusController;
 use App\Http\Controllers\SupportGroupController;
-use App\Http\Livewire\IssueCategory;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
 Route::get('/login', function () {
@@ -39,31 +25,28 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-//routes for complaints
-Route::resource('user_complaints', UserComplaintController::class)->only(
-    ['index', 'create', 'edit', 'update', 'store', 'show', 'destroy']
-);
 
-Route::get('awaiting-complaints', [ComplaintController::class, 'awaiting'])->name('awaiting_complaints');
+Route::get('complaints/submitted', [ComplaintController::class, 'submitted'])->name('complaints.submitted');
+Route::get('complaints/received', [ComplaintController::class, 'received'])->name('complaints.received');
+Route::get('complaints/processed', [ComplaintController::class, 'processed'])->name('complaints.processed');
+Route::get('complaints/resolved', [ComplaintController::class, 'resolved'])->name('complaints.resolved');
+Route::get('complaints/closed', [ComplaintController::class, 'closed'])->name('complaints.closed');
+Route::get('complaints/reopened', [ComplaintController::class, 'reopened'])->name('complaints.reopened');
+Route::resource('complaints', ComplaintController::class)->only(['index','create', 'edit', 'destroy']);
 
-Route::get('complaints/{complaint}/process', [ProcessComplaintController::class, 'create'])->name('complaints.process.create');
-Route::post('complaints/{complaint}/process', [ProcessComplaintController::class, 'store'])->name('complaints.process.store');
-Route::resource('complaints', ComplaintController::class);
 Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 
-Route::prefix('setups')->group(function(){
-Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
-Route::resource('issue-category', IssueCategoryController::class)->only('index');
-Route::resource('issue-field', IssueFieldController::class)->only('index');
-Route::resource('issue-category-field', IssueCategoryFieldController::class)->only('index');
-Route::resource('issue-subcategory', IssueSubcategoryController::class)->only('index');
-Route::resource('issue-source', IssueSourceController::class)->only('index');
-Route::resource('issue-status', IssueStatusController::class)->only('index');
-Route::resource('support-groups', SupportGroupController::class)->only('index');
+Route::prefix('setups')->group(function () {
+    Route::resource('communication-mode', CommunicationModeSetupController::class)->only('index');
+    Route::resource('issue-category', IssueCategoryController::class)->only('index');
+    Route::resource('issue-field', IssueFieldController::class)->only('index');
+    Route::resource('issue-category-field', IssueCategoryFieldController::class)->only('index');
+    Route::resource('issue-subcategory', IssueSubcategoryController::class)->only('index');
+    Route::resource('issue-source', IssueSourceController::class)->only('index');
+    Route::resource('issue-status', IssueStatusController::class)->only('index');
+    Route::resource('support-groups', SupportGroupController::class)->only('index');
 });
 
-
-//Route::resource('complaint-process', ComplaintController::class)->only('create');
 Route::get('get-districts', [ComplaintController::class, "loadDistricts"]);
 Route::get('get-constituencies', [ComplaintController::class, "loadConstituencies"]);
 Route::get('get-electoral-areas', [ComplaintController::class, "loadElectoralAreas"]);
