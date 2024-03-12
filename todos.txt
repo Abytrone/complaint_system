@@ -1,4 +1,8 @@
-[ ] after media upload, clear form
-[ ] fix complaint for alignment
-[ ] received date should not be in the future
-[ ] use modal for complaint media
+[ ] dates should not be in the future
+
+- complaint media
+    [x] fix complaint for alignment
+    [ ] after media upload, clear form
+    [ ] use modal for complaint media
+    [ ] update complaint media
+    [ ] delete complaint media

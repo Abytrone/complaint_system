@@ -4,7 +4,6 @@
             <div class="field-wrapper">
                 <select wire:model="media_type_id"
                         class="form-select @error('media_type_id') is-invalid @enderror" id="formSelect">
-                    <option value="">Select Media Type</option>
                     @foreach ($mediaTypes as $type)
                         <option value="{{ $type->media_type_id }}">{{ $type->media_type }}</option>
                     @endforeach
@@ -27,7 +26,7 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="field-wrapper">
-                <input class="form-control @error('media_file') is-invalid @enderror" type="file"
+                <input class="form-control @error('media_file') is-invalid @enderror" type="file"  id="upload-{{$count}}"
                        wire:model="media_file">
                 <div class="field-placeholder">Media File <span class="text-danger">*</span></div>
                 @error('media_file')
