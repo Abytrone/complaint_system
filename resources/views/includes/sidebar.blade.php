@@ -28,7 +28,7 @@
                 <i class="icon-documents"></i>
                 <span class="nav-link-text">Reports</span>
             </a>
-            <a class="nav-link {{ request()->routeIs('setups.*') ? 'active' : '' }}" id="system-settings-tab"
+            <a class="nav-link {{ request()->is('setups/*') ? 'active' : '' }}" id="system-settings-tab"
                data-bs-toggle="tab" href="#tab-system-settings" role="tab" aria-controls="tab-system-settings"
                aria-selected="false">
                 <i class="icon-settings"></i>
@@ -159,7 +159,7 @@
             </div>
 
             <!-- Authentication tab -->
-            <div class="tab-pane fade {{ request()->routeIs('setups.*') ? 'show active' : '' }}"
+            <div class="tab-pane fade {{ request()->is('setups/*') ? 'show active' : '' }}"
                  id="tab-system-settings"
                  role="tabpanel" aria-labelledby="system-settings-tab">
 
@@ -176,8 +176,8 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="{{route('communication-mode.index')}}"
-                                   class="{{ Request::is('setups/communication-mode') ? 'current-page' : '' }}">Communication
-                                    Mode</a>
+                                   class="{{ request()->routeIs('communication-mode.index') ? 'current-page' : '' }}">
+                                    Communication Mode</a>
                             </li>
 
                             <li>

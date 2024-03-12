@@ -15,8 +15,6 @@
                 @enderror
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-12 col-md-6">
             <div class="field-wrapper">
                 <input wire:model="title"
@@ -27,18 +25,14 @@
                 @enderror
             </div>
         </div>
-        <div>
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="field-wrapper">
-                        <input class="form-control @error('media_file') is-invalid @enderror" type="file"
-                               wire:model="media_file">
-                        <div class="field-placeholder">Media File <span class="text-danger">*</span></div>
-                        @error('media_file')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
+        <div class="col-12 col-md-6">
+            <div class="field-wrapper">
+                <input class="form-control @error('media_file') is-invalid @enderror" type="file"
+                       wire:model="media_file">
+                <div class="field-placeholder">Media File <span class="text-danger">*</span></div>
+                @error('media_file')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
         </div>
     </div>
@@ -47,5 +41,4 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-
 </form>
