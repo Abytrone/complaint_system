@@ -27,7 +27,7 @@ jobs:
       - run: npm install --legacy-peer-deps
       - run: npm run build
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        uses: sebastianpopp/git-ftp-action@releases/v3
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
