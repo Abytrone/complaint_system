@@ -4,34 +4,21 @@ on:
       - main
 name: 🚀 Deploy app on push to main
 jobs:
-  deploy:
-    name: Deploy
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Cache Composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: /tmp/composer-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
-      - uses: php-actions/composer@v5
-        with:
-          dev: no
-          args: --ignore-platform-reqs
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18.13.0
       - run: npm install --legacy-peer-deps
       - run: npm run build
-      - name: git status
-        run: git status
-      - name: reset changes
-        run: git reset --hard
-      - name: git-ftp push
-        uses: sebastianpopp/git-ftp-action@releases/v3
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          url: ${{ secrets.FTP_SERVER}}}
-          user: ${{ secrets.FTP_USERNAME }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
