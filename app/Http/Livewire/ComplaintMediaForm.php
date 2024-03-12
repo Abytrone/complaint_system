@@ -18,9 +18,11 @@ class ComplaintMediaForm extends Component
     public Complaint $record;
     public $mediaTypes;
     public $media_type_id = MediaType::IS_IMAGE;
-    public $title;
+    public $title = null;
 
-    public $media_file;
+    public $count = 0;
+
+    public $media_file = null;
 
     protected function rules(): array
     {
@@ -56,7 +58,8 @@ class ComplaintMediaForm extends Component
             'created_by' => auth()->id ?? 1
         ]);
 
-        $this->reset(['title', 'media_type_id', 'media_file']);
+        $this->reset(['title', 'media_type_id']);
+        $this->count++; // to ensure the file input is refreshed with no file selected
 
         $this->dispatchBrowserEvent('swal:success', [
             'message' => 'Record created successfully!'

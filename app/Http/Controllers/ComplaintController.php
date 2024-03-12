@@ -101,13 +101,10 @@ class ComplaintController extends Controller
     }
 
 
-
     public function create()
     {
         return view('complaints.create');
     }
-
-
 
 
     public function edit(Complaint $complaint)
@@ -121,42 +118,6 @@ class ComplaintController extends Controller
         $com->delete();
 
         return to_route('complaints.index')->with('message', 'Record Deleted Successfully');
-    }
-
-    public function loadDistricts(Request $request)
-    {
-        $districts = DB::table('district')
-            ->where('region_id', '=', $request->region)
-            ->orderBy('District')
-            ->get();
-        return response()->json(['options' => $districts]);
-    }
-
-    public function loadConstituencies(Request $request)
-    {
-        $constituencies = DB::table('vw_ec_data_constituency')
-            ->where('region_id', '=', $request->region)
-            ->orderBy('constituency_name')
-            ->get();
-        return response()->json(['options' => $constituencies]);
-    }
-
-    public function loadElectoralAreas(Request $request)
-    {
-        $electoralAreas = DB::table('vw_ec_data_electoral_area')
-            ->where('constituency_id', '=', $request->constituency)
-            ->orderBy('ea_name')
-            ->get();
-        return response()->json(['options' => $electoralAreas]);
-    }
-
-    public function loadPollingStation(Request $request)
-    {
-        $pollingStations = DB::table('ec_data')
-            ->where('ea_id', '=', $request->electoralArea)
-            ->orderBy('ps_name')
-            ->get();
-        return response()->json(['options' => $pollingStations]);
     }
 
 

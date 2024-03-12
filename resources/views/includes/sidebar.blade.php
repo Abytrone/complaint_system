@@ -10,22 +10,25 @@
                 <img src="{{ asset('img/tama-foundation-logo.jpg') }}" alt="Tama-Foundation">
             </a>
             {{--            request()->routeIs('dashboard') --}}
-            <a class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}" id="home-tab" data-bs-toggle="tab"
+            <a class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}" id="home-tab"
+               data-bs-toggle="tab"
                href="#tab-home" role="tab" aria-controls="tab-home" aria-selected="true">
                 <i class="icon-home2"></i>
                 <span class="nav-link-text">Dashboard</span>
             </a>
-            <a class="nav-link {{ Request::is('complaints*') ? 'active' : '' }}" id="main-menu-tab" data-bs-toggle="tab"
+            <a class="nav-link {{ request()->routeIs('complaints.*') ? 'active' : '' }}" id="main-menu-tab"
+               data-bs-toggle="tab"
                href="#tab-main-menu" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-layers2"></i>
                 <span class="nav-link-text">Complaints</span>
             </a>
-            <a class="nav-link {{ Request::is('reports*') ? 'active' : '' }}" id="reports-tab" data-bs-toggle="tab"
+            <a class="nav-link {{request()->routeIs('reports.*') ? 'active' : '' }}" id="reports-tab"
+               data-bs-toggle="tab"
                href="#tab-reports" role="tab" aria-controls="tab-product" aria-selected="false">
                 <i class="icon-documents"></i>
                 <span class="nav-link-text">Reports</span>
             </a>
-            <a class="nav-link {{ Request::is('setups*') ? 'active' : '' }}" id="system-settings-tab"
+            <a class="nav-link {{ request()->is('setups/*') ? 'active' : '' }}" id="system-settings-tab"
                data-bs-toggle="tab" href="#tab-system-settings" role="tab" aria-controls="tab-system-settings"
                aria-selected="false">
                 <i class="icon-settings"></i>
@@ -85,7 +88,7 @@
                             <li>
                                 <a href="{{ route('complaints.index') }}"
                                    class="{{ request()->routeIs('complaints.index') ? 'current-page' : '' }}">
-                                    New</a>
+                                    New Complaints</a>
                             </li>
 
                             <li>
@@ -156,7 +159,8 @@
             </div>
 
             <!-- Authentication tab -->
-            <div class="tab-pane fade {{ request()->routeIs('setups.*') ? 'show active' : '' }}" id="tab-system-settings"
+            <div class="tab-pane fade {{ request()->is('setups/*') ? 'show active' : '' }}"
+                 id="tab-system-settings"
                  role="tabpanel" aria-labelledby="system-settings-tab">
 
                 <!-- Tab content header start -->
@@ -172,8 +176,8 @@
                             <li class="list-heading">Setup</li>
                             <li>
                                 <a href="{{route('communication-mode.index')}}"
-                                   class="{{ Request::is('setups/communication-mode') ? 'current-page' : '' }}">Communication
-                                    Mode</a>
+                                   class="{{ request()->routeIs('communication-mode.index') ? 'current-page' : '' }}">
+                                    Communication Mode</a>
                             </li>
 
                             <li>
