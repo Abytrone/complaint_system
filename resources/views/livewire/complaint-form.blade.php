@@ -3,7 +3,7 @@
         <div class="row mb-3">
             <div class="col-md-6 col-12">
                 <div class="field-wrapper">
-                    <select wire:model="category_id"
+                    <select @disabled($isShow) wire:model="category_id"
                             class="form-select @error('category_id') is-invalid @enderror">
                         <option>Select Category</option>
                         @foreach ($categories as $category)
@@ -20,7 +20,7 @@
             <div class="col-md-6 col-sm-12">
                 <!-- Field wrapper start -->
                 <div class="field-wrapper">
-                    <select wire:model="subcategory_id"
+                    <select @disabled($isShow) wire:model="subcategory_id"
                             class="form-select @error('subcategory_id') is-invalid @enderror">
                         <option value="">Select Sub Category</option>
                         @foreach ($subcategories as $subcategory)
@@ -40,23 +40,7 @@
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="field-wrapper">
-                    <select wire:model="priority"
-                            class="form-select @error('priority') is-invalid @enderror">
-                        <option>Select Gender</option>
-                        @foreach ($priorities as $priority)
-                            <option value="{{$priority}}">{{ $priority }}</option>
-                        @endforeach
-                    </select>
-                    <div class="field-placeholder">Priority</div>
-                    @error('priority')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <div class="field-wrapper">
-                    <input class="form-control @error('name') is-invalid @enderror" type="text"
+                    <input @disabled($isShow) class="form-control @error('name') is-invalid @enderror" type="text"
                            name="name" wire:model="name">
                     <div class="field-placeholder">Reporter Name <span class="text-danger">*</span></div>
                     @error('name')
@@ -68,7 +52,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <!-- Field wrapper start -->
                 <div class="field-wrapper">
-                    <input class="form-control @error('phone') is-invalid @enderror" type="text"
+                    <input @disabled($isShow) class="form-control @error('phone') is-invalid @enderror" type="text"
                            name="phone" wire:model="phone">
                     <div class="field-placeholder">Phone Number <span class="text-danger">*</span></div>
                     @error('phone')
@@ -81,7 +65,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <!-- Field wrapper start -->
                 <div class="field-wrapper">
-                    <input class="form-control @error('email') is-invalid @enderror" type="email"
+                    <input @disabled($isShow) class="form-control @error('email') is-invalid @enderror" type="email"
                            name="email" wire:model="email">
                     <div class="field-placeholder">Email</div>
                     @error('email')
@@ -93,7 +77,7 @@
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="field-wrapper">
-                    <select wire:model="gender"
+                    <select @disabled($isShow) wire:model="gender"
                             class="form-select @error('gender') is-invalid @enderror">
                         <option>Select Gender</option>
                         @foreach (['Male', 'Female'] as $gender)
@@ -109,7 +93,7 @@
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="field-wrapper">
-                    <input class="form-control @error('received_date') is-invalid @enderror"
+                    <input @disabled($isShow) class="form-control @error('received_date') is-invalid @enderror"
                            type="date" wire:model="received_date">
                     <div class="field-placeholder">Received Date</div>
                     @error('received_date')
@@ -120,7 +104,7 @@
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="field-wrapper">
-                    <select wire:model="mode_id"
+                    <select @disabled($isShow) wire:model="mode_id"
                             class="form-select @error('mode_id') is-invalid @enderror">
                         <option value="">Select Mode</option>
                         @foreach ($modes as $mode)
@@ -137,7 +121,7 @@
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="field-wrapper">
-                    <select wire:model="source_id"
+                    <select @disabled($isShow) wire:model="source_id"
                             class="form-select @error('source_id') is-invalid @enderror">
                         <option value="">Select Source</option>
                         @foreach ($sources as $source)
@@ -156,7 +140,7 @@
             @if($this->showRegion())
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="field-wrapper">
-                        <select wire:model="region_id"
+                        <select @disabled($isShow) wire:model="region_id"
                                 class="form-select @error('region_id') is-invalid @enderror">
                             <option>Select</option>
                             @foreach ($regions as $region)
@@ -176,7 +160,7 @@
             @if($this->showDistrict())
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="field-wrapper">
-                        <select wire:model="district_id"
+                        <select @disabled($isShow) wire:model="district_id"
                                 class="form-select @error('district_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($districts as $district)
@@ -194,7 +178,7 @@
             @if($this->showConstituency())
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="field-wrapper">
-                        <select wire:model="constituency_id"
+                        <select @disabled($isShow) wire:model="constituency_id"
                                 class="form-select @error('constituency_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($constituencies as $constituency)
@@ -214,7 +198,7 @@
             @if($this->showElectoralArea())
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="field-wrapper">
-                        <select wire:model="electoral_area_id"
+                        <select @disabled($isShow) wire:model="electoral_area_id"
                                 class="form-select @error('electoral_area_id') is-invalid @enderror">
                             <option value="">Select Constituency first</option>
                             @foreach($electoral_areas as $area)
@@ -233,7 +217,7 @@
             @if($this->showPollingStation())
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="field-wrapper">
-                        <select wire:model="polling_station_id"
+                        <select @disabled($isShow) wire:model="polling_station_id"
                                 class="form-select @error('polling_station_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($polling_stations as $station)
@@ -252,7 +236,7 @@
             @if($this->showCommunity())
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="field-wrapper">
-                        <input type="text"
+                        <input @disabled($isShow) type="text"
                                wire:model="community"
                                class="form-control @error('community') is-invalid @enderror"/>
                         <div class="field-placeholder">Community <span class="text-danger">*</span></div>
@@ -267,7 +251,7 @@
             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
                 <!-- Field wrapper start -->
                 <div class="field-wrapper">
-                <textarea wire:model="raw_report" rows="8"
+                <textarea @disabled($isShow) wire:model="raw_report" rows="8"
                           class="form-control @error('raw_report') is-invalid @enderror"></textarea>
                     <div class="field-placeholder">Report Details <span class="text-danger">*</span></div>
                     @error('raw_report')
@@ -279,7 +263,7 @@
 
             <div class="col-md-3">
                 <div class="field-wrapper">
-                    <input id="txt-latitude"
+                    <input @disabled($isShow) id="txt-latitude"
                            wire:model="gps_latitude"
                            class="form-control @error('gps_latitude') is-invalid @enderror" type="text">
                     <div class="field-placeholder">Latitude <span class="text-danger">*</span></div>
@@ -289,9 +273,8 @@
                 </div>
             </div>
             <div class="col-md-3">
-
                 <div class="field-wrapper">
-                    <input id="txt-longitude"
+                    <input @disabled($isShow) id="txt-longitude"
                            wire:model="gps_longitude"
                            class="form-control @error('gps_longitude') is-invalid @enderror" type="text">
                     <div class="field-placeholder">Longitude<span class="text-danger">*</span></div>
@@ -300,9 +283,19 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
-            </div>
+            @if($isShow)
+                <div class="col-2 tw-flex tw-items-center tw-justify-center">
+                    <a href="https://maps.google.com?lat={{$complaint->gps_latitude}}&lng={{$complaint->gps_longitude}}"
+                       class="btn btn-primary btn-sm" type="submit">Show on map</a>
+
+                </div>
+            @endif
+            @if(!$isShow)
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                </div>
+            @endif
+
         </div>
     </form>
 </div>

@@ -2,15 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ComplaintStoreRequest;
 use App\Models\Complaint;
-use App\Models\District;
-use App\Models\Region;
 use App\Models\Status;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class ComplaintController extends Controller
 {
@@ -106,6 +99,11 @@ class ComplaintController extends Controller
         return view('complaints.create');
     }
 
+
+    public function show(Complaint $complaint)
+    {
+        return view('complaints.show', compact('complaint'));
+    }
 
     public function edit(Complaint $complaint)
     {

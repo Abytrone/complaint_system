@@ -80,15 +80,10 @@
                     <div class="sidebar-menu">
                         <ul>
                             <li class="list-heading">Complaints</li>
-
-                            <li>
-                                <a href="{{ route('complaints.create') }}"
-                                   class="{{ request()->routeIs('complaints.create') ? 'current-page' : '' }}">Capture</a>
-                            </li>
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                   class="{{ request()->routeIs('complaints.index') ? 'current-page' : '' }}">
-                                    New Complaints</a>
+                                   class="{{ request()->routeIs('complaints.index')||request()->routeIs('complaints.create') ? 'current-page' : '' }}">
+                                    Capture</a>
                             </li>
 
                             <li>

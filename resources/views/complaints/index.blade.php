@@ -49,11 +49,13 @@
                                         data-bs-original-title="Toggle Status">
                                         <i class="icon-sync text-primary"></i>
                                     </a>
+
+                                    <a href="{{route('complaints.show', $item)}}" data-bs-toggle="tooltip"
+                                       data-bs-placement="top" title=""
+                                       data-bs-original-title="Show">
+                                        <i class="icon-eye text-primary"></i>
+                                    </a>
                                     @if($hasActions ??false)
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                                           data-bs-original-title="Show">
-                                            <i class="icon-eye text-primary"></i>
-                                        </a>
                                         <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
                                            data-bs-placement="top" title="" data-bs-original-title="Edit">
                                             <i class="icon-edit1 text-warning"></i>

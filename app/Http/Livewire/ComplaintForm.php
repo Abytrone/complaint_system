@@ -21,6 +21,7 @@ use Livewire\Component;
 class ComplaintForm extends Component
 {
 
+    public bool $isShow = false;
     public ?Complaint $complaint = null;
     public $name = null;
     public $phone = null;

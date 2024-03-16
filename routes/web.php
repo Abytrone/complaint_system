@@ -32,7 +32,7 @@ Route::get('complaints/processed', [ComplaintController::class, 'processed'])->n
 Route::get('complaints/resolved', [ComplaintController::class, 'resolved'])->name('complaints.resolved');
 Route::get('complaints/closed', [ComplaintController::class, 'closed'])->name('complaints.closed');
 Route::get('complaints/reopened', [ComplaintController::class, 'reopened'])->name('complaints.reopened');
-Route::resource('complaints', ComplaintController::class)->only(['index','create', 'edit', 'destroy']);
+Route::resource('complaints', ComplaintController::class)->except(['store', 'update']);
 
 Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 

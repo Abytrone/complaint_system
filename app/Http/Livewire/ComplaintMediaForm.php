@@ -20,6 +20,7 @@ class ComplaintMediaForm extends Component
     public $media_type_id = MediaType::IS_IMAGE;
     public $title = null;
 
+//    don't bother what this does
     public $count = 0;
 
     public $media_file = null;
