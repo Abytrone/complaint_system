@@ -7,8 +7,11 @@ use App\Models\Status;
 
 class ComplaintController extends Controller
 {
+
+
     public function index()
     {
+        session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_NEW)
@@ -22,7 +25,7 @@ class ComplaintController extends Controller
     }
 
     public function submitted()
-    {
+    {session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_SUBMITTED)
@@ -34,7 +37,7 @@ class ComplaintController extends Controller
     }
 
     public function received()
-    {
+    {session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_RECEIVED)
@@ -46,7 +49,7 @@ class ComplaintController extends Controller
     }
 
     public function processed()
-    {
+    {session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_PROCESSED)
@@ -58,7 +61,7 @@ class ComplaintController extends Controller
     }
 
     public function resolved()
-    {
+    {session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_RESOLVED)
@@ -70,7 +73,7 @@ class ComplaintController extends Controller
     }
 
     public function closed()
-    {
+    {session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_CLOSED)
@@ -82,7 +85,7 @@ class ComplaintController extends Controller
     }
 
     public function reopened()
-    {
+    {session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_REOPENED)

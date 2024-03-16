@@ -1,4 +1,4 @@
-<div class="md:tw-min-w-[500px] ">
+<div>
     <div class="modal-header">
         <h5 class="modal-title">Toggle Complaint Status</h5>
     </div>

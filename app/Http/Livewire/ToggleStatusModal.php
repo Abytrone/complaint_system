@@ -21,6 +21,8 @@ class ToggleStatusModal extends Modal
     public $resolved_date = null;
     public $resolution = null;
     public $priority = 'Low';
+    public $toUrl = null;
+
 
     protected $messages = [
         'status_id.required' => 'The status field is required',
@@ -46,7 +48,9 @@ class ToggleStatusModal extends Modal
             ]);
         }
         $this->complaint->update($valid);
-        $this->dispatchBrowserEvent('reloadPage');
+        session()->flash('message', 'Record updated successfully.');
+        $this->redirect(session('complaint-url'));
+
     }
 
     public function mount(): void
@@ -55,7 +59,7 @@ class ToggleStatusModal extends Modal
 
 //        $this->status_id = $status_id;
         $this->statuses = Status::query()
-            ->whereIn('status_id', [ $status_id + 1])
+            ->whereIn('status_id', [$status_id + 1])
             ->get();
     }
 

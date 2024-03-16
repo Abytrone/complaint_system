@@ -42,14 +42,6 @@
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">
-                                    <a
-                                        onclick="Livewire.emit('openModal', 'toggle-status-modal', {'complaint': {{$item}}})"
-                                        href="#" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title=""
-                                        data-bs-original-title="Toggle Status">
-                                        <i class="icon-sync text-primary"></i>
-                                    </a>
-
                                     <a href="{{route('complaints.show', $item)}}" data-bs-toggle="tooltip"
                                        data-bs-placement="top" title=""
                                        data-bs-original-title="Show">
