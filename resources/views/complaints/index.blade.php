@@ -1,5 +1,5 @@
 {{-- <x-app-layout> --}}
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('app-content')
     <div class="card">

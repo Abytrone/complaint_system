@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunicationModeSetupController;
 use App\Http\Controllers\ComplaintMediaController;
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\IssueCategoryController;
 use App\Http\Controllers\IssueCategoryFieldController;
@@ -12,12 +14,24 @@ use App\Http\Controllers\IssueSourceController;
 use App\Http\Controllers\IssueStatusController;
 use App\Http\Controllers\SupportGroupController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-Route::get('/login', function () {
-    return view('auth.login');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-//Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/', function () {
         return redirect()->route('dashboard');
@@ -49,4 +63,5 @@ Route::get('/login', function () {
         Route::resource('support-groups', SupportGroupController::class)->only('index');
     });
 
-//});
+});
+require __DIR__ . '/auth.php';

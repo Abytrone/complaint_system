@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 @section('app-content')
     <div class="row gutters">
         <div class="col-xl-12">

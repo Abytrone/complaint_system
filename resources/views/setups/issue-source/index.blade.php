@@ -1,7 +1,7 @@
 {{-- <x-app-layout> --}}
-    @extends('layout.app')
+@extends('layouts.app')
 
-    @section('app-content')
-       @livewire('issue-source')
-    @endsection
+@section('app-content')
+    @livewire('issue-source')
+@endsection
 {{-- </x-app-layout> --}}
