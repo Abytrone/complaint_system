@@ -36,7 +36,7 @@ Route::get('complaints/processed', [ComplaintController::class, 'processed'])->n
 Route::get('complaints/resolved', [ComplaintController::class, 'resolved'])->name('complaints.resolved');
 Route::get('complaints/closed', [ComplaintController::class, 'closed'])->name('complaints.closed');
 Route::get('complaints/reopened', [ComplaintController::class, 'reopened'])->name('complaints.reopened');
-Route::resource('complaints', ComplaintController::class)->only(['index','create', 'edit', 'destroy']);
+Route::resource('complaints', ComplaintController::class)->only(['index', 'create', 'edit', 'destroy']);
 
 Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 
@@ -51,7 +51,7 @@ Route::prefix('setups')->group(function () {
     Route::resource('support-groups', SupportGroupController::class)->only('index');
 });
 
-require __DIR__ . '/auth.php';
+//require __DIR__ . '/auth.php';
 
 Route::view('/hubtel', 'hubtel');
 Route::get('/hubtel-callback', function (Request $request) {
@@ -59,14 +59,14 @@ Route::get('/hubtel-callback', function (Request $request) {
 });
 
 Route::post('hubtel', function () {
-$code = Str::random(10);
+    $code = Str::random(10);
     $response = Http::withHeaders([
         "Content-Type" => "application/json",
         "Authorization" => "Basic NjRaN1BSOmE4YzhjMDc0Nzc4ZjRmNzliZGJjMDJhM2YzZWRjMjA2"
     ])->post("https://payproxyapi.hubtel.com/items/initiate", [
         "totalAmount" => 0.1,
         "description" => "Hubtel Online Checkout Test",
-        "callbackUrl" => "http://localhost:8000/hubtel-callback",
+        "callbackUrl" => "https://conflict.jsolutionsgh.com//hubtel-callback",
         "returnUrl" => "http://hubtel.com/online",
         "merchantAccountNumber" => "2020338",
         "cancellationUrl" => "http://google.com",
