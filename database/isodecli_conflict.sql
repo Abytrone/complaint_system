@@ -1,63 +1,57 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: Feb 20, 2024 at 03:06 PM
--- Server version: 10.5.23-MariaDB
--- PHP Version: 8.1.26
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `isodecli_conflict`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `communication_mode`
---
-
-DROP TABLE IF EXISTS `communication_mode`;
 CREATE TABLE `communication_mode` (
   `mode_id` int(11) NOT NULL,
   `mode` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `communication_mode`
---
+
+
+
 
 INSERT INTO `communication_mode` (`mode_id`, `mode`) VALUES
 (1, 'Email'),
-(2, ' SMS'),
+(2, 'SMS'),
 (3, 'Telephone Call');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `district`
---
 
-DROP TABLE IF EXISTS `district`;
+
+
+
+
+CREATE TABLE `delete_issue_process` (
+  `complaint_id` int(11) NOT NULL,
+  `processed_by` int(11) DEFAULT NULL,
+  `processed_at` datetime(3) DEFAULT NULL,
+  `processed_message` longtext DEFAULT NULL,
+  `issue_type` varchar(10) NOT NULL DEFAULT 'Complaint',
+  `priority` varchar(35) DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `comments` longtext DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_date` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  `updated_by` int(11) DEFAULT NULL,
+  `upated_date` datetime(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+
+
+
 CREATE TABLE `district` (
   `district_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL,
   `district` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `district`
---
+
+
+
 
 INSERT INTO `district` (`district_id`, `region_id`, `district`) VALUES
 (0, 0, ''),
@@ -313,13 +307,12 @@ INSERT INTO `district` (`district_id`, `region_id`, `district`) VALUES
 (250, 16, 'Sefwi Wiawso Municipal'),
 (251, 16, 'Suaman District');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `ec_data`
---
 
-DROP TABLE IF EXISTS `ec_data`;
+
+
+
+
 CREATE TABLE `ec_data` (
   `id` int(11) NOT NULL,
   `region_id` int(11) DEFAULT NULL,
@@ -334,9 +327,9 @@ CREATE TABLE `ec_data` (
   `register` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `ec_data`
---
+
+
+
 
 INSERT INTO `ec_data` (`id`, `region_id`, `region_name`, `constituency_id`, `constituency_name`, `electoral_area_id`, `electoral_area_name`, `polling_station_id`, `polling_station_code`, `polling_station_name`, `register`) VALUES
 (0, 0, '', 0, '', 0, '', 0, '', '', 0),
@@ -34058,57 +34051,12 @@ INSERT INTO `ec_data` (`id`, `region_id`, `region_name`, `constituency_id`, `con
 (33641, 16, 'WESTERN NORTH', 275, 'BIA EAST', 5855, 'ASEMNYINAKROM', 33426, 'G091107', 'DC PRIMARY SCHOOL, SIKAFREMOGYA', 473),
 (33642, 16, 'WESTERN NORTH', 275, 'BIA EAST', 5855, 'ASEMNYINAKROM', 33427, 'G091108', 'PBC COCOA SHED, BAREMANSU', 0);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue`
---
 
-DROP TABLE IF EXISTS `issue`;
-CREATE TABLE `issue` (
-  `id` int(11) NOT NULL,
-  `code` varchar(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `sex` varchar(6) NOT NULL,
-  `mode` varchar(20) DEFAULT NULL,
-  `source` varchar(35) NOT NULL,
-  `raw` longtext NOT NULL,
-  `received_date` date NOT NULL,
-  `states` varchar(20) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue`
---
 
-INSERT INTO `issue` (`id`, `code`, `name`, `email`, `phone`, `sex`, `mode`, `source`, `raw`, `received_date`, `states`, `created_by`, `created_date`) VALUES
-(1, 'NR/0002', 'Mohammed Amidu Alhassan', 'mohammed@songtaba.org', '0246626711', 'Male', 'SMS', 'Website', 'Riots', '2020-12-02', 'Received', NULL, '2020-12-02 10:55:59.793'),
-(2, 'NR/0003', '', '', '0243730527', 'Male', 'SMS', 'Website', 'Voilence', '2020-12-02', 'Received', NULL, '2020-12-02 11:00:22.837'),
-(3, 'UE/0001', 'Anyinah vida', 'anyinahkawiah@gmail.com', '0241153071', 'Female', 'Telephone Call', 'Website', 'Election', '2020-12-02', 'Received', NULL, '2020-12-02 11:21:33.033'),
-(4, 'UE/0002', 'Harisu Laminu', 'haris4life@gmail.com', '0249884034', 'Male', 'Telephone Call', 'Website', 'Polling officials wrongly tearing ballot paper creating tension.', '2020-12-07', 'Received', NULL, '2020-12-07 08:42:51.413'),
-(5, 'NE/0001', '', '', '0241741714', 'Male', 'Telephone Call', 'Field Visit by Project Staff', 'The EC offials in Bunkpurugu constituency have been attacked, Name of the polling station is called kauk.', '2020-12-07', 'New', 2, '2020-12-07 09:17:24.023'),
-(6, 'NE/0002', '0241741714', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 'SMS', 'Website', 'There was an atack on the EC offials. The reason was that both parties wanted to vote first for d reason best known to them.', '2020-12-07', 'Received', NULL, '2020-12-07 09:20:03.037'),
-(7, 'NE/0003', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 'SMS', 'Website', 'Bimbagu electorial  area in the Bunkpurugu constituency have refused to vote. Their reasons are that they don\'t have good water for drinking , no electricity, school  buildings for their children etc.\r\n  They mentioned they organize a press conference 4 moths ago but no political party showed any concern.', '2020-12-07', 'Received', NULL, '2020-12-07 09:51:16.313'),
-(8, 'GR/0001', '', '', '0244782957', 'Female', 'SMS', 'Field Visit by Project Staff', 'Two voters who have their voters ID were not allow to vote at the station with Code number C060506 because their names have not been captured in  the register. The electoral officers said they can\'t do anything about it after consulting their superiors', '2020-12-07', 'New', 2, '2020-12-07 10:10:59.653'),
-(9, 'UE/0003', 'Omar Jafaru', 'ojafaru@yahoo.com', '0208831015', 'Male', 'SMS', 'Website', 'Voting going on smoothly', '2020-12-07', 'Received', NULL, '2020-12-07 10:29:30.263'),
-(10, 'NE/0004', 'Mohammed Abubakari', '', '0247595776', 'Male', 'Telephone Call', 'Website', 'Voting going on smoothly here in chereponi.', '2020-12-07', 'Submitted', NULL, '2020-12-07 10:38:31.810'),
-(11, 'NR/0004', 'Baba Kamal-Deen', 'babakamaldeen822@gmail.com', '0243077923', 'Male', 'SMS', 'Website', 'Voting is going on peacefully', '2020-12-07', 'Submitted', NULL, '2020-12-07 11:34:20.570'),
-(12, 'NE/0005', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 'SMS', 'Website', 'One of the noted place as hot spot in Bunkpurugu is very peaceful as at now the polling station is is peace.', '2020-12-07', 'Received', NULL, '2020-12-07 11:55:15.670'),
-(13, 'NE/0006', '', '', '0241251424', 'Male', 'SMS', 'Website', 'Konkomba resist chokosi registered voters to vote', '2020-12-07', 'Received', NULL, '2020-12-07 12:46:45.007'),
-(14, 'NE/0007', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 'SMS', 'Website', 'There is a complecated issue, an old man was brought by his children to vote but his name was ticked also d verification machine said he has voted,but there was no inderrable ink on any of his fingers.\r\n      The children have threaten to cause any confusion if their father does not vote', '2020-12-07', 'Received', NULL, '2020-12-07 13:13:11.383'),
-(15, 'UE/0004', 'Clement Mweyang Aapengnuo', 'caapengnuo@gmail.com', '233244513805', 'Male', 'SMS', 'Website', 'Fulani Herdsmen and Farmers clash over citizenship and voting rights.', '2023-04-14', 'Submitted', NULL, '2023-04-14 12:02:52.837');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_category`
---
-
-DROP TABLE IF EXISTS `issue_category`;
 CREATE TABLE `issue_category` (
   `category_id` int(11) NOT NULL,
   `category` varchar(40) DEFAULT NULL,
@@ -34116,24 +34064,23 @@ CREATE TABLE `issue_category` (
   `description` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_category`
---
+
+
+
 
 INSERT INTO `issue_category` (`category_id`, `category`, `active`, `description`) VALUES
 (0, 'N/A', 0, ''),
-(1, 'Environment', 0, ''),
+(1, 'Environment', 1, ''),
 (2, 'Election Voilence', 1, ''),
 (3, 'Gender', 0, ''),
 (4, 'Conflict', 0, '');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_category_field`
---
 
-DROP TABLE IF EXISTS `issue_category_field`;
+
+
+
+
 CREATE TABLE `issue_category_field` (
   `issue_category_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -34145,9 +34092,9 @@ CREATE TABLE `issue_category_field` (
   `modified_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_category_field`
---
+
+
+
 
 INSERT INTO `issue_category_field` (`issue_category_id`, `category_id`, `field_id`, `display`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (1, 1, 1, 1, 0, '2023-09-09 17:38:29', 0, '2023-09-09 17:38:29'),
@@ -34193,13 +34140,12 @@ INSERT INTO `issue_category_field` (`issue_category_id`, `category_id`, `field_i
 (46, 6, 5, 0, 0, '2023-09-09 15:49:04', 0, '2023-09-09 15:49:04'),
 (47, 6, 6, 0, 0, '2023-09-09 15:49:04', 0, '2023-09-09 15:49:04');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_comment`
---
 
-DROP TABLE IF EXISTS `issue_comment`;
+
+
+
+
 CREATE TABLE `issue_comment` (
   `id` int(11) NOT NULL,
   `issue_id` int(11) NOT NULL,
@@ -34208,13 +34154,12 @@ CREATE TABLE `issue_comment` (
   `comments` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_esc`
---
 
-DROP TABLE IF EXISTS `issue_esc`;
+
+
+
+
 CREATE TABLE `issue_esc` (
   `id` int(11) NOT NULL,
   `complaint_id` int(11) NOT NULL,
@@ -34225,21 +34170,20 @@ CREATE TABLE `issue_esc` (
   `date` datetime(3) NOT NULL DEFAULT current_timestamp(3)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_field`
---
 
-DROP TABLE IF EXISTS `issue_field`;
+
+
+
+
 CREATE TABLE `issue_field` (
   `field_id` int(11) NOT NULL,
   `field_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_field`
---
+
+
+
 
 INSERT INTO `issue_field` (`field_id`, `field_name`) VALUES
 (1, 'Region'),
@@ -34249,15 +34193,15 @@ INSERT INTO `issue_field` (`field_id`, `field_name`) VALUES
 (5, 'Electoral Area'),
 (6, 'Polling Station');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_master`
---
 
-DROP TABLE IF EXISTS `issue_master`;
+
+
+
+
 CREATE TABLE `issue_master` (
   `issue_id` bigint(20) NOT NULL,
+  `issue_code` varchar(100) DEFAULT NULL,
   `code` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -34265,51 +34209,59 @@ CREATE TABLE `issue_master` (
   `gender` varchar(6) NOT NULL,
   `mode_id` int(11) DEFAULT NULL,
   `source_id` int(11) NOT NULL,
+  `priority` varchar(20) NOT NULL DEFAULT 'Low',
   `raw_report` longtext NOT NULL,
   `received_date` date NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime NOT NULL,
-  `issue_subcategory_id` int(11) NOT NULL DEFAULT 0,
+  `processed_by` int(11) DEFAULT NULL,
+  `processed_date` datetime DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `subcategory_id` int(11) NOT NULL DEFAULT 0,
   `region_id` int(11) NOT NULL DEFAULT 0,
   `district_id` int(11) DEFAULT 0,
-  `contituency_id` int(11) NOT NULL DEFAULT 0,
+  `constituency_id` int(11) NOT NULL DEFAULT 0,
   `electoral_area_id` int(11) NOT NULL DEFAULT 0,
   `polling_station_id` int(11) NOT NULL DEFAULT 0,
   `community` varchar(500) DEFAULT NULL,
   `gps_latitude` varchar(255) NOT NULL,
   `gps_longitude` varchar(255) NOT NULL,
-  `status_id` int(11) NOT NULL DEFAULT 1
+  `status_id` int(11) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_master`
---
 
-INSERT INTO `issue_master` (`issue_id`, `code`, `name`, `email`, `phone`, `gender`, `mode_id`, `source_id`, `raw_report`, `received_date`, `created_by`, `created_date`, `issue_subcategory_id`, `region_id`, `district_id`, `contituency_id`, `electoral_area_id`, `polling_station_id`, `community`, `gps_latitude`, `gps_longitude`, `status_id`) VALUES
-(1, 'NR/0002', 'Mohammed Amidu Alhassan', 'mohammed@songtaba.org', '0246626711', 'Male', 2, 1, 'Riots', '2020-12-02', NULL, '2020-12-02 10:55:59', 0, 10, 172, 187, 3879, 29105, '', '9.419268643574979, -0.867694616317749', '0', 3),
-(2, 'NR/0003', '', '', '0243730527', 'Male', 2, 1, 'Voilence', '2020-12-02', NULL, '2020-12-02 11:00:22', 0, 10, 174, 185, 3851, 28873, '', '', '0', 3),
-(3, 'UE/0001', 'Anyinah vida', 'anyinahkawiah@gmail.com', '0241153071', 'Female', 3, 1, 'Election', '2020-12-02', NULL, '2020-12-02 11:21:33', 0, 13, 205, 209, 4388, 32195, '', '', '0', 3),
-(4, 'UE/0002', 'Harisu Laminu', 'haris4life@gmail.com', '0249884034', 'Male', 3, 1, 'Polling officials wrongly tearing ballot paper creating tension.', '2020-12-07', NULL, '2020-12-07 08:42:51', 0, 13, 195, 216, 4583, 32960, '', '11.052483316481915, -0.23881581436444366', '0', 3),
-(5, 'NE/0001', '', '', '0241741714', 'Male', 3, 6, 'The EC offials in Bunkpurugu constituency have been attacked, Name of the polling station is called kauk.', '2020-12-07', 2, '2020-12-07 09:17:24', 0, 9, 158, 170, 0, 0, '', '', '0', 1),
-(6, 'NE/0002', '0241741714', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'There was an atack on the EC offials. The reason was that both parties wanted to vote first for d reason best known to them.', '2020-12-07', NULL, '2020-12-07 09:20:03', 0, 9, 158, 170, 3489, 31695, '', '', '0', 3),
-(7, 'NE/0003', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'Bimbagu electorial  area in the Bunkpurugu constituency have refused to vote. Their reasons are that they don\'t have good water for drinking , no electricity, school  buildings for their children etc.\r\n  They mentioned they organize a press conference 4 moths ago but no political party showed any concern.', '2020-12-07', NULL, '2020-12-07 09:51:16', 0, 9, 158, 170, 3500, 31743, '', '', '0', 3),
-(8, 'GR/0001', '', '', '0244782957', 'Female', 2, 6, 'Two voters who have their voters ID were not allow to vote at the station with Code number C060506 because their names have not been captured in  the register. The electoral officers said they can\'t do anything about it after consulting their superiors', '2020-12-07', 2, '2020-12-07 10:10:59', 0, 8, 143, 139, 3080, 0, '', '5.70202326349716, -0.24197160701402431', '0', 1),
-(9, 'UE/0003', 'Omar Jafaru', 'ojafaru@yahoo.com', '0208831015', 'Male', 2, 1, 'Voting going on smoothly', '2020-12-07', NULL, '2020-12-07 10:29:30', 0, 13, 198, 210, 4431, 0, '', '10.873141046739537, -0.8502030229975865', '0', 3),
-(10, 'NE/0004', 'Mohammed Abubakari', '', '0247595776', 'Male', 3, 1, 'Voting going on smoothly here in chereponi.', '2020-12-07', NULL, '2020-12-07 10:38:31', 0, 9, 159, 172, 3521, 31859, '', '', '0', 2),
-(11, 'NR/0004', 'Baba Kamal-Deen', 'babakamaldeen822@gmail.com', '0243077923', 'Male', 2, 1, 'Voting is going on peacefully', '2020-12-07', NULL, '2020-12-07 11:34:20', 0, 10, 166, 182, 3765, 28499, '', '9.974983295485119, -0.1559386908821203', '0', 2),
-(12, 'NE/0005', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'One of the noted place as hot spot in Bunkpurugu is very peaceful as at now the polling station is is peace.', '2020-12-07', NULL, '2020-12-07 11:55:15', 0, 9, 158, 170, 3487, 31687, '', '', '0', 3),
-(13, 'NE/0006', '', '', '0241251424', 'Male', 2, 1, 'Konkomba resist chokosi registered voters to vote', '2020-12-07', NULL, '2020-12-07 12:46:45', 0, 9, 159, 172, 3531, 31893, '', '6.565169804228408, -3.7256934799210906', '0', 3),
-(14, 'NE/0007', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'There is a complecated issue, an old man was brought by his children to vote but his name was ticked also d verification machine said he has voted,but there was no inderrable ink on any of his fingers.\r\n      The children have threaten to cause any confusion if their father does not vote', '2020-12-07', NULL, '2020-12-07 13:13:11', 0, 9, 158, 170, 3487, 31685, '', '', '0', 3),
-(15, 'UE/0004', 'Clement Mweyang Aapengnuo', 'caapengnuo@gmail.com', '233244513805', 'Male', 2, 1, 'Fulani Herdsmen and Farmers clash over citizenship and voting rights.', '2023-04-14', NULL, '2023-04-14 12:02:52', 0, 13, 200, 212, 4502, 0, '', '', '0', 2),
-(16, 'NGo3eVA0Nf', 'FREDRICK QUANSAH', 'kwaadjei015@gmail.com', '0246208751', 'Male', 2, 2, 'test', '2023-09-12', NULL, '2023-09-13 22:39:15', 6, 11, 184, 0, 0, 0, 'test', '9.43621466770877', '-0.8034037139892636', 1);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_media`
---
 
-DROP TABLE IF EXISTS `issue_media`;
+INSERT INTO `issue_master` (`issue_id`, `issue_code`, `code`, `name`, `email`, `phone`, `gender`, `mode_id`, `source_id`, `priority`, `raw_report`, `received_date`, `processed_by`, `processed_date`, `category_id`, `subcategory_id`, `region_id`, `district_id`, `constituency_id`, `electoral_area_id`, `polling_station_id`, `community`, `gps_latitude`, `gps_longitude`, `status_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, NULL, 'NR/0002', 'Mohammed Amidu Alhassan', 'mohammed@songtaba.org', '0246626711', 'Male', 2, 1, 'Low', 'Riots', '2020-12-02', NULL, NULL, 0, 0, 10, 172, 187, 3879, 29105, '', '9.419268643574979, -0.867694616317749', '0', 3, NULL, '2020-12-02 17:55:59', 0, NULL),
+(2, NULL, 'NR/0003', '', '', '0243730527', 'Male', 2, 1, 'Low', 'Voilence', '2020-12-02', NULL, NULL, 0, 0, 10, 174, 185, 3851, 28873, '', '', '0', 3, NULL, '2020-12-02 18:00:22', 0, NULL),
+(3, NULL, 'UE/0001', 'Anyinah vida', 'anyinahkawiah@gmail.com', '0241153071', 'Female', 3, 1, 'Low', 'Election', '2020-12-02', NULL, NULL, 0, 0, 13, 205, 209, 4388, 32195, '', '', '0', 3, NULL, '2020-12-02 18:21:33', 0, NULL),
+(4, NULL, 'UE/0002', 'Harisu Laminu', 'haris4life@gmail.com', '0249884034', 'Male', 3, 1, 'Low', 'Polling officials wrongly tearing ballot paper creating tension.', '2020-12-07', NULL, NULL, 0, 0, 13, 195, 216, 4583, 32960, '', '11.052483316481915, -0.23881581436444366', '0', 3, NULL, '2020-12-07 15:42:51', 0, NULL),
+(5, NULL, 'NE/0001', '', '', '0241741714', 'Male', 3, 6, 'Medium', 'The EC offials in Bunkpurugu constituency have been attacked, Name of the polling station is called kauk.', '2024-03-12', 1, '2024-03-11 00:00:00', 0, 0, 9, 158, 170, 0, 0, '', '', '0', 5, 2, '2020-12-07 16:17:24', 0, '2024-03-13 00:20:46'),
+(6, NULL, 'NE/0002', '0241741714', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'Low', 'There was an atack on the EC offials. The reason was that both parties wanted to vote first for d reason best known to them.', '2020-12-07', NULL, NULL, 0, 0, 9, 158, 170, 3489, 31695, '', '', '0', 3, NULL, '2020-12-07 16:20:03', 0, NULL),
+(7, NULL, 'NE/0003', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'Low', 'Bimbagu electorial  area in the Bunkpurugu constituency have refused to vote. Their reasons are that they don\'t have good water for drinking , no electricity, school  buildings for their children etc.\r\n  They mentioned they organize a press conference 4 moths ago but no political party showed any concern.', '2020-12-07', NULL, NULL, 0, 0, 9, 158, 170, 3500, 31743, '', '', '0', 3, NULL, '2020-12-07 16:51:16', 0, NULL),
+(8, NULL, 'GR/0001', '', '', '0244782957', 'Female', 2, 6, 'Low', 'Two voters who have their voters ID were not allow to vote at the station with Code number C060506 because their names have not been captured in  the register. The electoral officers said they can\'t do anything about it after consulting their superiors', '2020-12-07', NULL, NULL, 0, 0, 8, 143, 139, 3080, 0, '', '5.70202326349716, -0.24197160701402431', '0', 1, 2, '2020-12-07 17:10:59', 0, NULL),
+(9, NULL, 'UE/0003', 'Omar Jafaru', 'ojafaru@yahoo.com', '0208831015', 'Male', 2, 1, 'Low', 'Voting going on smoothly', '2020-12-07', NULL, NULL, 0, 0, 13, 198, 210, 4431, 0, '', '10.873141046739537, -0.8502030229975865', '0', 3, NULL, '2020-12-07 17:29:30', 0, NULL),
+(10, NULL, 'NE/0004', 'Mohammed Abubakari', '', '0247595776', 'Male', 3, 1, 'Low', 'Voting going on smoothly here in chereponi.', '2020-12-07', NULL, NULL, 0, 0, 9, 159, 172, 3521, 31859, '', '', '0', 2, NULL, '2020-12-07 17:38:31', 0, NULL),
+(11, NULL, 'NR/0004', 'Baba Kamal-Deen', 'babakamaldeen822@gmail.com', '0243077923', 'Male', 2, 1, 'Low', 'Voting is going on peacefully', '2020-12-07', NULL, NULL, 0, 0, 10, 166, 182, 3765, 28499, '', '9.974983295485119, -0.1559386908821203', '0', 2, NULL, '2020-12-07 18:34:20', 0, NULL),
+(12, NULL, 'NE/0005', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'Low', 'One of the noted place as hot spot in Bunkpurugu is very peaceful as at now the polling station is is peace.', '2020-12-07', NULL, NULL, 0, 0, 9, 158, 170, 3487, 31687, '', '', '0', 3, NULL, '2020-12-07 18:55:15', 0, NULL),
+(13, NULL, 'NE/0006', '', '', '0241251424', 'Male', 2, 1, 'Low', 'Konkomba resist chokosi registered voters to vote', '2020-12-07', NULL, NULL, 0, 0, 9, 159, 172, 3531, 31893, '', '6.565169804228408, -3.7256934799210906', '0', 3, NULL, '2020-12-07 19:46:45', 0, NULL),
+(14, NULL, 'NE/0007', '', 'emmanuelmoisob@gmail.com', '0241741714', 'Male', 2, 1, 'Low', 'There is a complecated issue, an old man was brought by his children to vote but his name was ticked also d verification machine said he has voted,but there was no inderrable ink on any of his fingers.\r\n      The children have threaten to cause any confusion if their father does not vote', '2020-12-07', NULL, NULL, 0, 0, 9, 158, 170, 3487, 31685, '', '', '0', 3, NULL, '2020-12-07 20:13:11', 0, NULL),
+(15, NULL, 'UE/0004', 'Clement Mweyang Aapengnuo', 'caapengnuo@gmail.com', '233244513805', 'Male', 2, 1, 'Low', 'Fulani Herdsmen and Farmers clash over citizenship and voting rights.', '2023-04-14', NULL, NULL, 0, 0, 13, 200, 212, 4502, 0, '', '', '0', 2, NULL, '2023-04-14 19:02:52', 0, NULL),
+(16, NULL, 'NGo3eVA0Nf', 'FREDRICK QUANSAH', 'kwaadjei015@gmail.com', '0246208751', 'Male', 2, 2, 'Low', 'test', '2023-09-12', NULL, NULL, 0, 6, 11, 184, 0, 0, 0, 'test', '9.43621466770877', '-0.8034037139892636', 1, NULL, '2023-09-14 05:39:15', 0, NULL),
+(17, NULL, '624046044283099', 'Chanda Waller', 'nonobadiw@mailinator.com', '+1 (479) 724-4154', 'Male', 1, 2, 'Low', 'Laudantium laudanti', '1972-12-28', NULL, NULL, 2, 15, 2, NULL, 10, 244, 7557, NULL, '9.440793125046', '-0.89184366796837', 1, 1, '2024-02-22 06:54:26', 0, '2024-02-22 06:54:26'),
+(18, NULL, '770831256707457', 'Sara Jenkins', 'picaxosipe@mailinator.com', '+1 (104) 748-7265', 'Male', 1, 2, 'Low', 'Accusantium illo omn', '2010-09-25', NULL, NULL, 2, 15, 1, NULL, 2, 50, 934, NULL, '9.4421139489996', '-0.79329286517315', 1, 1, '2024-02-22 06:59:52', 0, '2024-02-22 06:59:52'),
+(19, NULL, '458413134938973', 'Fred', 'kwaadjei013@gmail.com', '0246208751', 'Male', 1, 1, 'Low', 'test report', '2024-02-23', NULL, NULL, 2, 15, 8, NULL, 170, 3488, 22405, NULL, '9.4194274062548', '-0.86774826049805', 1, 1, '2024-02-23 03:15:12', 0, '2024-02-23 03:15:12');
+
+
+
+
+
+
+
 CREATE TABLE `issue_media` (
   `issue_media_id` bigint(20) NOT NULL,
   `issue_id` bigint(20) NOT NULL,
@@ -34318,40 +34270,23 @@ CREATE TABLE `issue_media` (
   `title` varchar(2000) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `modified_by` int(11) NOT NULL,
+  `modified_by` int(11) DEFAULT NULL,
   `modified_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_process`
---
 
-DROP TABLE IF EXISTS `issue_process`;
-CREATE TABLE `issue_process` (
-  `complaint_id` int(11) NOT NULL,
-  `processed_by` int(11) DEFAULT NULL,
-  `processed_at` datetime(3) DEFAULT NULL,
-  `processed_message` longtext DEFAULT NULL,
-  `issue_type` varchar(10) NOT NULL DEFAULT 'Complaint',
-  `priority` varchar(35) DEFAULT NULL,
-  `district_id` int(11) DEFAULT NULL,
-  `category_id` int(11) NOT NULL,
-  `comments` longtext DEFAULT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_date` datetime(3) NOT NULL DEFAULT current_timestamp(3),
-  `updated_by` int(11) DEFAULT NULL,
-  `upated_date` datetime(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_resolution`
---
+INSERT INTO `issue_media` (`issue_media_id`, `issue_id`, `media_type_id`, `file_name`, `title`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
+(4, 5, 1, 'media/WNOOInXWJF0BnbsZtX08A0uKYjoZ9o2qMAJKUYJn.jpg', 'first media', 1, '2024-03-13 00:12:02', NULL, '2024-03-12 17:12:02');
 
-DROP TABLE IF EXISTS `issue_resolution`;
+
+
+
+
+
+
 CREATE TABLE `issue_resolution` (
   `id` int(11) NOT NULL,
   `complaint_id` int(11) NOT NULL,
@@ -34364,27 +34299,33 @@ CREATE TABLE `issue_resolution` (
   `reopen_by` varchar(100) DEFAULT NULL,
   `reopen_date` date DEFAULT NULL,
   `reopen_reason` longtext DEFAULT NULL,
-  `create_by` int(11) NOT NULL,
-  `create_date` datetime(3) NOT NULL DEFAULT current_timestamp(3),
-  `upated_by` int(11) DEFAULT NULL,
-  `upated_date` datetime(3) DEFAULT NULL
+  `created_by` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_source`
---
 
-DROP TABLE IF EXISTS `issue_source`;
+
+
+INSERT INTO `issue_resolution` (`id`, `complaint_id`, `resolver_id`, `resolution`, `resolved_date`, `confirmed_closed`, `confirmed_date`, `reopened`, `reopen_by`, `reopen_date`, `reopen_reason`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 5, 1, 'resolved', '2024-03-11', 0, NULL, 0, NULL, NULL, NULL, 1, '2024-03-13 00:20:46', NULL, '2024-03-13 00:20:46');
+
+
+
+
+
+
+
 CREATE TABLE `issue_source` (
   `source_id` int(11) NOT NULL,
   `source` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_source`
---
+
+
+
 
 INSERT INTO `issue_source` (`source_id`, `source`) VALUES
 (1, 'Website'),
@@ -34395,13 +34336,12 @@ INSERT INTO `issue_source` (`source_id`, `source`) VALUES
 (6, 'Field Visit by Project Staff'),
 (7, 'Other');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_status`
---
 
-DROP TABLE IF EXISTS `issue_status`;
+
+
+
+
 CREATE TABLE `issue_status` (
   `status_id` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
@@ -34410,9 +34350,9 @@ CREATE TABLE `issue_status` (
   `email_msg` varchar(1200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_status`
---
+
+
+
 
 INSERT INTO `issue_status` (`status_id`, `status`, `description`, `sms_msg`, `email_msg`) VALUES
 (1, 'New', 'Newly created report by logon user', 'Your report has been captured and the assigned status_id  is {_status_id }. You can contact us on 0558886366 or visit https://maaro.org for more information', 'Thank you for contacting us, your report status_id  is {_status_id }. You will soon be notified on the details of it. Kindly visit https://maaro.org for information'),
@@ -34423,13 +34363,12 @@ INSERT INTO `issue_status` (`status_id`, `status`, `description`, `sms_msg`, `em
 (6, 'Closed', 'The report is closed either through resolution or due to other means', 'Your report {_status_id } has now been closed. We thank you for contacting us. You can always call on us on 0558886366 or visit our site', 'Your report {_status_id } has now been closed following your confirmation from our staff. We will like to thank you so much for contacting us. You can always call on us on 0558886366 or visit our site <a href=\'https://maaro.org/complaint/gcwebstate.aspx\'><strong>Here</strong></a> for more information'),
 (7, 'Reopened', 'Reopened', '', '');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `issue_subcategory`
---
 
-DROP TABLE IF EXISTS `issue_subcategory`;
+
+
+
+
 CREATE TABLE `issue_subcategory` (
   `issue_subcategory_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -34437,9 +34376,9 @@ CREATE TABLE `issue_subcategory` (
   `active` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `issue_subcategory`
---
+
+
+
 
 INSERT INTO `issue_subcategory` (`issue_subcategory_id`, `category_id`, `description`, `active`) VALUES
 (0, 0, 'N/A', 0),
@@ -34464,21 +34403,20 @@ INSERT INTO `issue_subcategory` (`issue_subcategory_id`, `category_id`, `descrip
 (19, 2, 'Party Property/Vandalization', 1),
 (20, 2, 'Seizure of Public Property', 1);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `media_type`
---
 
-DROP TABLE IF EXISTS `media_type`;
+
+
+
+
 CREATE TABLE `media_type` (
   `media_type_id` int(11) NOT NULL,
   `media_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `media_type`
---
+
+
+
 
 INSERT INTO `media_type` (`media_type_id`, `media_type`) VALUES
 (0, ''),
@@ -34487,21 +34425,20 @@ INSERT INTO `media_type` (`media_type_id`, `media_type`) VALUES
 (3, 'Document'),
 (4, 'Other');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `region`
---
 
-DROP TABLE IF EXISTS `region`;
+
+
+
+
 CREATE TABLE `region` (
   `region_id` int(11) NOT NULL,
   `region` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `region`
---
+
+
+
 
 INSERT INTO `region` (`region_id`, `region`) VALUES
 (0, ''),
@@ -34522,13 +34459,12 @@ INSERT INTO `region` (`region_id`, `region`) VALUES
 (15, 'WESTERN'),
 (16, 'WESTERN NORTH');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `support_group`
---
 
-DROP TABLE IF EXISTS `support_group`;
+
+
+
+
 CREATE TABLE `support_group` (
   `support_group_id` int(11) NOT NULL,
   `name` varchar(300) NOT NULL,
@@ -34543,248 +34479,168 @@ CREATE TABLE `support_group` (
   `modified_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_district`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `vw_district`;
-CREATE TABLE `vw_district` (
-`region` varchar(100)
-,`district_id` int(11)
-,`region_id` int(11)
-,`District` varchar(50)
-);
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_ec_data_constituency`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `vw_ec_data_constituency`;
-CREATE TABLE `vw_ec_data_constituency` (
-`region_id` int(11)
-,`region_name` varchar(300)
-,`constituency_id` int(11)
-,`constituency_name` varchar(50)
-);
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_ec_data_electoral_area`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `vw_ec_data_electoral_area`;
-CREATE TABLE `vw_ec_data_electoral_area` (
-`region_id` int(11)
-,`region_name` varchar(300)
-,`constituency_id` int(11)
-,`constituency_name` varchar(50)
-,`electoral_area_id` int(11)
-,`electoral_area_name` varchar(300)
-);
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_issue_category_field`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `vw_issue_category_field`;
-CREATE TABLE `vw_issue_category_field` (
-`field_name` varchar(50)
-,`category` varchar(40)
-,`active` tinyint(4)
-,`issue_category_id` int(11)
-,`category_id` int(11)
-,`field_id` int(11)
-,`display` int(11)
-,`created_by` int(11)
-,`created_date` datetime
-,`modified_by` int(11)
-,`modified_date` datetime
-);
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_issue_master`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `vw_issue_master`;
-CREATE TABLE `vw_issue_master` (
-`mode` varchar(20)
-,`source` varchar(50)
-,`category_id` int(11)
-,`description` varchar(100)
-,`category` varchar(40)
-,`region` varchar(100)
-,`District` varchar(50)
-,`constituency_name` varchar(50)
-,`electoral_area_name` varchar(300)
-,`polling_station_code` varchar(50)
-,`polling_station_name` varchar(300)
-,`status` varchar(20)
-,`issue_id` bigint(20)
-,`code` varchar(255)
-,`name` varchar(100)
-,`email` varchar(100)
-,`phone` varchar(20)
-,`gender` varchar(6)
-,`mode_id` int(11)
-,`source_id` int(11)
-,`raw_report` longtext
-,`received_date` date
-,`created_by` int(11)
-,`created_date` datetime
-,`issue_subcategory_id` int(11)
-,`region_id` int(11)
-,`district_id` int(11)
-,`contituency_id` int(11)
-,`electoral_area_id` int(11)
-,`polling_station_id` int(11)
-,`community` varchar(500)
-,`gps_latitude` varchar(255)
-,`gps_longitude` varchar(255)
-,`status_id` int(11)
-);
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `vw_issue_subcategory`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `vw_issue_subcategory`;
-CREATE TABLE `vw_issue_subcategory` (
-`category` varchar(40)
-,`issue_subcategory_id` int(11)
-,`category_id` int(11)
-,`description` varchar(100)
-,`active` tinyint(1)
-);
 
--- --------------------------------------------------------
 
---
--- Structure for view `vw_district`
---
+
+
+
+
+
 
 DROP TABLE IF EXISTS `vw_district`;
 
-DROP VIEW IF EXISTS `vw_district`;
 CREATE  VIEW `vw_district`  AS SELECT `region`.`region` AS `region`, `district`.`district_id` AS `district_id`, `district`.`region_id` AS `region_id`, `district`.`district` AS `District` FROM (`region` join `district` on(`region`.`region_id` = `district`.`district_id`)) ;
 
--- --------------------------------------------------------
 
---
--- Structure for view `vw_ec_data_constituency`
---
+
+
+
+
 DROP TABLE IF EXISTS `vw_ec_data_constituency`;
 
-DROP VIEW IF EXISTS `vw_ec_data_constituency`;
 CREATE  VIEW `vw_ec_data_constituency`  AS SELECT `ec_data`.`region_id` AS `region_id`, `ec_data`.`region_name` AS `region_name`, `ec_data`.`constituency_id` AS `constituency_id`, `ec_data`.`constituency_name` AS `constituency_name` FROM `ec_data` GROUP BY `ec_data`.`region_id`, `ec_data`.`region_name`, `ec_data`.`constituency_id`, `ec_data`.`constituency_name` ;
 
--- --------------------------------------------------------
 
---
--- Structure for view `vw_ec_data_electoral_area`
---
+
+
+
+
 DROP TABLE IF EXISTS `vw_ec_data_electoral_area`;
 
-DROP VIEW IF EXISTS `vw_ec_data_electoral_area`;
 CREATE  VIEW `vw_ec_data_electoral_area`  AS SELECT `ec_data`.`region_id` AS `region_id`, `ec_data`.`region_name` AS `region_name`, `ec_data`.`constituency_id` AS `constituency_id`, `ec_data`.`constituency_name` AS `constituency_name`, `ec_data`.`electoral_area_id` AS `electoral_area_id`, `ec_data`.`electoral_area_name` AS `electoral_area_name` FROM `ec_data` GROUP BY `ec_data`.`region_id`, `ec_data`.`region_name`, `ec_data`.`constituency_id`, `ec_data`.`constituency_name`, `ec_data`.`electoral_area_id`, `ec_data`.`electoral_area_name` ;
 
--- --------------------------------------------------------
 
---
--- Structure for view `vw_issue_category_field`
---
+
+
+
+
+DROP TABLE IF EXISTS `vw_electoral_areas`;
+
+CREATE  VIEW `vw_electoral_areas`  AS SELECT DISTINCT `ec_data`.`electoral_area_id` AS `id`, `ec_data`.`electoral_area_name` AS `name`, `ec_data`.`constituency_id` AS `constituency_id`, `ec_data`.`constituency_name` AS `constituency_name` FROM `ec_data` WHERE `ec_data`.`id` > 0 ORDER BY `ec_data`.`electoral_area_name` ASC ;
+
+
+
+
+
+
 DROP TABLE IF EXISTS `vw_issue_category_field`;
 
-DROP VIEW IF EXISTS `vw_issue_category_field`;
 CREATE  VIEW `vw_issue_category_field`  AS SELECT `issue_field`.`field_name` AS `field_name`, `issue_category`.`category` AS `category`, `issue_category`.`active` AS `active`, `issue_category_field`.`issue_category_id` AS `issue_category_id`, `issue_category_field`.`category_id` AS `category_id`, `issue_category_field`.`field_id` AS `field_id`, `issue_category_field`.`display` AS `display`, `issue_category_field`.`created_by` AS `created_by`, `issue_category_field`.`created_date` AS `created_date`, `issue_category_field`.`modified_by` AS `modified_by`, `issue_category_field`.`modified_date` AS `modified_date` FROM ((`issue_category_field` join `issue_category` on(`issue_category_field`.`category_id` = `issue_category`.`category_id`)) join `issue_field` on(`issue_category_field`.`field_id` = `issue_field`.`field_id`)) ;
 
--- --------------------------------------------------------
 
---
--- Structure for view `vw_issue_master`
---
+
+
+
+
 DROP TABLE IF EXISTS `vw_issue_master`;
 
-DROP VIEW IF EXISTS `vw_issue_master`;
-CREATE  VIEW `vw_issue_master`  AS SELECT `communication_mode`.`mode` AS `mode`, `issue_source`.`source` AS `source`, `issue_subcategory`.`category_id` AS `category_id`, `issue_subcategory`.`description` AS `description`, `issue_category`.`category` AS `category`, `region`.`region` AS `region`, `district`.`district` AS `District`, `vw_ec_data_constituency`.`constituency_name` AS `constituency_name`, `vw_ec_data_electoral_area`.`electoral_area_name` AS `electoral_area_name`, `ec_data`.`polling_station_code` AS `polling_station_code`, `ec_data`.`polling_station_name` AS `polling_station_name`, `issue_status`.`status` AS `status`, `issue_master`.`issue_id` AS `issue_id`, `issue_master`.`code` AS `code`, `issue_master`.`name` AS `name`, `issue_master`.`email` AS `email`, `issue_master`.`phone` AS `phone`, `issue_master`.`gender` AS `gender`, `issue_master`.`mode_id` AS `mode_id`, `issue_master`.`source_id` AS `source_id`, `issue_master`.`raw_report` AS `raw_report`, `issue_master`.`received_date` AS `received_date`, `issue_master`.`created_by` AS `created_by`, `issue_master`.`created_date` AS `created_date`, `issue_master`.`issue_subcategory_id` AS `issue_subcategory_id`, `issue_master`.`region_id` AS `region_id`, `issue_master`.`district_id` AS `district_id`, `issue_master`.`contituency_id` AS `contituency_id`, `issue_master`.`electoral_area_id` AS `electoral_area_id`, `issue_master`.`polling_station_id` AS `polling_station_id`, `issue_master`.`community` AS `community`, `issue_master`.`gps_latitude` AS `gps_latitude`, `issue_master`.`gps_longitude` AS `gps_longitude`, `issue_master`.`status_id` AS `status_id` FROM ((((((((((`issue_master` join `vw_ec_data_constituency` on(`issue_master`.`contituency_id` = `vw_ec_data_constituency`.`constituency_id`)) join `communication_mode` on(`issue_master`.`mode_id` = `communication_mode`.`mode_id`)) join `issue_source` on(`issue_master`.`source_id` = `issue_source`.`source_id`)) join `issue_subcategory` on(`issue_master`.`issue_subcategory_id` = `issue_subcategory`.`issue_subcategory_id`)) join `issue_category` on(`issue_subcategory`.`category_id` = `issue_category`.`category_id`)) join `region` on(`issue_master`.`region_id` = `region`.`region_id`)) join `district` on(`issue_master`.`district_id` = `district`.`district_id`)) join `vw_ec_data_electoral_area` on(`issue_master`.`electoral_area_id` = `vw_ec_data_electoral_area`.`electoral_area_id`)) join `ec_data` on(`issue_master`.`polling_station_id` = `ec_data`.`polling_station_id`)) join `issue_status` on(`issue_master`.`status_id` = `issue_status`.`status_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_issue_master`  AS SELECT `communication_mode`.`mode` AS `mode`, `issue_source`.`source` AS `source`, `issue_category`.`category` AS `category`, `issue_subcategory`.`description` AS `description`, `region`.`region` AS `region`, `district`.`district` AS `district`, `vw_ec_data_constituency`.`constituency_name` AS `constituency_name`, `vw_ec_data_electoral_area`.`electoral_area_name` AS `electoral_area_name`, `ec_data`.`polling_station_name` AS `polling_station_name`, `issue_status`.`status` AS `status`, `issue_master`.`issue_id` AS `issue_id`, `issue_master`.`issue_code` AS `issue_code`, `issue_master`.`code` AS `code`, `issue_master`.`name` AS `name`, `issue_master`.`email` AS `email`, `issue_master`.`phone` AS `phone`, `issue_master`.`gender` AS `gender`, `issue_master`.`mode_id` AS `mode_id`, `issue_master`.`source_id` AS `source_id`, `issue_master`.`priority` AS `priority`, `issue_master`.`raw_report` AS `raw_report`, `issue_master`.`received_date` AS `received_date`, `issue_master`.`category_id` AS `category_id`, `issue_master`.`subcategory_id` AS `subcategory_id`, `issue_master`.`region_id` AS `region_id`, `issue_master`.`district_id` AS `district_id`, `issue_master`.`constituency_id` AS `constituency_id`, `issue_master`.`electoral_area_id` AS `electoral_area_id`, `issue_master`.`polling_station_id` AS `polling_station_id`, `issue_master`.`community` AS `community`, `issue_master`.`gps_latitude` AS `gps_latitude`, `issue_master`.`gps_longitude` AS `gps_longitude`, `issue_master`.`status_id` AS `status_id`, `issue_master`.`created_by` AS `created_by`, `issue_master`.`created_at` AS `created_at`, `issue_master`.`updated_by` AS `updated_by`, `issue_master`.`updated_at` AS `updated_at` FROM ((((((((((`issue_master` join `vw_ec_data_constituency` on(`issue_master`.`constituency_id` = `vw_ec_data_constituency`.`constituency_id`)) join `communication_mode` on(`issue_master`.`mode_id` = `communication_mode`.`mode_id`)) join `issue_source` on(`issue_master`.`source_id` = `issue_source`.`source_id`)) join `issue_category` on(`issue_master`.`category_id` = `issue_category`.`category_id`)) join `issue_subcategory` on(`issue_master`.`subcategory_id` = `issue_subcategory`.`issue_subcategory_id`)) join `region` on(`issue_master`.`region_id` = `region`.`region_id`)) join `district` on(`issue_master`.`region_id` = `district`.`district_id`)) join `vw_ec_data_electoral_area` on(`issue_master`.`electoral_area_id` = `vw_ec_data_electoral_area`.`electoral_area_id`)) join `ec_data` on(`issue_master`.`polling_station_id` = `ec_data`.`polling_station_id`)) join `issue_status` on(`issue_master`.`status_id` = `issue_status`.`status_id`)) ;
 
--- --------------------------------------------------------
 
---
--- Structure for view `vw_issue_subcategory`
---
+
+
+
+
 DROP TABLE IF EXISTS `vw_issue_subcategory`;
 
-DROP VIEW IF EXISTS `vw_issue_subcategory`;
 CREATE  VIEW `vw_issue_subcategory`  AS SELECT `issue_category`.`category` AS `category`, `issue_subcategory`.`issue_subcategory_id` AS `issue_subcategory_id`, `issue_subcategory`.`category_id` AS `category_id`, `issue_subcategory`.`description` AS `description`, `issue_subcategory`.`active` AS `active` FROM (`issue_subcategory` join `issue_category` on(`issue_subcategory`.`category_id` = `issue_category`.`category_id`)) ;
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `issue_category`
---
+
+
+
+
+DROP TABLE IF EXISTS `vw_polling_stations`;
+
+CREATE  VIEW `vw_polling_stations`  AS SELECT DISTINCT `ec_data`.`polling_station_id` AS `id`, `ec_data`.`polling_station_name` AS `name`, `ec_data`.`electoral_area_id` AS `electoral_area_id`, `ec_data`.`electoral_area_name` AS `electoral_area_name` FROM `ec_data` WHERE `ec_data`.`id` > 0 ORDER BY `ec_data`.`polling_station_name` ASC ;
+
+
+
+
+
+
+
+
 ALTER TABLE `issue_category`
   ADD PRIMARY KEY (`category_id`);
 
---
--- Indexes for table `issue_category_field`
---
+
+
+
 ALTER TABLE `issue_category_field`
   ADD PRIMARY KEY (`issue_category_id`);
 
---
--- Indexes for table `issue_master`
---
+
+
+
 ALTER TABLE `issue_master`
   ADD PRIMARY KEY (`issue_id`);
 
---
--- Indexes for table `support_group`
---
+
+
+
+ALTER TABLE `issue_media`
+  ADD PRIMARY KEY (`issue_media_id`);
+
+
+
+
+ALTER TABLE `issue_resolution`
+  ADD PRIMARY KEY (`id`);
+
+
+
+
 ALTER TABLE `support_group`
   ADD PRIMARY KEY (`support_group_id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
 
---
--- AUTO_INCREMENT for table `issue_category`
---
+
+
+
+
+
+
 ALTER TABLE `issue_category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `issue_category_field`
---
+
+
+
 ALTER TABLE `issue_category_field`
   MODIFY `issue_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
---
--- AUTO_INCREMENT for table `issue_master`
---
-ALTER TABLE `issue_master`
-  MODIFY `issue_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
---
--- AUTO_INCREMENT for table `support_group`
---
+
+
+ALTER TABLE `issue_master`
+  MODIFY `issue_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+
+
+
+ALTER TABLE `issue_media`
+  MODIFY `issue_media_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+
+
+
+ALTER TABLE `issue_resolution`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+
+
 ALTER TABLE `support_group`
   MODIFY `support_group_id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
