@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <x-success-message></x-success-message>
                     <!-- Row start -->
-                    <livewire:complaint-form :complaint="$complaint"></livewire:complaint-form>
+                    <livewire:complaint-form :complaint="$complaint" :show-submit="true"></livewire:complaint-form>
                     <div class="mt-3">
                         <input style="max-width: 500px; margin-top: 10px;" id="pac-input" class="form-control"
                                type="text"

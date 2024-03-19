@@ -42,12 +42,15 @@
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">
-                                    <a href="{{route('complaints.show', $item)}}" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title=""
-                                       data-bs-original-title="Show">
-                                        <i class="icon-eye text-primary"></i>
-                                    </a>
-                                    @if($hasActions ??false)
+                                    @if(!request()->routeIs('complaints.index'))
+                                        <a href="{{route('complaints.show', $item)}}" data-bs-toggle="tooltip"
+                                           data-bs-placement="top" title=""
+                                           data-bs-original-title="Show">
+                                            <i class="icon-eye text-primary"></i>
+                                        </a>
+                                    @endif
+
+                                    @if(request()->routeIs('complaints.index'))
                                         <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
                                            data-bs-placement="top" title="" data-bs-original-title="Edit">
                                             <i class="icon-edit1 text-warning"></i>

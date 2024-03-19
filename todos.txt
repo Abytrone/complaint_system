@@ -1,5 +1,19 @@
 [ ] dates should not be in the future
+[ ] add submit and save while editing the complaint
+[ ] use uuid for issue_code on issue_master and as the model key (scoped)
+[ ] remove website from sources select input
+[ ] capture should contain only new status and be viewed by the creator
+[ ] remove received menu
+[ ] move complaint status from submitted to processed ( processing is done on list of submitted complaints )
+[ ] processing is done at submitted stage
+[ ] processed menu text ----> awaiting resolution
+    - contains list of processed and reopened complaints and status should be changed to resolved
 
+[ ] resolved menu contains list of resolved complaints
+    - toggle status from resolved to closed
+[ ] remove closed menu
+[ ] reopened menu to reopen [ show closed complaints]
+[ ]
 - complaint media
     [x] fix complaint for alignment
     [ ] after media upload, clear form

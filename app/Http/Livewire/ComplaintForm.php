@@ -12,6 +12,7 @@ use App\Models\Field;
 use App\Models\PollingStation;
 use App\Models\Region;
 use App\Models\Source;
+use App\Models\Status;
 use App\Models\Subcategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -22,6 +23,7 @@ class ComplaintForm extends Component
 {
 
     public bool $isShow = false;
+    public bool $showSubmit = false;
     public ?Complaint $complaint = null;
     public $name = null;
     public $phone = null;
@@ -97,6 +99,15 @@ class ComplaintForm extends Component
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
         }
 
+    }
+
+    public function submit(): void
+    {
+        $valid['updated_by'] = auth()->id() ?? 1;
+        $valid['status_id'] = Status::IS_SUBMITTED;
+        $this->complaint->update($valid);
+        session()->flash('message', 'Record updated successfully.');
+        $this->redirect(session('complaint-url'));
     }
 
 

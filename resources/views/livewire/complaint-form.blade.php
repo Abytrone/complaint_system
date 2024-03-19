@@ -290,12 +290,12 @@
 
                 </div>
             @endif
-            @if(!$isShow)
-                <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
-                </div>
-            @endif
-
         </div>
+        @if(!$isShow)
+            <div class="tw-flex tw-gap-5">
+                <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                <button class="btn btn-warning btn-sm" wire:click="submit" type="button">Submit</button>
+            </div>
+        @endif
     </form>
 </div>

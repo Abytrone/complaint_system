@@ -82,7 +82,7 @@
                             <li class="list-heading">Complaints</li>
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                   class="{{ request()->routeIs('complaints.index')||request()->routeIs('complaints.create') ? 'current-page' : '' }}">
+                                   class="{{ request()->routeIs('complaints.index')||request()->routeIs('complaints.create') ||request()->routeIs('complaints.edit') ? 'current-page' : '' }}">
                                     Capture</a>
                             </li>
 
