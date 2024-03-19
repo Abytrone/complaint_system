@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Ramsey\Uuid\Nonstandard\Uuid;
 
 class  Complaint extends Model
 {
@@ -54,6 +55,7 @@ class  Complaint extends Model
         parent::boot();
 
         static::creating(function ($model) {
+//            $model->issue_code
             if ($model->constituency_id == null) {
                 $model->constituency_id = 0;
             }

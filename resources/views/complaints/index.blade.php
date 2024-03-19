@@ -7,14 +7,13 @@
             <h3> {{$title ?? 'Complaints' }} </h3>
         </div>
         <div class="card-body">
-            @if($hasNew ?? false)
-                <div class="my-3">
+            <div class="my-3">
+                @if(request()->routeIs('complaints.index'))
                     <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
                         <i class="icon-plus"></i> Add New
                     </a>
-                </div>
-            @endif
-
+                @endif
+            </div>
             <div class="table-responsive">
                 <x-success-message></x-success-message>
                 <table id="basicExample" class="table custom-table">

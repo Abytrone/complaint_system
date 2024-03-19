@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 
-class ToggleStatusModal extends Component
+class ToggleStatus extends Component
 {
     public Complaint $complaint;
     public $statuses = [];
@@ -56,29 +56,24 @@ class ToggleStatusModal extends Component
 
     public function mount(): void
     {
-        $status_id = $this->complaint->status_id;
-
-//        $this->status_id = $status_id;
+        $this->status_id = $this->complaint->status_id + 1;
         $this->statuses = Status::query()
-            ->whereIn('status_id', [$status_id + 1])
+            ->whereIn('status_id', [$this->status_id])
             ->get();
     }
 
     private function validData()
     {
         $rules = ['status_id' => 'required|exists:issue_status,status_id'];
-        if ($this->showReceivedInput()) {
-            $rules['received_date'] = 'required|date';
-        }
 
         if ($this->showProcessedInputs()) {
 //            todo: set support group(s)
-            $rules['processed_date'] = 'required|date';
+            $rules['processed_date'] = 'required|date|before:tomorrow';
             $rules['priority'] = 'required|in:Low,Medium,High';
         }
 
         if ($this->showResolvedInputs()) {
-            $rules['resolved_date'] = 'required|date';
+            $rules['resolved_date'] = 'required|date|before:tomorrow';
             $rules['resolution'] = 'required|string';
         }
         return $this->validate($rules);
@@ -86,13 +81,9 @@ class ToggleStatusModal extends Component
 
     public function render(): Factory|View|Application
     {
-        return view('livewire.toggle-status-modal');
+        return view('livewire.toggle-status');
     }
 
-    public function showReceivedInput(): bool
-    {
-        return (int)$this->status_id === Status::IS_RECEIVED;
-    }
 
     public function showProcessedInputs(): bool
     {
@@ -104,8 +95,4 @@ class ToggleStatusModal extends Component
         return (int)$this->status_id === Status::IS_RESOLVED;
     }
 
-    public static function modalMaxWidth(): string
-    {
-        return '7xl';
-    }
 }

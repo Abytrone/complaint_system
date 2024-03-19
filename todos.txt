@@ -1,12 +1,15 @@
+[x] add submit and save while editing the complaint
 [ ] dates should not be in the future
-[ ] add submit and save while editing the complaint
 [ ] use uuid for issue_code on issue_master and as the model key (scoped)
 [ ] remove website from sources select input
-[ ] capture should contain only new status and be viewed by the creator
-[ ] remove received menu
-[ ] move complaint status from submitted to processed ( processing is done on list of submitted complaints )
-[ ] processing is done at submitted stage
-[ ] processed menu text ----> awaiting resolution
+[ ] capture page should contain only new complaints
+[ ] new complaints should be visible to only the creator
+[x] remove received menu
+[x] move complaint status from submitted to processed
+    - remove received status
+    - processing is done on list of submitted complaints
+[x] processing is done at submitted stage
+[x] processed menu text ----> awaiting resolution
     - contains list of processed and reopened complaints and status should be changed to resolved
 
 [ ] resolved menu contains list of resolved complaints

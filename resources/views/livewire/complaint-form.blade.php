@@ -3,14 +3,14 @@
         <div class="row mb-3">
             <div class="col-md-6 col-12">
                 <div class="field-wrapper">
-                    <select @disabled($isShow) wire:model="category_id"
+                    <select id="category" @disabled($isShow) wire:model="category_id"
                             class="form-select @error('category_id') is-invalid @enderror">
                         <option>Select Category</option>
                         @foreach ($categories as $category)
                             <option value="{{$category->category_id}}">{{ $category->category }}</option>
                         @endforeach
                     </select>
-                    <div class="field-placeholder">Category</div>
+                    <label for="category" class="field-placeholder">Category</label>
                     @error('category_id')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror

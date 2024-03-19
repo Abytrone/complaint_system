@@ -16,11 +16,10 @@ class Status extends Model
 
     const IS_NEW = 1;
     const IS_SUBMITTED = 2;
-    const IS_RECEIVED = 3;
-    const IS_PROCESSED = 4;
-    const IS_RESOLVED = 5;
-    const IS_CLOSED = 6;
-    const IS_REOPENED = 7;
+    const IS_PROCESSED = 3;
+    const IS_RESOLVED = 4;
+    const IS_CLOSED = 5;
+    const IS_REOPENED = 6;
 
     public function isNew(): bool
     {
@@ -32,10 +31,6 @@ class Status extends Model
         return $this->id == self::IS_SUBMITTED;
     }
 
-    public function isReceived(): bool
-    {
-        return $this->id == self::IS_RECEIVED;
-    }
 
     public function isProcessed(): bool
     {

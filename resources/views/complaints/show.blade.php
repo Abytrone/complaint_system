@@ -12,8 +12,9 @@
                 </div>
                 <hr>
                 <div class="card-body">
-                    <livewire:complaint-form :complaint="$complaint" is-show="true"
-                                             :to-url="session('complaint-url')"></livewire:complaint-form>
+                    <livewire:complaint-form
+                        :complaint="$complaint" is-show="true">
+                    </livewire:complaint-form>
                     <hr/>
                     @include('complaints.report_processing_tabs', ['complaint' => $complaint])
                 </div>

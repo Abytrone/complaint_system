@@ -32,7 +32,7 @@ class ComplaintForm extends Component
     public $mode_id = null;
     public $source_id = null;
     public $raw_report = null;
-    public $received_date = null;
+
     public $priority = 'Low';
     public $category_id = null;
     public $subcategory_id = null;
@@ -67,7 +67,7 @@ class ComplaintForm extends Component
         'phone' => 'required|min:10',
         'email' => 'required|email',
         'gender' => 'required|in:Male,Female',
-        'received_date' => 'required|date',
+
         'mode_id' => 'required|exists:communication_mode,mode_id',
         'source_id' => 'required|exists:issue_source,source_id',
         'raw_report' => 'required',
@@ -232,7 +232,6 @@ class ComplaintForm extends Component
             $this->mode_id = $this->complaint->mode_id;
             $this->source_id = $this->complaint->source_id;
             $this->raw_report = $this->complaint->raw_report;
-            $this->received_date = $this->complaint->received_date;
             $this->priority = $this->complaint->priority;
             $this->category_id = $this->complaint->category_id;
             $this->subcategory_id = $this->complaint->subcategory_id;

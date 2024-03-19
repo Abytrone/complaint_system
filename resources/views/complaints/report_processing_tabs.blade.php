@@ -20,7 +20,9 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="issues" role="tabpanel">
-            <livewire:toggle-status-modal :complaint="$complaint" :redirect-url="url()->previous()"></livewire:toggle-status-modal>
+            <livewire:toggle-status
+                :complaint="$complaint">
+            </livewire:toggle-status>
         </div>
         <div class="tab-pane fade " id="comments" role="tabpanel">
             <div class="row">...</div>
