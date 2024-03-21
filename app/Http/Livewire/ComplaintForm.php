@@ -67,7 +67,6 @@ class ComplaintForm extends Component
         'phone' => 'required|min:10',
         'email' => 'required|email',
         'gender' => 'required|in:Male,Female',
-
         'mode_id' => 'required|exists:communication_mode,mode_id',
         'source_id' => 'required|exists:issue_source,source_id',
         'raw_report' => 'required',
@@ -81,6 +80,28 @@ class ComplaintForm extends Component
         'community' => 'nullable',
         'gps_latitude' => 'required',
         'gps_longitude' => 'required',
+        'priority' => 'required|in:Low,Medium,High',
+    ];
+
+    protected $messages = [
+        'name.required' => 'Reporter name is required',
+        'mode_id.required' => 'Invalid mode of contact selected',
+        'mode_id.exists' => 'Invalid mode of contact selected',
+        'source_id.required' => 'Invalid report source selected',
+        'source_id.exists' => 'Invalid report source selected',
+        'raw_report.required' => 'Report details is required',
+        'subcategory_id.required' => 'Invalid sub category selected',
+        'subcategory_id.exists' => 'Invalid sub category selected',
+        'category_id.required' => 'Invalid category selected',
+        'category_id.exists' => 'Invalid category selected',
+        'region_id.exists' => 'Invalid region selected',
+        'district_id.exists' => 'Invalid district selected',
+        'constituency_id.exists' => 'Invalid constituency selected',
+        'electoral_area_id.exists' => 'Invalid electoral area selected',
+        'polling_station_id.exists' => 'Invalid polling station area selected',
+        'community' => 'nullable',
+        'gps_latitude.required' => 'Latitude is required',
+        'gps_longitude.required' => 'Longitude is required',
         'priority' => 'required|in:Low,Medium,High',
     ];
 
@@ -103,10 +124,11 @@ class ComplaintForm extends Component
 
     public function submit(): void
     {
+        $valid = $this->validate();
         $valid['updated_by'] = auth()->id() ?? 1;
         $valid['status_id'] = Status::IS_SUBMITTED;
         $this->complaint->update($valid);
-        session()->flash('message', 'Record updated successfully.');
+        session()->flash('message', 'Complaint submitted successfully.');
         $this->redirect(session('complaint-url'));
     }
 
@@ -199,7 +221,7 @@ class ComplaintForm extends Component
         $this->modes = CommunicationMode::all();
 
         $this->regions = Region::withoutZeroId()->get();
-        $this->sources = Source::all();
+        $this->sources = Source::withoutWebsite()->get();
 
         $this->fillForm();
     }

@@ -15,6 +15,7 @@ class ComplaintController extends Controller
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_NEW)
+            ->where('created_by', auth()->id())
             ->get();
         return view('complaints.index', [
             'complaints' => $complaints,

@@ -35,9 +35,9 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>{{ substr($item->raw_report, 0, 100).'...' }}</td>
-                            <td>{{ $item->category->category }}</td>
-                            <td>{{ $item->subcategory->description }}</td>
-                            <td>{{ $item->status->status }}</td>
+                            <td>{{ $item->category?->category??'N/A' }}</td>
+                            <td>{{ $item->subcategory->description ?? 'N/A' }}</td>
+                            <td>{{ $item->status->status ?? 'N/A' }}</td>
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">

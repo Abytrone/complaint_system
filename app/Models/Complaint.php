@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
 class  Complaint extends Model
@@ -17,6 +18,11 @@ class  Complaint extends Model
     protected $guarded = [];
 
     protected $casts = ['processed_date' => 'date'];
+
+    public function getRouteKeyName(): string
+    {
+        return 'issue_code';
+    }
 
     protected function priority(): Attribute
     {
@@ -55,7 +61,7 @@ class  Complaint extends Model
         parent::boot();
 
         static::creating(function ($model) {
-//            $model->issue_code
+            $model->issue_code = Str::uuid();
             if ($model->constituency_id == null) {
                 $model->constituency_id = 0;
             }
@@ -68,7 +74,6 @@ class  Complaint extends Model
             if ($model->polling_station_id == null) {
                 $model->polling_station_id = 0;
             }
-            // $model->raw = strtoupper($model->raw);
         });
     }
 }
