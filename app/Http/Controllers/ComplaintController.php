@@ -12,6 +12,7 @@ class ComplaintController extends Controller
     public function index()
     {
         session()->put('complaint-url', request()->url());
+        session()->put('side-bar-index', 1);
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_NEW)
