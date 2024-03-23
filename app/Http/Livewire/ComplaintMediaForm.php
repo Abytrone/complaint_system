@@ -8,14 +8,16 @@ use App\Models\MediaType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Livewire\Component;
+
 use Livewire\WithFileUploads;
 
-class ComplaintMediaForm extends Component
+use LivewireUI\Modal\ModalComponent;
+
+class ComplaintMediaForm extends ModalComponent
 {
     use WithFileUploads;
 
-    public Complaint $record;
+    public Complaint $complaint;
     public $mediaTypes;
     public $media_type_id = MediaType::IS_IMAGE;
     public $title = null;
@@ -50,9 +52,10 @@ class ComplaintMediaForm extends Component
     public function save(): void
     {
 
+        dd($this->complaint);
         $this->validate();
         ComplaintMedia::create([
-            'issue_id' => $this->record->issue_id,
+            'complaint_id' => $this->record->issue_id,
             'media_type_id' => $this->media_type_id,
             'title' => $this->title,
             'file_name' => $this->media_file->store('media', 'public'),
@@ -65,9 +68,15 @@ class ComplaintMediaForm extends Component
         $this->dispatchBrowserEvent('swal:success', [
             'message' => 'Record created successfully!'
         ]);
-
+        parent::closeModal();
+        $this->dispatchBrowserEvent('reload-table');
     }
 
+    public function closeModal(): void
+    {
+        parent::closeModal();
+        $this->dispatchBrowserEvent('reload-table');
+    }
 
     public function render(): Factory|View|Application
     {

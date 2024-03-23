@@ -103,4 +103,8 @@
             location.reload();
         })
     })
+
+    window.addEventListener('reload-table', function (evt) {
+        window.table.ajax.reload();
+    })
 </script>

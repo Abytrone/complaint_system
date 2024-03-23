@@ -31,7 +31,7 @@ class ComplaintComment extends Component
             ]);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record created successfully']);
         } else {
-            \App\Models\ComplaintComment::where('id', $this->comment_id)->update(['comment' => $this->comment]);
+            \App\Models\ComplaintComment::where('id', $this->comment_id)->update(['comment' => $this->comment, 'updated_by' => auth()->id()]);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully']);
         }
         $this->getComments();

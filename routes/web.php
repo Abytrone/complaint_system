@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
      Route::get('complaints/reopen', [ComplaintController::class, 'reopen'])->name('complaints.reopen');
     Route::resource('complaints', ComplaintController::class)->except(['store', 'update']);
 
+    Route::get('complaints/{complaint}/media/table', [ComplaintMediaController::class, 'table'])->name('complaints.media.table');
     Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
 
     Route::prefix('setups')->group(function () {

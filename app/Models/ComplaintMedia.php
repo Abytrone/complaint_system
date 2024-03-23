@@ -17,7 +17,5 @@ class ComplaintMedia extends Model
         return $this->belongsTo(MediaType::class, 'media_type_id', );
     }
 
-    public const CREATED_AT = 'created_date';
-    public const UPDATED_AT = 'modified_date';
 
 }

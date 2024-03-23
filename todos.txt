@@ -8,19 +8,21 @@
 [x] dates should not be in the future
 [x] remove website from sources select input
 [x] capture page should contain only new complaints
-[ ] convert tables into jquery version if it should be refreshed without reloading the page
-[ ] new complaints should be visible to only the creator
-    - remove received status
-    - processing is done on list of submitted complaints
+[x] new complaints should be visible to only the creator
+    [x] remove received status
+    [x] processing is done on list of submitted complaints
+[x] resolved menu contains list of resolved complaints
+    [x] toggle status from resolved to closed
+[*] remove closed menu
 
-[ ] resolved menu contains list of resolved complaints
-    - toggle status from resolved to closed
-[ ] remove closed menu
+[ ] *** no user should be able to delete comments added by another.
+[ ] *** convert tables into jquery version if it should be refreshed without reloading the page
+
 [ ] reopened menu to reopen [ show closed complaints]
 [ ]
 - complaint media
     [x] fix complaint for alignment
-    [ ] after media upload, clear form
+    [x] after media upload, clear form
     [ ] use modal for complaint media
     [ ] update complaint media
     [ ] delete complaint media

@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Complaint Details</div>
-                    <a href="{{ route('complaints.index') }}">
+                    <a href="{{ session('complaint-url') }}">
                         <button class="btn btn-small btn-primary">Go Back</button>
                     </a>
                 </div>
