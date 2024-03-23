@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="my-3">
                 <a href="#"
-                   onclick="Livewire.emit('openModal',  'complaint-media-form',{{json_encode(['complaint'=> $complaint])}})"
+                   onclick="Livewire.emit('openModal',  'complaint-media-form',{{json_encode(['complaint_id'=> $complaint->issue_id])}})"
                    id="addBtn"
                    type="button"
                    class="btn btn-primary">
@@ -29,28 +29,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--                    @foreach ($complaint->media as $item)--}}
-                    {{--                        <tr>--}}
-                    {{--                            <td>{{ $item->title }}</td>--}}
-                    {{--                            <td>{{ $item->type->media_type }}</td>--}}
-                    {{--                            <td><a target="_blank" href="{{ asset('storage/'.$item->file_name)}}">preview</a></td>--}}
-                    {{--                            <td>--}}
-                    {{--                                <div class="actions">--}}
-                    {{--                                    <a onclick="deleteItem('deleteForm-{{ $item->issue_media_id }}')" href="#"--}}
-                    {{--                                       data-toggle="tooltip" data-placement="top" title=""--}}
-                    {{--                                       data-original-title="Delete">--}}
-                    {{--                                        <i class="icon-x-circle text-danger"></i>--}}
-                    {{--                                    </a>--}}
-                    {{--                                    <form hidden method="post" id="deleteForm-{{ $item->issue_media_id }}"--}}
-                    {{--                                          action="{{ route('complaints.media.destroy', [$complaint, $item->issue_media_id]) }}">--}}
-                    {{--                                        @csrf--}}
-                    {{--                                        @method('delete')--}}
-                    {{--                                    </form>--}}
-                    {{--                                </div>--}}
-                    {{--                            </td>--}}
-                    {{--                        </tr>--}}
-                    {{--                    @endforeach--}}
-
                     </tbody>
                 </table>
             </div>
@@ -62,8 +40,8 @@
 
 @section('scripts')
     <script>
-        window.table = $('#table').dataTable({
-            responsive:true,
+        let table = $('#table').DataTable({
+            responsive: true,
             ajax: '/complaints/{{$complaint->issue_code}}/media/table',
             columns: [
                 {
@@ -79,10 +57,12 @@
                 },
                 {
                     data: 'issue_media_id',
+                    //     todo: delete action here
 
                 }
             ]
         })
+        window.table = table
     </script>
 @endsection
 {{-- </x-app-layout> --}}
