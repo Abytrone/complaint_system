@@ -66,27 +66,15 @@ class ComplaintController extends Controller
         ]);
     }
 
-    public function closed()
-    {
-        session()->put('side-bar-index', 5);
-        session()->put('complaint-url', request()->url());
-//        todo: add filter to get only the complaints created by current user
-        $complaints = Complaint::with(['category', 'subcategory', 'status'])
-            ->where('status_id', Status::IS_CLOSED)
-            ->get();
-        return view('complaints.index', [
-            'complaints' => $complaints,
-            'title' => 'Closed Complaints',
-        ]);
-    }
 
-    public function reopened()
+
+    public function reopen()
     {
         session()->put('side-bar-index', 6);
         session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
-            ->where('status_id', Status::IS_REOPENED)
+            ->where('status_id', Status::IS_CLOSED)
             ->get();
         return view('complaints.index', [
             'complaints' => $complaints,

@@ -75,5 +75,20 @@ class  Complaint extends Model
                 $model->polling_station_id = 0;
             }
         });
+        static::updating(function ($model) {
+            $model->issue_code = Str::uuid();
+            if ($model->constituency_id == null) {
+                $model->constituency_id = 0;
+            }
+            if ($model->electoral_area_id == null) {
+                $model->electoral_area_id = 0;
+            }
+            if ($model->district_id == null) {
+                $model->district_id = 0;
+            }
+            if ($model->polling_station_id == null) {
+                $model->polling_station_id = 0;
+            }
+        });
     }
 }

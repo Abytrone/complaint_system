@@ -16,11 +16,10 @@ class ToggleStatus extends Component
     public Complaint $complaint;
     public $statuses = [];
     public $status_id = null;
-
-    public $received_date = null;
     public $processed_date = null;
     public $resolved_date = null;
     public $resolution = null;
+    public $reopen_reason = null;
     public $priority = 'Low';
     public $toUrl = null;
 
@@ -46,6 +45,16 @@ class ToggleStatus extends Component
                 'created_by' => auth()->id() ?? 1,
                 'resolution' => $this->resolution,
                 'resolved_date' => $this->resolved_date
+            ]);
+        }
+
+        if ($this->showReopenInputs()) {
+            $valid = collect($valid)->except(['reopen_reason'])->toArray();
+
+            Resolution::where('complaint_id', $this->complaint->id)->update([
+                'reopen_reason' => $this->reopen_reason,
+                'reopened' => 1,
+                'reopen_by' => auth()->id()
             ]);
         }
         $this->complaint->update($valid);
@@ -76,6 +85,9 @@ class ToggleStatus extends Component
             $rules['resolved_date'] = 'required|date|before:tomorrow';
             $rules['resolution'] = 'required|string';
         }
+        if ($this->showReopenInputs()) {
+            $rules['reopen_reason'] = 'required';
+        }
         return $this->validate($rules);
     }
 
@@ -93,6 +105,11 @@ class ToggleStatus extends Component
     public function showResolvedInputs(): bool
     {
         return (int)$this->status_id === Status::IS_RESOLVED;
+    }
+
+    public function showReopenInputs(): bool
+    {
+        return (int)$this->status_id === Status::IS_REOPENED;
     }
 
 }

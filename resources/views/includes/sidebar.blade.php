@@ -88,29 +88,25 @@
 
                             <li>
                                 <a href="{{ route('complaints.submitted') }}"
-                                   class="{{ request()->routeIs('complaints.submitted') && session('side-bar-index') == 2 ? 'current-page' : '' }}">
+                                   class="{{ session('side-bar-index') == 2 ? 'current-page' : '' }}">
                                     Submitted</a>
                             </li>
 
                             <li>
                                 <a href="{{ route('complaints.processed') }}"
-                                   class="{{ request()->routeIs('complaints.processed')  && session('side-bar-index') == 3 ? 'current-page' : '' }}">
+                                   class="{{  session('side-bar-index') == 3 ? 'current-page' : '' }}">
                                     Awaiting Resolution</a>
                             </li>
 
                             <li>
                                 <a href="{{ route('complaints.resolved') }}"
-                                   class="{{ request()->routeIs('complaints.resolved')  && session('side-bar-index') == 4 ? 'current-page' : '' }}">
+                                   class="{{ session('side-bar-index') == 4 ? 'current-page' : '' }}">
                                     Resolved</a>
                             </li>
+
                             <li>
-                                <a href="{{ route('complaints.closed') }}"
-                                   class="{{ request()->routeIs('complaints.closed') && session('side-bar-index') == 5 ? 'current-page' : '' }}">
-                                    Closed</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('complaints.reopened') }}"
-                                   class="{{ request()->routeIs('complaints.reopened')  && session('side-bar-index') == 6 ? 'current-page' : '' }}">
+                                <a href="{{ route('complaints.reopen') }}"
+                                   class="{{  session('side-bar-index') == 6 ? 'current-page' : '' }}">
                                     Reopen</a>
                             </li>
 

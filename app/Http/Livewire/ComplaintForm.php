@@ -33,7 +33,7 @@ class ComplaintForm extends Component
     public $source_id = null;
     public $raw_report = null;
 
-    public $priority = 'Low';
+
     public $category_id = null;
     public $subcategory_id = null;
     public $region_id = null;
@@ -57,7 +57,7 @@ class ComplaintForm extends Component
     public $polling_stations = [];
 
     public $fields = [];
-    public $priorities = ['Low', 'Medium', 'High'];
+
 
     protected $listeners = ['update-lat-long' => 'updateLatLng'];
 
@@ -80,7 +80,6 @@ class ComplaintForm extends Component
         'community' => 'nullable',
         'gps_latitude' => 'required',
         'gps_longitude' => 'required',
-        'priority' => 'required|in:Low,Medium,High',
     ];
 
     protected $messages = [

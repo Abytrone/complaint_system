@@ -70,6 +70,22 @@
         </div>
     @endif
 
+    @if($this->showReopenInputs())
+        <div class="row">
+            <div class="col-md-6">
+                <div class="field-wrapper">
+                        <textarea id="reopen_reason" wire:model="reopen_reason" class="form-control" cols="5" rows="5" col
+                                  required></textarea>
+                    <label for="reopen_reason" class="field-placeholder">
+                        Reopen Reason<span class="text-danger">*</span></label>
+                    @error('reopen_reason')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col">
             <button class="btn btn-success" wire:click="toggle">Submit</button>

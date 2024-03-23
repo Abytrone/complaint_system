@@ -36,10 +36,7 @@
                     @endforeach
                 </x-select-field>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <x-input-field type="date" name="received_date" text="Received Date"
-                               :disabled="$isShow" wire:model="received_date"></x-input-field>
-            </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <x-select-field name="mode_id" text="Mode of Contact" :disabled="$isShow" wire:model="mode_id">
                     @foreach ($modes as $mode)
@@ -115,7 +112,7 @@
                 </div>
             @endif
             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
-                     <x-textarea-field name="raw_report" text="Report Details" wire:model="raw_report" rows="8">
+                     <x-textarea-field name="raw_report" text="Report Details" :disabled="$isShow" wire:model="raw_report" rows="8">
                     </x-textarea-field>
 
              </div>

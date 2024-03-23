@@ -45,8 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('complaints/submitted', [ComplaintController::class, 'submitted'])->name('complaints.submitted');
     Route::get('complaints/awaiting-resolution', [ComplaintController::class, 'processed'])->name('complaints.processed');
     Route::get('complaints/resolved', [ComplaintController::class, 'resolved'])->name('complaints.resolved');
-    Route::get('complaints/closed', [ComplaintController::class, 'closed'])->name('complaints.closed');
-    Route::get('complaints/reopen', [ComplaintController::class, 'reopened'])->name('complaints.reopened');
+     Route::get('complaints/reopen', [ComplaintController::class, 'reopen'])->name('complaints.reopen');
     Route::resource('complaints', ComplaintController::class)->except(['store', 'update']);
 
     Route::resource('complaints.media', ComplaintMediaController::class)->only(['index', 'create', 'destroy']);
