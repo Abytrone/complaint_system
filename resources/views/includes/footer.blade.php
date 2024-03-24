@@ -61,7 +61,7 @@
 @livewireScripts
 @livewire('livewire-ui-modal')
 @yield('scripts')
-
+@routes
 <script>
     window.addEventListener('swal:success', function (evt) {
         Swal.fire({

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Complaint;
 use App\Models\ComplaintMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use function Pest\Laravel\delete;
 
 class ComplaintMediaController extends Controller
 {
@@ -18,9 +20,15 @@ class ComplaintMediaController extends Controller
         return view('complaints.media.create', compact('complaint'));
     }
 
-    public function destroy(Complaint $complaint, ComplaintMedia $complaintMedia)
+    public function destroy(Complaint $complaint, ComplaintMedia $medium)
     {
 
+        try {
+            Storage::delete(storage_path($medium->file_name));
+        } catch (\Exception $e) {
+        }
+        $medium->delete();
+        return 1;
     }
 
     public function table(Complaint $complaint)

@@ -57,12 +57,33 @@
                 },
                 {
                     data: 'issue_media_id',
+                    render: function (data) {
+                        return `<a href="#" onclick="deleteMedia(${data})" ata-bs-toggle="tooltip"
+                           data-bs-placement="top" title="" data-bs-original-title="Delete">
+                            <i class="icon-trash-2 text-danger"></i>
+                        </a>`
+
+                    }
                     //     todo: delete action here
 
                 }
             ]
         })
         window.table = table
+
+        function deleteMedia(id) {
+            window.swalConfirm().then(function (result) {
+                if (result.value) {
+                    window.axios.delete(route('complaints.media.destroy', { complaint:'{{$complaint->issue_code}}', medium:id})).then(_ => {
+                        swalCustom('Record deleted successfully')
+                    }).catch(_ => {
+                        swalCustom('An error occurred', 'Error!', 'error')
+                    })
+                }
+
+                table.ajax.reload();
+            })
+        }
     </script>
 @endsection
 {{-- </x-app-layout> --}}

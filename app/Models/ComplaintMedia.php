@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ComplaintMedia extends Model
 {
     protected $table = 'issue_media';
+    protected $primaryKey = 'issue_media_id';
 
     protected $guarded = [];
 
