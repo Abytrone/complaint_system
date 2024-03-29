@@ -117,10 +117,10 @@
 
              </div>
             <div class="col-md-3">
-                <x-input-field name="txt-latitude" text="Latitude" wire:model="gps_latitude" type="text"/>
+                <x-input-field :disabled="$isShow" name="txt-latitude" text="Latitude" wire:model="gps_latitude" type="text"/>
             </div>
             <div class="col-md-3">
-                <x-input-field name="txt-longitude" text="Longitude" wire:model="gps_longitude" type="text"/>
+                <x-input-field :disabled="$isShow" name="txt-longitude" text="Longitude" wire:model="gps_longitude" type="text"/>
             </div>
             @if($isShow)
                 <div class="col-2 tw-flex tw-items-center tw-justify-center">
