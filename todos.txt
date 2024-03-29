@@ -1,8 +1,27 @@
-[ ] dates should not be in the future
+[x] add submit and save while editing the complaint
+[x] use uuid for issue_code on issue_master and as the model key (scoped)
+[x] remove received menu
+[x] move complaint status from submitted to processed
+[x] processing is done at submitted stage
+[x] processed menu text ----> awaiting resolution
+    - contains list of processed and reopened complaints and status should be changed to resolved
+[x] dates should not be in the future
+[x] remove website from sources select input
+[x] capture page should contain only new complaints
+[x] new complaints should be visible to only the creator
+    [x] remove received status
+    [x] processing is done on list of submitted complaints
+[x] resolved menu contains list of resolved complaints
+    [x] toggle status from resolved to closed
+[*] remove closed menu
+[x] reopened menu to reopen [ show closed complaints]
+
+[ ] *** no user should be able to delete comments added by another.
+[ ] *** convert tables into jquery version if it should be refreshed without reloading the page
 
 - complaint media
     [x] fix complaint for alignment
-    [ ] after media upload, clear form
+    [x] after media upload, clear form
     [ ] use modal for complaint media
     [ ] update complaint media
     [ ] delete complaint media

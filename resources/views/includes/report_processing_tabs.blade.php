@@ -306,3 +306,4 @@
     </div>
     <div class="tab-pane fade" id="uploads" role="tabpanel">
     </div>
+</div>

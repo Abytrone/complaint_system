@@ -1,5 +1,5 @@
 {{-- <x-app-layout> --}}
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('app-content')
     <div class="card">
@@ -7,14 +7,13 @@
             <h3> {{$title ?? 'Complaints' }} </h3>
         </div>
         <div class="card-body">
-            @if($hasNew ?? false)
-                <div class="my-3">
+            <div class="my-3">
+                @if(request()->routeIs('complaints.index'))
                     <a href="{{ route('complaints.create') }}" id="addBtn" type="button" class="btn btn-primary">
                         <i class="icon-plus"></i> Add New
                     </a>
-                </div>
-            @endif
-
+                @endif
+            </div>
             <div class="table-responsive">
                 <x-success-message></x-success-message>
                 <table id="basicExample" class="table custom-table">
@@ -36,24 +35,21 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>{{ substr($item->raw_report, 0, 100).'...' }}</td>
-                            <td>{{ $item->category->category }}</td>
-                            <td>{{ $item->subcategory->description }}</td>
-                            <td>{{ $item->status->status }}</td>
+                            <td>{{ $item->category?->category??'N/A' }}</td>
+                            <td>{{ $item->subcategory->description ?? 'N/A' }}</td>
+                            <td>{{ $item->status->status ?? 'N/A' }}</td>
                             <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
                             <td>
                                 <div class="actions">
-                                    <a
-                                        onclick="Livewire.emit('openModal', 'toggle-status-modal', {'complaint': {{$item}}})"
-                                        href="#" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title=""
-                                        data-bs-original-title="Toggle Status">
-                                        <i class="icon-sync text-primary"></i>
-                                    </a>
-                                    @if($hasActions ??false)
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                    @if(!request()->routeIs('complaints.index'))
+                                        <a href="{{route('complaints.show', $item)}}" data-bs-toggle="tooltip"
+                                           data-bs-placement="top" title=""
                                            data-bs-original-title="Show">
                                             <i class="icon-eye text-primary"></i>
                                         </a>
+                                    @endif
+
+                                    @if(request()->routeIs('complaints.index'))
                                         <a href="{{ route('complaints.edit', $item) }}" data-bs-toggle="tooltip"
                                            data-bs-placement="top" title="" data-bs-original-title="Edit">
                                             <i class="icon-edit1 text-warning"></i>

@@ -80,47 +80,34 @@
                     <div class="sidebar-menu">
                         <ul>
                             <li class="list-heading">Complaints</li>
-
-                            <li>
-                                <a href="{{ route('complaints.create') }}"
-                                   class="{{ request()->routeIs('complaints.create') ? 'current-page' : '' }}">Capture</a>
-                            </li>
                             <li>
                                 <a href="{{ route('complaints.index') }}"
-                                   class="{{ request()->routeIs('complaints.index') ? 'current-page' : '' }}">
-                                    New Complaints</a>
+                                   class="{{ session('side-bar-index') == 1 ? 'current-page' : '' }}">
+                                    Capture</a>
                             </li>
 
                             <li>
                                 <a href="{{ route('complaints.submitted') }}"
-                                   class="{{ request()->routeIs('complaints.submitted') ? 'current-page' : '' }}">
+                                   class="{{ session('side-bar-index') == 2 ? 'current-page' : '' }}">
                                     Submitted</a>
                             </li>
-                            <li>
-                                <a href="{{ route('complaints.received') }}"
-                                   class="{{ request()->routeIs('complaints.received') ? 'current-page' : '' }}">
-                                    Received</a>
-                            </li>
+
                             <li>
                                 <a href="{{ route('complaints.processed') }}"
-                                   class="{{ request()->routeIs('complaints.processed') ? 'current-page' : '' }}">
-                                    Processed</a>
+                                   class="{{  session('side-bar-index') == 3 ? 'current-page' : '' }}">
+                                    Awaiting Resolution</a>
                             </li>
 
                             <li>
                                 <a href="{{ route('complaints.resolved') }}"
-                                   class="{{ request()->routeIs('complaints.resolved') ? 'current-page' : '' }}">
+                                   class="{{ session('side-bar-index') == 4 ? 'current-page' : '' }}">
                                     Resolved</a>
                             </li>
+
                             <li>
-                                <a href="{{ route('complaints.closed') }}"
-                                   class="{{ request()->routeIs('complaints.closed') ? 'current-page' : '' }}">
-                                    Closed</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('complaints.reopened') }}"
-                                   class="{{ request()->routeIs('complaints.reopened') ? 'current-page' : '' }}">
-                                    Reopened</a>
+                                <a href="{{ route('complaints.reopen') }}"
+                                   class="{{  session('side-bar-index') == 6 ? 'current-page' : '' }}">
+                                    Reopen</a>
                             </li>
 
                         </ul>

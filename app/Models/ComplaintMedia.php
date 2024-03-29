@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ComplaintMedia extends Model
 {
     protected $table = 'issue_media';
+    protected $primaryKey = 'issue_media_id';
 
     protected $guarded = [];
 
@@ -17,7 +18,5 @@ class ComplaintMedia extends Model
         return $this->belongsTo(MediaType::class, 'media_type_id', );
     }
 
-    public const CREATED_AT = 'created_date';
-    public const UPDATED_AT = 'modified_date';
 
 }

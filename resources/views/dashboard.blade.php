@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('page-title')
     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-9">
@@ -95,20 +95,20 @@
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Number of Complaints</th>
-                                </tr>
+                            <tr>
+                                <th>Category</th>
+                                <th>Number of Complaints</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Air Pollution</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>Bush Fires</td>
-                                    <td>10</td>
-                                </tr>
+                            <tr>
+                                <td>Air Pollution</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Bush Fires</td>
+                                <td>10</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -123,7 +123,7 @@
         </div>
         <div class="card-body">
             <input style="max-width: 500px; margin-top: 10px;" id="pac-input" class="form-control" type="text"
-                placeholder="Search Box" />
+                   placeholder="Search Box"/>
             <div style="width:100%; height: 500px;" id="google-map"></div>
         </div>
     </div>

@@ -61,7 +61,7 @@
 @livewireScripts
 @livewire('livewire-ui-modal')
 @yield('scripts')
-
+@routes
 <script>
     window.addEventListener('swal:success', function (evt) {
         Swal.fire({
@@ -102,5 +102,9 @@
         }).then(function () {
             location.reload();
         })
+    })
+
+    window.addEventListener('reload-table', function (evt) {
+        window.table.ajax.reload();
     })
 </script>

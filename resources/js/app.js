@@ -1,6 +1,7 @@
 import './bootstrap';
 import Swal from 'sweetalert2'
 window.Swal = Swal
+import './custom'
 
 import Alpine from 'alpinejs'
 import focus from '@alpinejs/focus'

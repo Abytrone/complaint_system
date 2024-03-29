@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\WithoutZeroId;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,11 @@ class Source extends Model
     protected $primaryKey = 'source_id';
 
     protected $guarded=[];
-    
+
     public $timestamps = false;
+
+    public function scopeWithoutWebsite(Builder $query)
+    {
+        return $query->whereNot('source', 'website');
+    }
 }

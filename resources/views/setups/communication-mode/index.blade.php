@@ -1,8 +1,7 @@
 {{-- <x-app-layout> --}}
-    @extends('layout.app')
+@extends('layouts.app')
 
-    @section('app-content')
-       @livewire('communication-modes')
-    @endsection
+@section('app-content')
+    @livewire('communication-modes')
+@endsection
 {{-- </x-app-layout> --}}
-    

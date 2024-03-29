@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('app-content')
     <!-- Row start -->
@@ -30,6 +30,5 @@
         </div>
     </div>
     <!-- Row end -->
-
 
 @endsection

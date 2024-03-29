@@ -2,34 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ComplaintStoreRequest;
 use App\Models\Complaint;
-use App\Models\District;
-use App\Models\Region;
 use App\Models\Status;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class ComplaintController extends Controller
 {
+
+
     public function index()
     {
+        session()->put('complaint-url', request()->url());
+        session()->put('side-bar-index', 1);
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_NEW)
+            ->where('created_by', auth()->id())
             ->get();
         return view('complaints.index', [
             'complaints' => $complaints,
             'title' => 'New Complaints',
-            'hasNew' => true,
-            'hasActions' => true
         ]);
     }
 
     public function submitted()
     {
+        session()->put('complaint-url', request()->url());
+        session()->put('side-bar-index', 2);
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_SUBMITTED)
@@ -40,23 +38,14 @@ class ComplaintController extends Controller
         ]);
     }
 
-    public function received()
-    {
-//        todo: add filter to get only the complaints created by current user
-        $complaints = Complaint::with(['category', 'subcategory', 'status'])
-            ->where('status_id', Status::IS_RECEIVED)
-            ->get();
-        return view('complaints.index', [
-            'complaints' => $complaints,
-            'title' => 'Received Complaints',
-        ]);
-    }
 
     public function processed()
     {
+        session()->put('side-bar-index', 3);
+        session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
-            ->where('status_id', Status::IS_PROCESSED)
+            ->whereIn('status_id', [Status::IS_PROCESSED, Status::IS_REOPENED])
             ->get();
         return view('complaints.index', [
             'complaints' => $complaints,
@@ -66,6 +55,8 @@ class ComplaintController extends Controller
 
     public function resolved()
     {
+        session()->put('side-bar-index', 4);
+        session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_RESOLVED)
@@ -76,23 +67,15 @@ class ComplaintController extends Controller
         ]);
     }
 
-    public function closed()
+
+
+    public function reopen()
     {
+        session()->put('side-bar-index', 6);
+        session()->put('complaint-url', request()->url());
 //        todo: add filter to get only the complaints created by current user
         $complaints = Complaint::with(['category', 'subcategory', 'status'])
             ->where('status_id', Status::IS_CLOSED)
-            ->get();
-        return view('complaints.index', [
-            'complaints' => $complaints,
-            'title' => 'Closed Complaints',
-        ]);
-    }
-
-    public function reopened()
-    {
-//        todo: add filter to get only the complaints created by current user
-        $complaints = Complaint::with(['category', 'subcategory', 'status'])
-            ->where('status_id', Status::IS_REOPENED)
             ->get();
         return view('complaints.index', [
             'complaints' => $complaints,
@@ -106,6 +89,11 @@ class ComplaintController extends Controller
         return view('complaints.create');
     }
 
+
+    public function show(Complaint $complaint)
+    {
+        return view('complaints.show', compact('complaint'));
+    }
 
     public function edit(Complaint $complaint)
     {
