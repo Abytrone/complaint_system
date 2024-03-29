@@ -44,14 +44,10 @@
             responsive: true,
             ajax: '/complaints/{{$complaint->issue_code}}/media/table',
             columns: [
+                {data: 'title'},
+                {data: 'type.media_type'},
                 {
-                    data: 'title'
-                }, {
-                    data: 'type.media_type'
-                },
-                {
-                    data: 'file_name',
-                    render: function (data) {
+                    data: 'file_name', render: function (data) {
                         return `<a target="_blank" href="{{ asset('storage')}}/${data}">preview</a>`
                     }
                 },
@@ -74,7 +70,10 @@
         function deleteMedia(id) {
             window.swalConfirm().then(function (result) {
                 if (result.value) {
-                    window.axios.delete(route('complaints.media.destroy', { complaint:'{{$complaint->issue_code}}', medium:id})).then(_ => {
+                    window.axios.delete(route('complaints.media.destroy', {
+                        complaint: '{{$complaint->issue_code}}',
+                        medium: id
+                    })).then(_ => {
                         swalCustom('Record deleted successfully')
                     }).catch(_ => {
                         swalCustom('An error occurred', 'Error!', 'error')

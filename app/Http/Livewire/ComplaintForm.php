@@ -73,7 +73,7 @@ class ComplaintForm extends Component
         'subcategory_id' => 'required|exists:issue_subcategory,issue_subcategory_id',
         'category_id' => 'required|exists:issue_category,category_id',
         'region_id' => 'nullable|exists:region,region_id',
-        'district_id' => 'nullable|exists:vw_district,district_id',
+        'district_id' => 'nullable|exists:district,district_id',
         'constituency_id' => 'nullable|exists:vw_ec_data_constituency,constituency_id',
         'electoral_area_id' => 'nullable|exists:vw_ec_data_electoral_area,electoral_area_id',
         'polling_station_id' => 'nullable|exists:ec_data,polling_station_id',
