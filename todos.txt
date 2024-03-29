@@ -14,12 +14,11 @@
 [x] resolved menu contains list of resolved complaints
     [x] toggle status from resolved to closed
 [*] remove closed menu
+[x] reopened menu to reopen [ show closed complaints]
 
 [ ] *** no user should be able to delete comments added by another.
 [ ] *** convert tables into jquery version if it should be refreshed without reloading the page
 
-[ ] reopened menu to reopen [ show closed complaints]
-[ ]
 - complaint media
     [x] fix complaint for alignment
     [x] after media upload, clear form

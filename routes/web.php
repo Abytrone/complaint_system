@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunicationModeSetupController;
 use App\Http\Controllers\ComplaintMediaController;
@@ -64,3 +65,32 @@ Route::middleware(['auth'])->group(function () {
 
 });
 require __DIR__ . '/auth.php';
+
+
+Route::view('/hubtel', 'hubtel');
+Route::get('/hubtel-callback', function (Request $request) {
+    dd($request->body);
+});
+
+Route::post('hubtel', function () {
+    $code = Str::random(10);
+    $code = Str::random(10);
+    $response = Http::withHeaders([
+        "Content-Type" => "application/json",
+        "Authorization" => "Basic NjRaN1BSOmE4YzhjMDc0Nzc4ZjRmNzliZGJjMDJhM2YzZWRjMjA2"
+    ])->post("https://payproxyapi.hubtel.com/items/initiate", [
+        "totalAmount" => 0.1,
+        "description" => "Hubtel Online Checkout Test",
+        "callbackUrl" => "http://localhost:8000/hubtel-callback",
+        "returnUrl" => "http://localhost:8000/hubtel-callback",
+        "merchantAccountNumber" => "2020338",
+        "cancellationUrl" => "http://google.com",
+        "clientReference" => $code
+    ]);
+
+    if ($response->failed()) {
+        return "HTTP Error: " . $response->status() . PHP_EOL;
+    } else {
+        return redirect(json_decode($response->body())->data->checkoutUrl);
+    }
+});
