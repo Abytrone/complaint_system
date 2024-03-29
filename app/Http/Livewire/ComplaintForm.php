@@ -124,9 +124,18 @@ class ComplaintForm extends Component
     public function submit(): void
     {
         $valid = $this->validate();
-        $valid['updated_by'] = auth()->id() ?? 1;
-        $valid['status_id'] = Status::IS_SUBMITTED;
-        $this->complaint->update($valid);
+
+        if ($this->complaint !== null) {
+            $valid['updated_by'] = auth()->id() ?? 1;
+            $valid['status_id'] = Status::IS_SUBMITTED;
+            $this->complaint->update($valid);
+        } else {
+            $valid['code'] = $this->generateRandomNumber();
+            $valid['created_by'] = auth()->id() ?? 1;
+            $valid['updated_by'] = auth()->id() ?? 1;
+            $valid['status_id'] = Status::IS_SUBMITTED;
+            Complaint::create($valid);
+        }
         session()->flash('message', 'Complaint submitted successfully.');
         $this->redirect(session('complaint-url'));
     }
