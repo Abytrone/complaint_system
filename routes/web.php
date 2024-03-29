@@ -94,3 +94,9 @@ Route::post('hubtel', function () {
         return redirect(json_decode($response->body())->data->checkoutUrl);
     }
 });
+
+Route::get('/issue-code', function(){
+    \App\Models\Complaint::all()->each(function ($item){
+        $item->update(['issue_code' => Str::uuid()]);
+    });
+});
