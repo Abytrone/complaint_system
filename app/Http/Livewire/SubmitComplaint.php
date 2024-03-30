@@ -18,14 +18,9 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-
 class SubmitComplaint extends Component
 {
 
-    public $category;
-    public $subcategory;
-    
-    public $fields=[];
 
     public bool $isShow = false;
     public bool $showSubmit = false;
@@ -34,8 +29,6 @@ class SubmitComplaint extends Component
     public $phone = null;
     public $email = null;
     public $gender = null;
-    public $mode_id = null;
-    public $source_id = null;
     public $raw_report = null;
 
 
@@ -62,17 +55,17 @@ class SubmitComplaint extends Component
     public $polling_stations = [];
     public $priority;
 
+    public $fields = [];
 
 
-    public $listeners=['modalGetCategoryEvent'=>'setFormControls', 'update-lat-long' => 'updateLatLng'];
+    protected $listeners = ['update-lat-long' => 'updateLatLng'];
+
 
     protected $rules = [
         'name' => 'required|max:200',
         'phone' => 'required|min:10',
         'email' => 'required|email',
         'gender' => 'required|in:Male,Female',
-        'mode_id' => 'required|exists:communication_mode,mode_id',
-        'source_id' => 'required|exists:issue_source,source_id',
         'raw_report' => 'required',
         'subcategory_id' => 'required|exists:issue_subcategory,issue_subcategory_id',
         'category_id' => 'required|exists:issue_category,category_id',
@@ -89,8 +82,6 @@ class SubmitComplaint extends Component
     protected $messages = [
         'name.required' => 'Reporter name is required',
         'mode_id.required' => 'Invalid mode of contact selected',
-        'mode_id.exists' => 'Invalid mode of contact selected',
-        'source_id.required' => 'Invalid report source selected',
         'source_id.exists' => 'Invalid report source selected',
         'raw_report.required' => 'Report details is required',
         'subcategory_id.required' => 'Invalid sub category selected',
@@ -108,22 +99,26 @@ class SubmitComplaint extends Component
         'priority' => 'required|in:Low,Medium,High',
     ];
 
-    public function store(): void
+ 
+
+    public function submit(): void
     {
         $valid = $this->validate();
         if ($this->complaint !== null) {
-            $valid['updated_by'] = auth()->id() ?? 1;
-            $this->complaint->update($valid);
+            $valid['updated_by'] = auth()->id() ?? 0;
+            $validData = array_merge($valid, ['mode_id'=>0, 'source_id'=>1]);
+            $this->complaint->update($validData);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
         } else {
             $valid['code'] = $this->generateRandomNumber();
-            $valid['created_by'] = auth()->id() ?? 1;
-            Complaint::create($valid);
+            $valid['created_by'] = auth()->id() ?? 0;
+            $validData = array_merge($valid, ['mode_id'=>0, 'source_id'=>1]);
+            $newComplaint=Complaint::create($validData);
             $this->resetExcept(['categories', 'regions']);
-            $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
+            $this->dispatchBrowserEvent('swal:success', ['message' => 'Thank you '.$newComplaint->name. ' you complaint received successfully. Do you want to submit another?']);
         }
-
     }
+
 
     public function updatedCategoryId($val): void
     {
@@ -206,6 +201,7 @@ class SubmitComplaint extends Component
 
     }
 
+
     public function mount(): void
     {
         $this->categories = Category::withoutZeroId()->active()->get();
@@ -230,7 +226,7 @@ class SubmitComplaint extends Component
     }
 
    
-    public function render()
+    public function render(): Factory|View|Application
     {
         return view('livewire.submit-complaint');
     }
@@ -321,5 +317,4 @@ class SubmitComplaint extends Component
         $max = pow(10, $length) - 1;
         return strval(rand($min, $max));
     }
-
 }

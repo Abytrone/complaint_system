@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{asset('css/web-main.css')}}">
 
 
     <!-- *************

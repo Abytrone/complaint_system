@@ -1,4 +1,4 @@
-<div class="m-3" wire:ignore>
+<div>
     <form wire:submit.prevent="store">
         <div class="row mb-3">
             <div class="col-md-6 col-12">
@@ -33,21 +33,6 @@
                 <x-select-field name="gender" text="Gender" :disabled="$isShow" wire:model="gender">
                     @foreach (['Male', 'Female'] as $gender)
                         <option value="{{$gender}}">{{ $gender }}</option>
-                    @endforeach
-                </x-select-field>
-            </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <x-select-field name="mode_id" text="Mode of Contact" :disabled="$isShow" wire:model="mode_id">
-                    @foreach ($modes as $mode)
-                        <option value="{{$mode->mode_id}}">{{ $mode->mode }}</option>
-                    @endforeach
-                </x-select-field>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <x-select-field name="source_id" text="Report Source" :disabled="$isShow" wire:model="source_id">
-                    @foreach ($sources as $source)
-                        <option value="{{$source->source_id}}">{{ $source->source }}</option>
                     @endforeach
                 </x-select-field>
             </div>
@@ -131,9 +116,14 @@
         </div>
         @if(!$isShow)
             <div class="tw-flex tw-gap-5">
-                <button class="btn btn-primary btn-sm" type="submit">Save</button>
-                <button class="btn btn-warning btn-sm" wire:click="submit" type="button">Submit</button>
+                <button class="btn btn-primary btn-sm" wire:click="submit" type="button">Submit</button>
             </div>
         @endif
     </form>
+    <div class="mt-3" wire:ignore>
+        <input style="max-width: 500px; margin-top: 10px;" id="pac-input" class="form-control"
+               type="text"
+               placeholder="Search Box"/>
+        <div style="width:100%; height: 500px;" id="google-map"></div>
+    </div>
 </div>

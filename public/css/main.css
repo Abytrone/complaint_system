@@ -298,10 +298,6 @@ body.fullscreen .page-wrapper .main-container {
   padding-left: 0;
 }
 
-body.fullscreen .page-wrapper .form_container {
-  padding-left: 0;
-}
-
 body.fullscreen .page-wrapper .sidebar-wrapper {
   left: -350px;
 }
@@ -338,11 +334,6 @@ body.full-view .main-container {
   height: calc(100vh);
 }
 
-body.full-view .form_container {
-  border-radius: 0px;
-  height: calc(100vh);
-}
-
 body.full-view .content-wrapper {
   height: calc(100vh - 135px);
 }
@@ -364,25 +355,12 @@ body.default-sidebar .main-container {
   padding: 0 0 0 260px;
 }
 
-body.default-sidebar .form_container {
-  padding: 0 0 0 0;
-}
-
 body.compact-sidebar .main-container {
-  padding: 0 0 0 0;
+  padding: 0 0 0 160px;
 }
-
-body.compact-sidebar .form_container {
-  padding: 0 0 0 0;
-}
-
 
 body.slim-sidebar .main-container {
   padding: 0 0 0 75px;
-}
-
-body.slim-sidebar .form_container {
-  padding: 0 0 0 0;
 }
 
 /************************************************
@@ -1533,15 +1511,6 @@ p {
   height: calc(100vh - 20px);
 }
 
-.form_container {
-  background: #efeff7;
-  border-radius: 10px;
-  -webkit-transition: padding-left .3s ease;
-  transition: padding-left .3s ease;
-  padding: 10px;
-  height: calc(100vh - 20px);
-}
-
 @media screen and (max-width: 1024px) {
   /******** 6.10.1 Page Wrapper ********/
   .page-wrapper .sidebar-wrapper {
@@ -1563,11 +1532,6 @@ p {
   .page-wrapper .main-container {
     padding-left: 0px;
   }
-
-  .page-wrapper .form_container {
-    padding-left: 0px;
-  }
-
   /******** 6.10.2 Default Sidebar Wrapper ********/
   body.default-sidebar .page-wrapper .sidebar-wrapper {
     left: -280px;
@@ -1575,16 +1539,9 @@ p {
   body.default-sidebar .page-wrapper.toggled .sidebar-wrapper {
     left: 10px;
   }
-
-
   body.default-sidebar .page-wrapper .main-container {
     padding-left: 0px;
   }
-
-  body.default-sidebar .page-wrapper .form_container {
-    padding-left: 0px;
-  }
-
   body.default-sidebar .page-wrapper .default-sidebar-wrapper .default-sidebar-brand .logo {
     margin: 0 0 1rem 3.5rem;
   }
@@ -1598,15 +1555,9 @@ p {
   body.slim-sidebar .page-wrapper.toggled .sidebar-wrapper {
     left: 10px;
   }
-
   body.slim-sidebar .page-wrapper .main-container {
     padding-left: 0px;
   }
-
-  body.slim-sidebar .page-wrapper .form_container {
-    padding-left: 0px;
-  }
-
   body.slim-sidebar .page-wrapper .default-sidebar-wrapper .default-sidebar-brand .logo {
     margin: 0 0 1rem 3.5rem;
     min-height: 60px;
@@ -1624,11 +1575,6 @@ p {
   body.compact-sidebar .page-wrapper .main-container {
     padding-left: 0px;
   }
-
-  body.compact-sidebar .page-wrapper .form_container {
-    padding-left: 0px;
-  }
-
   body.compact-sidebar .page-wrapper .compact-sidebar-wrapper .compact-sidebar-brand .logo {
     margin: 0 0 1rem 3.5rem;
     min-height: 70px;
@@ -4965,12 +4911,8 @@ ul.recent-orders li .order-details span.order-date {
 /******** 7.1 Login Screen ********/
 .login-container {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: green;
 }
 
 .login-container .login-about {
@@ -5058,8 +5000,19 @@ ul.recent-orders li .order-details span.order-date {
   margin: 0 0 0 1rem;
 }
 
-
-
+.login-container .login-wrapper {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
 
 @media screen and (max-width: 992px) {
   .login-container .login-about {
@@ -5068,15 +5021,14 @@ ul.recent-orders li .order-details span.order-date {
 }
 
 .login-screen {
-  /* position: relative; */
+  position: relative;
   background: #ffffff;
   border: 1px solid #e1e8f3;
   border-radius: 20px;
   -webkit-box-shadow: 0 30px 15px -20px rgba(0, 0, 0, 0.2);
           box-shadow: 0 30px 15px -20px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 100%s;
-  margin:15px;
+  min-width: 320px;
+  max-width: 320px;
 }
 
 .login-screen .login-logo {
@@ -9526,6 +9478,4 @@ label {
   padding-right: 10px;
   padding-left: 10px;
 }
-
-
 /*# sourceMappingURL=main.css.map */
