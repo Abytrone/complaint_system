@@ -55,6 +55,7 @@ class ComplaintForm extends Component
     public $constituencies = [];
     public $electoral_areas = [];
     public $polling_stations = [];
+    public $priority;
 
     public $fields = [];
 

@@ -104,9 +104,10 @@ class ComplaintController extends Controller
         //        Complaint::query()->create($insertData);
         return to_route('complaints.create')->with('message', 'Record Added Successfylly');
     }
+
     public function webSubmit()
     {
-        return view('complaints.web-submit');
+        return view('complaints.submit');
     }
 
 
