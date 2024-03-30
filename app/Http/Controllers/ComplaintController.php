@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Complaint;
 use App\Models\Status;
+use App\Models\Complaint;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ComplaintStoreRequest;
 
 class ComplaintController extends Controller
 {
@@ -87,6 +91,22 @@ class ComplaintController extends Controller
     public function create()
     {
         return view('complaints.create');
+    }
+
+    public function store(ComplaintStoreRequest $request)
+    {
+        $insertData = array_merge($request->validated(), [
+            'code' => Str::random(10),
+            'created_by' => auth()->id(),
+            'created_date' => Carbon::now()
+        ]);
+        DB::table('issue_master')->insert($insertData);
+        //        Complaint::query()->create($insertData);
+        return to_route('complaints.create')->with('message', 'Record Added Successfylly');
+    }
+    public function webSubmit()
+    {
+        return view('complaints.web-submit');
     }
 
 

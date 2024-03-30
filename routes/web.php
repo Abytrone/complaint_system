@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\ComplaintController;
+
 use App\Http\Controllers\IssueFieldController;
 use App\Http\Controllers\IssueSourceController;
 use App\Http\Controllers\IssueStatusController;
@@ -16,6 +15,7 @@ use App\Http\Controllers\ComplaintMediaController;
 use App\Http\Controllers\IssueSubcategoryController;
 use App\Http\Controllers\IssueCategoryFieldController;
 use App\Http\Controllers\CommunicationModeSetupController;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,12 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
+//website submit route
+Route::get('/submit-complaint', [ComplaintController::class, 'webSubmit'])->name('complaints.web-submit');
+
 require __DIR__ . '/auth.php';
+
 
 
 Route::view('/hubtel', 'hubtel');
@@ -102,3 +107,6 @@ Route::get('/issue-code', function(){
         $item->update(['issue_code' => Str::uuid()]);
     });
 });
+
+
+
