@@ -633,6 +633,7 @@ p {
 .page-wrapper {
   padding: 10px;
   background: #0a7243;
+  /* height: 100%; */
 }
 
 /******** 6.2 Sidebar Wrapper ********/
@@ -1540,7 +1541,7 @@ p {
   -webkit-transition: padding-left .3s ease;
   transition: padding-left .3s ease;
   padding: 10px;
-  height: calc(100vh - 20px);
+  /* height: 100% !important; */
 }
 
 @media screen and (max-width: 1024px) {
