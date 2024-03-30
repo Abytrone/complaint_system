@@ -51,7 +51,7 @@
     ************ Main container start *************
    ************* -->
         <div class="form_container">
-            <h3 class="text-center">SUBMIT COMPLAINT WITH THIS FORM</h3>
+            <h3 class="text-center">WELCOME: PLEASE SUBMIT COMPLAINT </h3>
             <hr>
             @livewire('submit-complaint')
         </div>
