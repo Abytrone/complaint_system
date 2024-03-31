@@ -76,7 +76,6 @@ class  Complaint extends Model
             }
         });
         static::updating(function ($model) {
-            $model->issue_code = Str::uuid();
             if ($model->constituency_id == null) {
                 $model->constituency_id = 0;
             }
