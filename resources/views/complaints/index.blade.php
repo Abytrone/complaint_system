@@ -25,7 +25,7 @@
                         <th>Category</th>
                         <th>Sub Category</th>
                         <th>Status</th>
-                        <th>Media</th>
+                        
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -38,7 +38,7 @@
                             <td>{{ $item->category?->category??'N/A' }}</td>
                             <td>{{ $item->subcategory->description ?? 'N/A' }}</td>
                             <td>{{ $item->status->status ?? 'N/A' }}</td>
-                            <td><a class="link" href="{{route('complaints.media.index' , $item)}}">Media</a></td>
+
                             <td>
                                 <div class="actions">
                                     @if(!request()->routeIs('complaints.index'))
