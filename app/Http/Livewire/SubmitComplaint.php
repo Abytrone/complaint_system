@@ -238,8 +238,6 @@ class SubmitComplaint extends Component
             $this->phone = $this->complaint->phone;
             $this->email = $this->complaint->email;
             $this->gender = $this->complaint->gender;
-            $this->mode_id = $this->complaint->mode_id;
-            $this->source_id = $this->complaint->source_id;
             $this->raw_report = $this->complaint->raw_report;
             $this->priority = $this->complaint->priority;
             $this->category_id = $this->complaint->category_id;
