@@ -1,3 +1,20 @@
+[ ] duplicate complaint priority in issues_master and issue_processed
+[ ] add media gallery
+[ ] while processing
+    [ ] select support group
+        [ ] assign people to resolution group
+[ ] how to handle the updates of the complaints while keeping the original text.
+[ ] *** no user should be able to delete comments added by another.
+[ ] *** convert tables into jquery version if it should be refreshed without reloading the page
+
+- complaint media
+    [x] fix complaint for alignment
+    [x] after media upload, clear form
+    [ ] use modal for complaint media
+    [ ] update complaint media
+    [ ] delete complaint media
+
+
 [x] add submit and save while editing the complaint
 [x] use uuid for issue_code on issue_master and as the model key (scoped)
 [x] remove received menu
@@ -15,13 +32,3 @@
     [x] toggle status from resolved to closed
 [*] remove closed menu
 [x] reopened menu to reopen [ show closed complaints]
-
-[ ] *** no user should be able to delete comments added by another.
-[ ] *** convert tables into jquery version if it should be refreshed without reloading the page
-
-- complaint media
-    [x] fix complaint for alignment
-    [x] after media upload, clear form
-    [ ] use modal for complaint media
-    [ ] update complaint media
-    [ ] delete complaint media

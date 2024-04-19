@@ -13,7 +13,7 @@ class  Complaint extends Model
     protected $table = 'issue_master';
     protected $primaryKey = 'issue_id';
 
-    protected $guarded = [];
+    protected $guarded = ['uploads'];
 
     protected $casts = ['processed_date' => 'date'];
 

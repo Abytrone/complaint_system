@@ -5,10 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\CommunicationMode;
 use App\Models\Complaint;
+use App\Models\ComplaintMedia;
 use App\Models\Constituency;
 use App\Models\District;
 use App\Models\ElectoralArea;
 use App\Models\Field;
+use App\Models\MediaType;
 use App\Models\PollingStation;
 use App\Models\Region;
 use App\Models\Source;
@@ -18,9 +20,11 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ComplaintForm extends Component
 {
+    use WithFileUploads;
 
     public bool $isShow = false;
     public bool $showSubmit = false;
@@ -44,6 +48,8 @@ class ComplaintForm extends Component
     public $community = null;
     public $gps_latitude = null;
     public $gps_longitude = null;
+
+    public $uploads = null;
 
 
     public $modes = [];
@@ -80,6 +86,7 @@ class ComplaintForm extends Component
         'community' => 'nullable',
         'gps_latitude' => 'required',
         'gps_longitude' => 'required',
+        'uploads.*' => 'nullable|image|max:1024',
     ];
 
     protected $messages = [
@@ -110,11 +117,31 @@ class ComplaintForm extends Component
         if ($this->complaint !== null) {
             $valid['updated_by'] = auth()->id() ?? 1;
             $this->complaint->update($valid);
+            foreach ($valid['uploads'] as $upload) {
+                ComplaintMedia::create([
+                    'complaint_id' => $this->complaint->issue_id,
+                    'media_type_id' => 1,
+                    'title' => 'N/A',
+                    'file_name' => $upload->store('media', 'public'),
+                    'created_by' => auth()->id ?? 1
+                ]);
+
+            }
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
         } else {
             $valid['code'] = $this->generateRandomNumber();
             $valid['created_by'] = auth()->id() ?? 1;
-            Complaint::create($valid);
+            $complaint = Complaint::create($valid);
+            foreach ($valid['uploads'] as $upload) {
+                ComplaintMedia::create([
+                    'complaint_id' => $complaint->issue_id,
+                    'media_type_id' => 1,
+                    'title' => 'N/A',
+                    'file_name' => $upload->store('media', 'public'),
+                    'created_by' => auth()->id ?? 1
+                ]);
+
+            }
             $this->resetExcept(['categories', 'regions']);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record saved successfully!']);
         }

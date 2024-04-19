@@ -59,4 +59,8 @@
 
     @livewireStyles
 
+    <script src="{{asset('js/photoswipe.umd.min.js')}}"></script>
+    <script src="{{asset('js/photoswipe-lightbox.umd.min.js')}}"></script>
+
+    <link rel="stylesheet" href="{{asset('css/photoswipe.css')}}">
 </head>

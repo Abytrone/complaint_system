@@ -112,19 +112,29 @@
                 </div>
             @endif
             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
-                     <x-textarea-field name="raw_report" text="Report Details" :disabled="$isShow" wire:model="raw_report" rows="8">
-                    </x-textarea-field>
+                <x-textarea-field name="raw_report" text="Report Details" :disabled="$isShow" wire:model="raw_report"
+                                  rows="8">
+                </x-textarea-field>
 
-             </div>
-            <div class="col-md-3">
-                <x-input-field :disabled="$isShow" name="txt-latitude" text="Latitude" wire:model="gps_latitude" type="text"/>
             </div>
             <div class="col-md-3">
-                <x-input-field :disabled="$isShow" name="txt-longitude" text="Longitude" wire:model="gps_longitude" type="text"/>
+                <x-input-field :disabled="$isShow" name="txt-latitude" text="Latitude" wire:model="gps_latitude"
+                               type="text"/>
             </div>
+            <div class="col-md-3">
+                <x-input-field :disabled="$isShow" name="txt-longitude" text="Longitude" wire:model="gps_longitude"
+                               type="text"/>
+            </div>
+            @if(!$isShow)
+
+                <div class="col-md-3">
+                    <x-input-field text="Pictures" name="uploads" wire:model="uploads" type="file" multiple/>
+                </div>
+            @endif
             @if($isShow)
                 <div class="col-2 tw-flex tw-items-center tw-justify-center">
-                    <a href="https://maps.google.com?lat={{$complaint->gps_latitude}}&lng={{$complaint->gps_longitude}}"
+                    <a target="_blank"
+                       href="https://maps.google.com?lat={{$complaint->gps_latitude}}&lng={{$complaint->gps_longitude}}"
                        class="btn btn-primary btn-sm" type="submit">Show on map</a>
                 </div>
             @endif

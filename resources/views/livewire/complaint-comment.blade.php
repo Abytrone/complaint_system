@@ -21,40 +21,48 @@
         </div>
 
     @endif
-    @if(count($comments))
-        <div class="row tw-mt-5">
-            <div class="table-responsive">
-                <table class="table custom-table dataTable">
-                    <thead>
+
+    <div class="row tw-mt-5">
+        <div class="table-responsive">
+            <table class="table custom-table dataTable">
+                <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>Complaint Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse($comments as $comment)
                     <tr>
-                        <th>Comment</th>
-                        <th>Complaint Status</th>
-                        <th></th>
+                        <td>{{$comment->comment}}</td>
+                        <td>{{$comment->status->status}}</td>
+                        <td>
+                            <a wire:click="editComment({{$comment}})" href="#" data-bs-toggle="tooltip"
+                               data-bs-placement="top" title="" data-bs-original-title="Edit">
+                                <i class="icon-edit1 text-warning"></i>
+                            </a>
+
+                            <a wire:click="deleteComment({{$comment}})" href="#" data-bs-toggle="tooltip"
+                               data-bs-placement="top" title="" data-bs-original-title="Delete">
+                                <i class="icon-trash-2 text-danger"></i>
+                            </a>
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($comments as $comment)
-                        <tr>
-                            <td>{{$comment->comment}}</td>
-                            <td>{{$comment->status->status}}</td>
-                            <td>
-                                <a wire:click="editComment({{$comment}})" href="#" data-bs-toggle="tooltip"
-                                   data-bs-placement="top" title="" data-bs-original-title="Edit">
-                                    <i class="icon-edit1 text-warning"></i>
-                                </a>
+                @empty
+                    <tr>
+                        <td> </td>
+                        <td> No comments yet</td>
+                        <td>
 
-                                <a wire:click="deleteComment({{$comment}})" href="#" data-bs-toggle="tooltip"
-                                   data-bs-placement="top" title="" data-bs-original-title="Delete">
-                                    <i class="icon-trash-2 text-danger"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
+                        </td>
+                    </tr>
+                @endforelse
 
-                    </tbody>
+                </tbody>
 
-                </table>
-            </div>
+            </table>
         </div>
-    @endif
+    </div>
+
 </div>

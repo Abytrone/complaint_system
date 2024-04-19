@@ -20,7 +20,7 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="issues" role="tabpanel">
-            <livewire:toggle-status :complaint="$complaint"></livewire:toggle-status>
+            <livewire:complaint-process-form :complaint="$complaint"></livewire:complaint-process-form>
         </div>
         <div class="tab-pane fade " id="comments" role="tabpanel">
             <livewire:complaint-comment :complaint="$complaint"></livewire:complaint-comment>

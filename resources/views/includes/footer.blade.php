@@ -69,6 +69,9 @@
             text: evt.detail.message,
             icon: "success"
         });
+        if(window.table){
+            window.table.ajax.reload();
+        }
     })
 
     window.addEventListener('reloadPage', function () {
