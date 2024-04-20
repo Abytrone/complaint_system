@@ -7,9 +7,17 @@
             <form wire:submit.prevent="saveChanges">
                 <div class="row">
                     <div class="col">
-                        <x-textarea-field name="comment" text="Comment" wire:model="comment"></x-textarea-field>
+                        <x-textarea-field rows="5" name="comment" text="Comment"
+                                          wire:model="comment"></x-textarea-field>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <x-input-field text="Attachment" name="attachment" wire:model="attachment" type="file"
+                                       id="upload-{{$fileResetCounter}}"/>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col tw-flex tw-gap-3">
                         <button class="btn btn-primary" type="submit">Submit</button>
@@ -27,16 +35,23 @@
             <table class="table custom-table dataTable">
                 <thead>
                 <tr>
-                    <th>Comment</th>
-                    <th>Complaint Status</th>
+                    <th>Attachment</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                    <th>Date</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($comments as $comment)
+                @forelse($comments ??[] as $comment)
                     <tr>
+                        <td> <img alt="pic" style='width:60px;height:60px' src="{{$comment->attachment_fmt}}"/></td>
+                        <td>{{$comment->creator->fullname}}</td>
+
                         <td>{{$comment->comment}}</td>
                         <td>{{$comment->status->status}}</td>
+                        <td>{{$comment->created_at_fmt}}</td>
                         <td>
                             <a wire:click="editComment({{$comment}})" href="#" data-bs-toggle="tooltip"
                                data-bs-placement="top" title="" data-bs-original-title="Edit">
@@ -51,11 +66,9 @@
                     </tr>
                 @empty
                     <tr>
-                        <td> </td>
+                        <td></td>
                         <td> No comments yet</td>
-                        <td>
-
-                        </td>
+                        <td></td>
                     </tr>
                 @endforelse
 

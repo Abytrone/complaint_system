@@ -5,37 +5,60 @@ namespace App\Http\Livewire;
 use App\Models\Complaint;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ComplaintComment extends Component
 {
+    use WithFileUploads;
     protected $listeners = ['confirmDeleteComment'];
     public Complaint $complaint;
     public $showForm = false;
     public $comments = [];
     public $comment = null;
+    public $attachment = null;
     public $comment_id = null;
 
-    protected $rules = [
-        'comment' => 'required'
-    ];
+    public $fileResetCounter = 0;
 
     public function saveChanges(): void
     {
-        $this->validate();
+
         if ($this->comment_id == null) {
+            $this->validate([
+                'comment' => 'required',
+                'attachment' => 'required|image|max:1024'
+            ]);
             \App\Models\ComplaintComment::create([
                 'complaint_id' => $this->complaint->issue_id,
                 'comment' => $this->comment,
+                'attachment' => $this->attachment->store('media', 'public'),
                 'issue_status_id' => $this->complaint->status_id,
                 'created_by' => auth()->id(),
             ]);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record created successfully']);
         } else {
-            \App\Models\ComplaintComment::where('id', $this->comment_id)->update(['comment' => $this->comment, 'updated_by' => auth()->id()]);
+            $this->validate([
+                'comment' => 'required',
+                'attachment' => 'nullable|image|max:1024'
+            ]);
+
+            $complaintComment = \App\Models\ComplaintComment::where('id', $this->comment_id);
+            $data = [
+                'comment' => $this->comment,
+                'updated_by' => auth()->id()
+            ];
+
+            if ($this->attachment != null) {
+                $data['attachment'] = $this->attachment->store('media', 'public');
+                \Storage::disk('public')->delete($complaintComment->value('attachment'));
+            }
+            $complaintComment->update($data);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully']);
         }
         $this->getComments();
         $this->reset('comment', 'comment_id', 'showForm');
+
+        $this->fileResetCounter++;
     }
 
     public function mount(): void

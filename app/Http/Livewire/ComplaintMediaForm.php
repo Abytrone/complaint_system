@@ -17,7 +17,7 @@ class ComplaintMediaForm extends ModalComponent
 {
     use WithFileUploads;
 
-    public  $complaint_id;
+    public  Complaint $complaint;
 
     public $mediaTypes;
     public $media_type_id = MediaType::IS_IMAGE;
@@ -55,7 +55,7 @@ class ComplaintMediaForm extends ModalComponent
 
         $this->validate();
         ComplaintMedia::create([
-            'complaint_id' => $this->complaint_id,
+            'complaint_id' => $this->complaint->issue_id,
             'media_type_id' => $this->media_type_id,
             'title' => $this->title,
             'file_name' => $this->media_file->store('media', 'public'),

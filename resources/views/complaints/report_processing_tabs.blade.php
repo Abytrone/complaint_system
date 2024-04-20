@@ -7,7 +7,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="comment-tab" data-bs-toggle="tab" href="#comments" role="tab"
-               aria-controls="second" aria-selected="false">Comments</a>
+               aria-controls="second" aria-selected="false">Actions Taken/Milestone</a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="uploads-tab" data-bs-toggle="tab" href="#uploads" role="tab"
@@ -23,10 +23,11 @@
             <livewire:complaint-process-form :complaint="$complaint"></livewire:complaint-process-form>
         </div>
         <div class="tab-pane fade " id="comments" role="tabpanel">
-            <livewire:complaint-comment :complaint="$complaint"></livewire:complaint-comment>
+            <livewire:complaint-comment
+                :complaint="$complaint"></livewire:complaint-comment>
         </div>
         <div class="tab-pane fade" id="uploads" role="tabpanel">
-            <div class="row">...</div>
+            <livewire:complaint-media-form :complaint="$complaint"></livewire:complaint-media-form>
         </div>
         <div class="tab-pane fade" id="notification" role="tabpanel">
             <div class="row">...</div>

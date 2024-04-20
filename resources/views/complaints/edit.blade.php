@@ -38,7 +38,6 @@
                 </div>
                 <div class="card-body">
                     <div class=" ">
-
                         <table id="table" class="table custom-table">
                             <thead>
                             <tr>

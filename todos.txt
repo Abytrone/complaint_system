@@ -1,3 +1,7 @@
+[ ] add support group to complaint processing tab
+[ ] complaint media
+    [ ] how different is the one on initial create and the processing tab
+        should they be merged and show who created or they should be separate.
 [ ] duplicate complaint priority in issues_master and issue_processed
 [ ] add media gallery
 [ ] while processing
@@ -12,7 +16,7 @@
     [x] after media upload, clear form
     [ ] use modal for complaint media
     [ ] update complaint media
-    [ ] delete complaint media
+    [x] delete complaint media
 
 
 [x] add submit and save while editing the complaint
