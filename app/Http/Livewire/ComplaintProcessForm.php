@@ -83,11 +83,12 @@ class ComplaintProcessForm extends Component
         $valid['processed_by'] = auth()->id();
         $valid['processed_date'] = now();
         $valid['issue_id'] = $this->complaint->issue_id;
-        $data['updated_by'] = auth()->id();
-        $data['status_id'] = Status::IS_PROCESSED;
-        $data['processed_by'] = $valid['processed_by'];
-        $data['processed_date'] = now();
-        $this->complaint->update($data);
+
+//        $data['updated_by'] = auth()->id();
+//        $data['status_id'] = Status::IS_PROCESSED;
+//        $data['processed_by'] = $valid['processed_by'];
+//        $data['processed_date'] = now();
+//        $this->complaint->update($data);
         if ($this->processedComplaint !== null) {
             $this->processedComplaint->update($valid);
             $this->dispatchBrowserEvent('swal:success', ['message' => 'Record updated successfully!']);
