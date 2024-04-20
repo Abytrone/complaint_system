@@ -9,7 +9,8 @@
                 </x-select-field>
             </div>
             <div class="col-md-6 col-sm-12">
-                <x-select-field name="sub_category" text="Sub Category" :disabled="$isShow" wire:model="processed_subcategory_id">
+                <x-select-field name="sub_category" text="Sub Category" :disabled="$isShow"
+                                wire:model="processed_subcategory_id">
                     @foreach ($subcategories as $subcategory)
                         <option
                             value="{{ $subcategory->issue_subcategory_id }}">  {{ $subcategory->description }}</option>
@@ -33,7 +34,8 @@
             @endif
             @if($this->showDistrict())
                 <div class="col-lg-4 col-md-12 col-sm-12">
-                    <x-select-field name="district_id" text="District" :disabled="$isShow" wire:model="processed_district_id">
+                    <x-select-field name="district_id" text="District" :disabled="$isShow"
+                                    wire:model="processed_district_id">
                         @foreach ($districts as $district)
                             <option value="{{ $district->district_id }}">  {{ $district->district }}  </option>
                         @endforeach
@@ -89,6 +91,13 @@
                     @endforeach
                 </x-select-field>
             </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                <x-select-field name="support_group_id" text="Support Group" wire:model="support_group_id">
+                    @foreach($support_groups as $group)
+                        <option value="{{$group->support_group_id}}">{{$group->name}}</option>
+                    @endforeach
+                </x-select-field>
+            </div>
             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
                 <x-textarea-field name="raw_report" text="Report Details" wire:model="processed_report"
                                   rows="8">
@@ -99,8 +108,8 @@
         </div>
 
         <div class="tw-flex tw-gap-5">
-            <button class="btn btn-primary btn-sm" type="submit">Save</button>
-            <button class="btn btn-warning btn-sm" wire:click="submit" type="button">Submit</button>
+            <button class="btn btn-primary btn-sm col-2" type="submit">Save</button>
+            <button class="btn btn-warning btn-sm col-2" wire:click="submit" type="button">Submit</button>
         </div>
 
     </form>

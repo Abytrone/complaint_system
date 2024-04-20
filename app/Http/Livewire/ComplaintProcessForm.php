@@ -30,23 +30,24 @@ class ComplaintProcessForm extends Component
 
     public $processed_report = null;
     public $processed_category_id = null;
+    public $categories = [];
     public $processed_subcategory_id = null;
+    public $subcategories = [];
     public $processed_region_id = null;
+    public $regions = [];
     public $processed_district_id = null;
+    public $districts = [];
     public $processed_constituency_id = null;
+    public $constituencies = [];
     public $processed_electoral_area_id = null;
+    public $electoral_areas = [];
     public $processed_polling_station_id = null;
+    public $polling_stations = [];
     public $processed_community = null;
     public $priority = 'Low';
+    public $support_group_id = null;
+    public $support_groups = [];
 
-
-    public $subcategories = [];
-    public $categories = [];
-    public $regions = [];
-    public $districts = [];
-    public $constituencies = [];
-    public $electoral_areas = [];
-    public $polling_stations = [];
 
     public $fields = [];
 
@@ -62,6 +63,7 @@ class ComplaintProcessForm extends Component
         'processed_polling_station_id' => 'nullable|exists:ec_data,polling_station_id',
         'processed_community' => 'nullable',
         'priority' => 'required|in:Low,Medium,High',
+        'support_group_id' => 'required|exists:support_group,support_group_id',
     ];
 
     protected $messages = [
@@ -75,6 +77,8 @@ class ComplaintProcessForm extends Component
         'processed_constituency_id.exists' => 'Invalid constituency selected',
         'processed_electoral_area_id.exists' => 'Invalid electoral area selected',
         'processed_polling_station_id.exists' => 'Invalid polling station area selected',
+        'support_group_id.required' => 'Invalid support group selected',
+        'support_group_id.exists' => 'Invalid support group selected',
     ];
 
     public function store(): void
@@ -224,6 +228,7 @@ class ComplaintProcessForm extends Component
         $this->processed_electoral_area_id = $this->processedComplaint?->processed_electoral_area_id ?? $this->complaint->electoral_area_id;
         $this->processed_polling_station_id = $this->processedComplaint?->processed_polling_station_id ?? $this->complaint->polling_station_id;
         $this->processed_community = $this->processedComplaint?->processed_community ?? $this->complaint->community;
+        $this->support_group_id = $this->processedComplaint?->support_group_id ?? null;
 
         $this->subcategories = Subcategory::withoutZeroId()->active()
             ->where('category_id', $this->processed_category_id)->get();
@@ -247,6 +252,10 @@ class ComplaintProcessForm extends Component
             ->get();
 
         $this->electoral_areas = ElectoralArea::where('constituency_id', $this->processed_constituency_id)
+            ->orderBy('name')
+            ->get();
+
+        $this->support_groups = \App\Models\SupportGroup::query()
             ->orderBy('name')
             ->get();
 
@@ -283,12 +292,6 @@ class ComplaintProcessForm extends Component
         return in_array(Field::IS_COMMUNITY, $this->fields);
     }
 
-    private function generateRandomNumber($length = 15): string
-    {
-        $min = pow(10, $length - 1);
-        $max = pow(10, $length) - 1;
-        return strval(rand($min, $max));
-    }
 
     public function render(): View
     {

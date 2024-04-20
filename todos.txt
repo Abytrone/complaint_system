@@ -36,3 +36,8 @@
     [x] toggle status from resolved to closed
 [*] remove closed menu
 [x] reopened menu to reopen [ show closed complaints]
+
+
+tables modified
+    - comments
+    - issue_process
