@@ -9,16 +9,18 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
+use Livewire\Component;
 use Livewire\WithFileUploads;
 
 use LivewireUI\Modal\ModalComponent;
 
-class ComplaintMediaForm extends ModalComponent
+class ComplaintMediaForm extends Component
 {
     use WithFileUploads;
 
-    public  Complaint $complaint;
+    public Complaint $complaint;
 
+    public $showForm = false;
     public $mediaTypes;
     public $media_type_id = MediaType::IS_IMAGE;
     public $title = null;
@@ -50,6 +52,11 @@ class ComplaintMediaForm extends ModalComponent
         'title.required' => 'The media title field is required',
     ];
 
+    public function toggleForm(): void
+    {
+        $this->showForm = !$this->showForm;
+    }
+
     public function save(): void
     {
 
@@ -72,11 +79,6 @@ class ComplaintMediaForm extends ModalComponent
         $this->dispatchBrowserEvent('reload-table');
     }
 
-    public function closeModal(): void
-    {
-        parent::closeModal();
-        $this->dispatchBrowserEvent('reload-table');
-    }
 
     public function render(): Factory|View|Application
     {

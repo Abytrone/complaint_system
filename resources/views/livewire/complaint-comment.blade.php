@@ -1,8 +1,7 @@
 <div>
     @if(!$showForm)
         <button wire:click="toggleForm" class="btn btn-primary tw-mb-3">Add new</button>
-    @endif
-    @if($showForm)
+    @else
         <div class="row tw-mb-3">
             <form wire:submit.prevent="saveChanges">
                 <div class="row">
@@ -27,7 +26,6 @@
                 </div>
             </form>
         </div>
-
     @endif
 
     <div class="row tw-mt-5">
@@ -46,7 +44,7 @@
                 <tbody>
                 @forelse($comments ??[] as $comment)
                     <tr>
-                        <td> <img alt="pic" style='width:60px;height:60px' src="{{$comment->attachment_fmt}}"/></td>
+                        <td><img alt="pic" style='width:60px;height:60px' src="{{$comment->attachment_fmt}}"/></td>
                         <td>{{$comment->creator->fullname}}</td>
 
                         <td>{{$comment->comment}}</td>
@@ -55,12 +53,12 @@
                         <td>
                             <a wire:click="editComment({{$comment}})" href="#" data-bs-toggle="tooltip"
                                data-bs-placement="top" title="" data-bs-original-title="Edit">
-                                <i class="icon-edit1 text-warning"></i>
+                                <i class="icon-edit1 text-warning tw-text-lg"></i>
                             </a>
-
+                            <span class="tw-mx-3"></span>
                             <a wire:click="deleteComment({{$comment}})" href="#" data-bs-toggle="tooltip"
                                data-bs-placement="top" title="" data-bs-original-title="Delete">
-                                <i class="icon-trash-2 text-danger"></i>
+                                <i class="icon-trash-2 text-danger tw-text-lg"></i>
                             </a>
                         </td>
                     </tr>

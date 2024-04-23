@@ -1,91 +1,40 @@
 <div>
     <div class="row">
         <div class="col-md-6">
-            <div class="field-wrapper">
-                <select wire:model="status_id" class="form-select" name="status_id" required>
-                    <option value="">Please choose</option>
-                    @foreach($statuses as $status)
-                        <option value="{{$status->status_id}}">{{$status->status}}</option>
+            <x-select-field wire:model="status_id" text="Status" name="status_id" required>
+                @foreach($statuses as $status)
+                    <option value="{{$status->status_id}}">{{$status->status}}</option>
+                @endforeach
+            </x-select-field>
+        </div>
+
+        @if($this->showResolvedInputs())
+            <div class="col-md-6">
+                <x-text-input wire:model="resolved_date" name="resolved_date" text="Resolved Date" required/>
+            </div>
+            <div class="col-12">
+                <x-textarea-field wire:model="resolution" name="resolution" text="Resolution Remark" required/>
+            </div>
+        @endif
+        @if($this->showProcessedInputs())
+            <div class="col-md-6">
+                <x-select-field wire:model="priority" name="Priority" name="priority" required>
+                    @foreach(['Low', 'Medium' ,'High'] as $priority)
+                        <option value="{{$priority}}">{{$priority}}</option>
                     @endforeach
-                </select>
-                <div class="field-placeholder">Status<span class="text-danger">*</span></div>
-                @error('status_id')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
+                </x-select-field>
             </div>
-        </div>
+            <div class="col-md-6">
+                <x-input-field wire:model="processed_date" name="processed_date" text="Processed Date" type="date"
+                               max="{{now()}}" required/>
+            </div>
+        @endif
+        @if($this->showReopenInputs())
+            <div class="col-12">
+                <x-textarea-field name="reopen_reason" text="Reopen Reason" wire:model="reopen_reason" required/>
+            </div>
+        @endif
     </div>
-    @if($this->showResolvedInputs())
-        <div class="row">
-            <div class="col-md-6">
-                <div class="field-wrapper">
-                    <input id="resolved_date" wire:model="resolved_date" class="form-control" type="date" required/>
-                    <label for="resolved_date" class="field-placeholder">Resolved Date<span class="text-danger">*</span></label>
-                    @error('resolved_date')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="field-wrapper">
-                        <textarea id="resolution" wire:model="resolution" class="form-control" cols="5" rows="5" col
-                                  required></textarea>
-                    <label for="resolution" class="field-placeholder">
-                        Resolution Remark<span class="text-danger">*</span></label>
-                    @error('resolution')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    @endif
-    @if($this->showProcessedInputs())
-        <div class="row">
-            <div class="col-md-6">
-                <div class="field-wrapper">
-                    <select wire:model="priority" class="form-select" required>
-                        @foreach(['Low', 'Medium' ,'High'] as $priority)
-                            <option value="{{$priority}}">{{$priority}}</option>
-                        @endforeach
-                    </select>
-                    <div class="field-placeholder">Status<span class="text-danger">*</span></div>
-                    @error('priority')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="field-wrapper">
-                    <input wire:model="processed_date" class="form-control" type="date" max="{{now()}}" required/>
-                    <div class="field-placeholder">Processed Date<span class="text-danger">*</span></div>
-                    @error('processed_date')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    @endif
-
-    @if($this->showReopenInputs())
-        <div class="row">
-            <div class="col-md-6">
-                <div class="field-wrapper">
-                        <textarea id="reopen_reason" wire:model="reopen_reason" class="form-control" cols="5" rows="5" col
-                                  required></textarea>
-                    <label for="reopen_reason" class="field-placeholder">
-                        Reopen Reason<span class="text-danger">*</span></label>
-                    @error('reopen_reason')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    @endif
-
     <div class="row">
         <div class="col">
             <button class="btn btn-success" wire:click="toggle">Submit</button>

@@ -54,6 +54,11 @@ class  Complaint extends Model
         return $this->belongsTo(Status::class, 'status_id', 'status_id');
     }
 
+    public function isSubmitted(): bool
+    {
+        return $this->status_id === Status::IS_SUBMITTED;
+    }
+
     protected static function boot(): void
     {
         parent::boot();
